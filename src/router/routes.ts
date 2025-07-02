@@ -1,8 +1,12 @@
 export const routes = {
+  home: "/",
   auth: {
-    index: "",
+    index: "/auth",
     login: "/auth/login",
     signup: "/auth/signup",
   },
-  main: {},
+  app: {
+    index: "/app",
+    feed: "/app/feed",
+  },
 };

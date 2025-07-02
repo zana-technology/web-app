@@ -1,11 +1,9 @@
 import { Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import openRoutes from "./publicRoutes";
-import protectedRoutes from "./privateRoutes";
 
 const RouteWrapper = (children: React.ReactNode | null) => (
-  //   <Suspense fallback={<PageLoader />}>{children}</Suspense>
-  <p>Suspense goes here</p>
+  // <Suspense fallback={<PageLoader />}>{children}</Suspense>
+  <Suspense fallback={<p>Loading for now</p>}>{children}</Suspense>
 );
 
 const AppRouter = () => {
@@ -14,7 +12,7 @@ const AppRouter = () => {
       <Routes>
         {/* Authenticated Routes */}
         {/* <Route path="/" element={<MainLayout />}> */}
-        <Route path="/">
+        {/* <Route path="/">
           {protectedRoutes.map((route) => (
             <Route
               key={route.path}
@@ -22,12 +20,12 @@ const AppRouter = () => {
               element={RouteWrapper(route.element)}
             />
           ))}
-        </Route>
+        </Route> */}
 
         {/* Unauthenticated Routes */}
 
         {/* <Route path="/" element={<AuthLayout />}> */}
-        <Route path="/">
+        {/* <Route path="/">
           {openRoutes.map((route) => (
             <Route
               key={route.path}
@@ -36,7 +34,7 @@ const AppRouter = () => {
             />
           ))}
         </Route>
-        <Route path="*" element={<Navigate replace to="/auth/login" />} />
+        <Route path="*" element={<Navigate replace to="/auth/login" />} /> */}
       </Routes>
     </BrowserRouter>
   );
