@@ -8,7 +8,7 @@ export const AuthLayout = () => {
         <img src={logo} alt="Zana Logo" />
       </div>
       <div className="flex-1 overflow-auto flex justify-center items-center">
-        <div className="w-full sm:w-[640px]">
+        <div className="w-full px-4 sm:w-[640px]">
           <Outlet />
         </div>
       </div>

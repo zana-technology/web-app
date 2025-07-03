@@ -1,4 +1,4 @@
-import { Button, Input } from "@/components";
+import { AuthHeader, Button, Input } from "@/components";
 import { useLogin } from "./logic";
 
 const Login = () => {
@@ -16,11 +16,12 @@ const Login = () => {
   } = formik;
 
   return (
-    <div className="w-full flex flex-col items-center py-14 px-20 border border-zana-grey-300 -mt-24">
-      <h2 className="text-xl font-semibold">Welcome back</h2>
-      <p className="text-dark-400 mb-12">
-        Enter your correct details to continue
-      </p>
+    <div className="w-full flex flex-col items-center py-14 px-4 xs:px-20 border border-zana-grey-300 -mt-24">
+      <AuthHeader
+        title="Welcome back"
+        subTitle="Enter your correct details to continue"
+      />
+
       <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
         <Input
           label="email"
