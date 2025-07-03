@@ -3,11 +3,15 @@ import { Outlet } from "react-router-dom";
 
 export const AuthLayout = () => {
   return (
-    <div>
-      <div>
+    <div className="h-screen flex flex-col">
+      <div className="w-full flex py-10 justify-center items-center">
         <img src={logo} alt="Zana Logo" />
       </div>
-      <Outlet />
+      <div className="flex-1 overflow-auto flex justify-center items-center">
+        <div className="w-full sm:w-[640px]">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 };
