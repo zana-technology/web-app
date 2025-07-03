@@ -1,4 +1,4 @@
-import { Input } from "@/components";
+import { Button, Input } from "@/components";
 import { useLogin } from "./logic";
 
 const Login = () => {
@@ -39,6 +39,13 @@ const Login = () => {
           onBlur={handleBlur}
           errorMessage={errors.password}
           touched={touched.password}
+        />
+        <Button
+          title="Continue"
+          fullWidth
+          type="submit"
+          loading={isSubmitting}
+          showArrow={true}
         />
       </form>
     </div>

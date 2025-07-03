@@ -16,7 +16,7 @@ module.exports = {
             300: "#E9EAEB",
             400: "#A4A7AE",
           },
-          primary: { normal: "#255A5A" },
+          primary: { normal: "#255A5A", normalHover: "#255A5A" },
         },
       },
       fontFamily: {
