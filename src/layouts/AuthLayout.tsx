@@ -7,7 +7,7 @@ export const AuthLayout = () => {
       <div className="w-full flex py-10 justify-center items-center">
         <img src={logo} alt="Zana Logo" />
       </div>
-      <div className="flex-1 overflow-auto flex justify-center items-center">
+      <div className="flex-1 flex justify-center py-4 sm:py-0 sm:items-center w-full overflow-x-hidden">
         <div className="w-full px-4 sm:w-[640px]">
           <Outlet />
         </div>

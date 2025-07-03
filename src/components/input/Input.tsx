@@ -17,6 +17,7 @@ export interface InputProps {
   required?: boolean;
   className?: string;
   inputClass?: string;
+  note?: string;
 }
 
 export const Input = ({
@@ -33,6 +34,7 @@ export const Input = ({
   disabled = false,
   className,
   inputClass,
+  note,
 }: InputProps) => {
   const [hide, setHide] = useState(true);
 
@@ -46,7 +48,7 @@ export const Input = ({
     <div className={`flex flex-col relative ${className ? className : ""}`}>
       {label ? (
         <label htmlFor={name} className="text-sm text-dark-700 mb-1.5">
-          {capitalizeFirstLetter(label)}
+          {capitalizeFirstLetter(label)} {required && "*"}
         </label>
       ) : (
         ""
@@ -84,6 +86,7 @@ export const Input = ({
           ""
         )}
       </div>
+      {note ? <p className="text-sm  mt-1">{note}</p> : null}
       {touched && errorMessage ? (
         <p className="text-sm text-red-500 mt-1">{errorMessage}</p>
       ) : null}

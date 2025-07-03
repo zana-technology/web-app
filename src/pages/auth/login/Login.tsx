@@ -13,6 +13,7 @@ const Login = () => {
     handleSubmit,
     isSubmitting,
     isValid,
+    dirty,
   } = formik;
 
   return (
@@ -48,7 +49,7 @@ const Login = () => {
           type="submit"
           loading={isSubmitting}
           showArrow={true}
-          disabled={!isValid}
+          disabled={!(isValid && dirty)}
         />
       </form>
     </div>
