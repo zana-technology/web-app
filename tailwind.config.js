@@ -4,7 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dark: "#181D27",
+        dark: {
+          400: "#535862",
+          700: "#414651",
+          900: "#181D27",
+        },
         zana: {
           grey: {
             100: "#F5F5F5",
