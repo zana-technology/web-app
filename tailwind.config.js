@@ -15,6 +15,7 @@ module.exports = {
             200: "#D5D7DA",
             300: "#E9EAEB",
             400: "#A4A7AE",
+            500: "#FAFAFA",
           },
           primary: { normal: "#255A5A", normalHover: "#255A5A" },
         },
