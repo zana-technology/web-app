@@ -1,13 +1,16 @@
-import { Input } from "@/components";
-import { CandidateProfile } from "@/types";
+import { Input, Select } from "@/components";
+import { CandidateProfile, Option } from "@/types";
 import { FormikProps } from "formik";
 
 const OnboardingRole = ({
   formik,
+  experienceLevels,
 }: {
   formik: FormikProps<CandidateProfile>;
+  experienceLevels: Option[];
 }) => {
-  const { values, touched, handleBlur, errors, handleChange } = formik;
+  const { values, touched, handleBlur, errors, handleChange, setFieldValue } =
+    formik;
   return (
     <>
       <Input
@@ -22,15 +25,18 @@ const OnboardingRole = ({
         required
         note="What kind of roles are you looking for?"
       />
-      <Input
+      <Select
         label="Years of experience"
         name="max_years_of_experience"
-        value={values.max_years_of_experience}
-        onChange={handleChange}
+        value={values.max_years_of_experience.toString()}
         onBlur={handleBlur}
         errorMessage={errors.max_years_of_experience}
         touched={touched.max_years_of_experience}
         required
+        onChange={(item) => {
+          setFieldValue(`max_years_of_experience`, item.value);
+        }}
+        options={experienceLevels}
       />
     </>
   );

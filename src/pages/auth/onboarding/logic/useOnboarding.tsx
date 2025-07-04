@@ -8,6 +8,7 @@ import OnboardingWorkType from "../OnboardingWorkType";
 import OnboardingLanguage from "../OnboardingLanguage";
 import OnboardingAccountSetup from "../OnboardingAccountSetup";
 import { routes } from "@/router";
+import { countriesAndStates } from "@/libs";
 
 export const useOnboarding = () => {
   const navigate = useNavigate();
@@ -135,12 +136,28 @@ export const useOnboarding = () => {
     },
   });
 
+  const experienceLevels = [
+    { label: "Entry Level (0–2 years)", value: "entry" },
+    { label: "Mid Level (3–5 years)", value: "mid" },
+    { label: "Senior Level (6–10 years)", value: "senior" },
+    { label: "Lead/Principal (10+ years)", value: "lead" },
+  ];
+
+  const countryOptions = countriesAndStates?.map((x) => ({
+    label: x.name,
+    value: x.name,
+  }));
+
   const renderStep = () => {
     switch (currentStep) {
       case 2:
-        return <OnboardingRole formik={formik} />;
+        return (
+          <OnboardingRole formik={formik} experienceLevels={experienceLevels} />
+        );
       case 3:
-        return <OnboardingLocation formik={formik} />;
+        return (
+          <OnboardingLocation formik={formik} countryOptions={countryOptions} />
+        );
       case 4:
         return <OnboardingWorkType formik={formik} />;
       case 5:
@@ -148,7 +165,9 @@ export const useOnboarding = () => {
       case 6:
         return <OnboardingAccountSetup formik={formik} />;
       default:
-        return <OnboardingRole formik={formik} />;
+        return (
+          <OnboardingRole formik={formik} experienceLevels={experienceLevels} />
+        );
     }
   };
 

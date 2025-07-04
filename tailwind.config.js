@@ -17,7 +17,11 @@ module.exports = {
             400: "#A4A7AE",
             500: "#FAFAFA",
           },
-          primary: { normal: "#255A5A", normalHover: "#255A5A" },
+          primary: {
+            normal: "#255A5A",
+            normalHover: "#255A5A",
+            light: "#EFF5F5",
+          },
         },
       },
       fontFamily: {

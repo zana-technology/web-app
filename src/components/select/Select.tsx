@@ -6,7 +6,7 @@ import { Option } from "@/types";
 import { usePositionedElement } from "@/hooks";
 import { capitalizeFirstLetter } from "@/libs";
 import { twMerge } from "tailwind-merge";
-import { BsCheck } from "react-icons/bs";
+import { GoCheck } from "react-icons/go";
 
 export interface SelectProps<T = unknown> {
   label: string;
@@ -245,7 +245,7 @@ export const Select = <T,>({
             right: `${position.right}px`,
           }}
           ref={elementRef}
-          className="border border-zana-grey-300 fixed w-full bg-white rounded-md mt-2.5 z-[1001] h-[256px] max-h-[256px] overflow-y-scroll shadow-md"
+          className="border border-zana-grey-300 fixed w-full bg-white rounded-md mt-2.5 z-[1001] min-h-[100px] h-fit max-h-[256px] overflow-y-scroll shadow-md"
           onScroll={handleScroll}
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -266,8 +266,8 @@ export const Select = <T,>({
                 >
                   {option.label}
                   {option.value === value ? (
-                    <span className="size={20} text-green-500 absolute right-4">
-                      <BsCheck />
+                    <span className="size={30} text-green-500 absolute right-4">
+                      <GoCheck />
                     </span>
                   ) : (
                     ""
