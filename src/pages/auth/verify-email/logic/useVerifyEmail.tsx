@@ -62,6 +62,7 @@ export const useVerifyEmail = () => {
     canResend,
     restartCountdown,
     timeLeft,
+    secondsLeft,
   };
 };
 

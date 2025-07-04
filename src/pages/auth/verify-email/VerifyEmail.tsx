@@ -10,6 +10,7 @@ const VerifyEmail = () => {
     canResend,
     restartCountdown,
     timeLeft,
+    secondsLeft,
   } = useVerifyEmail();
 
   const {
@@ -63,7 +64,9 @@ const VerifyEmail = () => {
             disabled={!canResend}
             onClick={restartCountdown}
           />
-          <p className="text-center">Resend code in {timeLeft}</p>
+          {secondsLeft !== 0 && (
+            <p className="text-center">Resend code in {timeLeft}</p>
+          )}
         </form>
       </div>
     </div>

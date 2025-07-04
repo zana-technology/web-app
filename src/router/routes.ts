@@ -5,6 +5,7 @@ export const routes = {
     login: "/auth/login",
     signup: "/auth/signup",
     verify: "/auth/verify/:id",
+    onboarding: "/auth/onboarding",
   },
   app: {
     index: "/app",
