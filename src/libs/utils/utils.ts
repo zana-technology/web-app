@@ -6,3 +6,24 @@ export const capitalizeFirstLetter = function toTitleCase(str: string) {
 
 export const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>[\]_\-+=;'/\\])[A-Za-z\d!@#$%^&*(),.?":{}|<>[\]_\-+=;'/\\]+$/;
+
+export const toSentenceCase = (key: string) => {
+  if (!key) return "";
+
+  const isSnake = key.includes("_");
+  const isKebab = key.includes("-");
+  const isCamelOrPascal = /[a-z][A-Z]/.test(key) || /^[A-Z][a-z]+/.test(key);
+
+  let spaced = key;
+
+  if (isSnake) {
+    spaced = key.replace(/_/g, " ");
+  } else if (isKebab) {
+    spaced = key.replace(/-/g, " ");
+  } else if (isCamelOrPascal) {
+    spaced = key.replace(/([a-z])([A-Z])/g, "$1 $2");
+  }
+
+  const lower = spaced.toLowerCase();
+  return lower.charAt(0).toUpperCase() + lower.slice(1);
+};

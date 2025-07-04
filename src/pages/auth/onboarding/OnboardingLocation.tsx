@@ -12,8 +12,7 @@ const OnboardingLocation = ({
   countryOptions: Option[];
   visaRegionOptions: Option[];
 }) => {
-  const { values, touched, handleBlur, errors, handleChange, setFieldValue } =
-    formik;
+  const { values, touched, handleBlur, errors, setFieldValue } = formik;
 
   return (
     <>
@@ -43,6 +42,8 @@ const OnboardingLocation = ({
             item === "YES" ? true : false
           );
         }}
+        errorMessage={errors.needs_visa_sponsorship as string}
+        touched={touched.needs_visa_sponsorship}
         options={[
           { label: "Yes", value: "YES" },
           { label: "No", value: "NO" },
