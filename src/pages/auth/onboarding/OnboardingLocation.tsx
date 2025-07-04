@@ -1,4 +1,4 @@
-import { Select } from "@/components";
+import { MultiSelect, Select } from "@/components";
 import { SelectButtonGroup } from "@/components/button";
 import { CandidateProfile, Option } from "@/types";
 import { FormikProps } from "formik";
@@ -6,9 +6,11 @@ import { FormikProps } from "formik";
 const OnboardingLocation = ({
   formik,
   countryOptions,
+  visaRegionOptions,
 }: {
   formik: FormikProps<CandidateProfile>;
   countryOptions: Option[];
+  visaRegionOptions: Option[];
 }) => {
   const { values, touched, handleBlur, errors, handleChange, setFieldValue } =
     formik;
@@ -45,6 +47,23 @@ const OnboardingLocation = ({
           { label: "Yes", value: "YES" },
           { label: "No", value: "NO" },
         ]}
+      />
+      <MultiSelect
+        label="Regions you need visa"
+        name={`visa_regions`}
+        values={values?.visa_regions.map((x) => ({
+          label: x,
+          value: x,
+        }))}
+        onBlur={handleBlur}
+        errorMessage={errors.visa_regions as string}
+        touched={touched.visa_regions}
+        onChange={(item) => {
+          const values = item.map((x) => x.value);
+          setFieldValue("visa_regions", values);
+        }}
+        options={visaRegionOptions}
+        required
       />
     </>
   );

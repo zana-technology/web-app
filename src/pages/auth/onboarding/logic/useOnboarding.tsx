@@ -147,6 +147,10 @@ export const useOnboarding = () => {
     label: x.name,
     value: x.name,
   }));
+  const visaRegionOptions = ["Africa", "Europe", "Asia"]?.map((x) => ({
+    label: x,
+    value: x,
+  }));
 
   const renderStep = () => {
     switch (currentStep) {
@@ -156,7 +160,11 @@ export const useOnboarding = () => {
         );
       case 3:
         return (
-          <OnboardingLocation formik={formik} countryOptions={countryOptions} />
+          <OnboardingLocation
+            formik={formik}
+            countryOptions={countryOptions}
+            visaRegionOptions={visaRegionOptions}
+          />
         );
       case 4:
         return <OnboardingWorkType formik={formik} />;
