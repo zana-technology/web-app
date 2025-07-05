@@ -1,6 +1,6 @@
 const serviceRoot = {
-  auth: "v1/auth",
-  profile: "v1/profile",
+  auth: "/v1/auth",
+  profile: "/v1/profile",
 };
 
 export const apiRoutes = {

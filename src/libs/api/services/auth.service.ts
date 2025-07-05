@@ -26,7 +26,7 @@ const verifyEmail = async (payload: SignupFormValues) => {
   });
 };
 
-export const authService = {
+export const authApi = {
   login,
   signup,
   verifyEmail,

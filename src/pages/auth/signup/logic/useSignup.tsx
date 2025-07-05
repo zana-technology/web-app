@@ -1,4 +1,4 @@
-import { passwordRegex } from "@/libs";
+import { authApi, passwordRegex } from "@/libs";
 import { routes } from "@/router/routes";
 import { SignupFormValues } from "@/types";
 import { useFormik } from "formik";
@@ -35,7 +35,12 @@ export const useSignup = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       console.log("values", values);
-      navigate(`${routes.auth.verify.replace(":id", values?.email)}`);
+
+      const { success } = await authApi.signup(values);
+
+      if (success) {
+        navigate(`${routes.auth.verify.replace(":id", values?.email)}`);
+      }
     },
   });
   return { formik };
