@@ -1,6 +1,6 @@
 import { MultiSelect, Select } from "@/components";
 import { SelectButtonGroup } from "@/components/button";
-import { CandidateProfile, Option } from "@/types";
+import { OnboardingFormValues, Option } from "@/types";
 import { FormikProps } from "formik";
 
 const OnboardingLocation = ({
@@ -8,7 +8,7 @@ const OnboardingLocation = ({
   countryOptions,
   visaRegionOptions,
 }: {
-  formik: FormikProps<CandidateProfile>;
+  formik: FormikProps<OnboardingFormValues>;
   countryOptions: Option[];
   visaRegionOptions: Option[];
 }) => {

@@ -1,5 +1,5 @@
 import { AuthHeader, Button, StepIndicator } from "@/components";
-import { onboardingSteps } from "@/libs";
+import { onboardingShellClassName, onboardingSteps } from "@/libs";
 import { useOnboarding } from "./logic";
 
 const Onboarding = () => {
@@ -9,7 +9,7 @@ const Onboarding = () => {
   return (
     <div className="w-full flex flex-col items-center">
       <StepIndicator steps={onboardingSteps} currentStep={currentStep} />
-      <div className="w-full flex flex-col items-center py-14 px-4 xs:px-20 border border-zana-grey-300 mt-4 sm:mt-14">
+      <div className={onboardingShellClassName}>
         <AuthHeader
           title={renderAuthHeader().title}
           subTitle={renderAuthHeader().subTitle}

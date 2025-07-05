@@ -74,3 +74,7 @@ export interface CandidateProfile {
   educational_qualifications: Education[];
   certifications: Certification[];
 }
+
+export type OnboardingFormValues = CandidateProfile & {
+  resume?: File[];
+};

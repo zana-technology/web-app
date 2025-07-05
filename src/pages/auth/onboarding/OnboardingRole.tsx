@@ -1,12 +1,12 @@
 import { Input, Select } from "@/components";
-import { CandidateProfile, Option } from "@/types";
+import { OnboardingFormValues, Option } from "@/types";
 import { FormikProps } from "formik";
 
 const OnboardingRole = ({
   formik,
   experienceLevels,
 }: {
-  formik: FormikProps<CandidateProfile>;
+  formik: FormikProps<OnboardingFormValues>;
   experienceLevels: Option[];
 }) => {
   const { values, touched, handleBlur, errors, handleChange, setFieldValue } =

@@ -1,11 +1,11 @@
 import { SelectButtonGroup } from "@/components/button";
-import { CandidateProfile } from "@/types";
+import { OnboardingFormValues } from "@/types";
 import { FormikProps } from "formik";
 
 const OnboardingWorkType = ({
   formik,
 }: {
-  formik: FormikProps<CandidateProfile>;
+  formik: FormikProps<OnboardingFormValues>;
 }) => {
   const { values, touched, errors, setFieldValue } = formik;
 

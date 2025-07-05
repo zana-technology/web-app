@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import OnboardingRole from "../OnboardingRole";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { CandidateProfile, LoginFormValues } from "@/types";
+import { OnboardingFormValues } from "@/types";
 import OnboardingLocation from "../OnboardingLocation";
 import OnboardingWorkType from "../OnboardingWorkType";
 import OnboardingLanguage from "../OnboardingLanguage";
@@ -51,7 +51,7 @@ export const useOnboarding = () => {
     }
   };
 
-  const initialValues: CandidateProfile = {
+  const initialValues: OnboardingFormValues = {
     full_name: "",
     avatar_url: "",
     phone_number: "",
@@ -118,6 +118,7 @@ export const useOnboarding = () => {
         extras: {},
       },
     ],
+    resume: [],
   };
 
   const validationSchema = yup.object().shape({
@@ -125,7 +126,7 @@ export const useOnboarding = () => {
     password: yup.string().required("Password is required"),
   });
 
-  const formik = useFormik<CandidateProfile>({
+  const formik = useFormik<OnboardingFormValues>({
     initialValues: initialValues,
     // validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -152,6 +153,46 @@ export const useOnboarding = () => {
     value: x,
   }));
 
+  const workingLanguageOptions = [
+    { label: "English", value: "english" },
+    { label: "Spanish", value: "spanish" },
+    { label: "French", value: "french" },
+    { label: "German", value: "german" },
+    { label: "Mandarin Chinese", value: "mandarin" },
+    { label: "Arabic", value: "arabic" },
+    { label: "Portuguese", value: "portuguese" },
+    { label: "Hindi", value: "hindi" },
+    { label: "Swahili", value: "swahili" },
+    { label: "Other", value: "other" },
+  ];
+
+  const ethnicityOptions = [
+    { label: "Black or African Descent", value: "black" },
+    { label: "White", value: "white" },
+    { label: "Hispanic or Latino", value: "hispanic" },
+    { label: "Asian", value: "asian" },
+    { label: "Middle Eastern or North African", value: "mena" },
+    { label: "Indigenous or Native Peoples", value: "indigenous" },
+    { label: "Mixed or Multiple Ethnic Groups", value: "mixed" },
+    { label: "Other", value: "other" },
+    { label: "Prefer not to say", value: "prefer_not_to_say" },
+  ];
+
+  const genderOptions = [
+    { label: "Male", value: "male" },
+    { label: "Female", value: "female" },
+    { label: "Non-binary", value: "non_binary" },
+    { label: "Transgender", value: "transgender" },
+    { label: "Prefer not to say", value: "prefer_not_to_say" },
+    { label: "Other", value: "other" },
+  ];
+
+  const disabilityStatusOptions = [
+    { label: "Yes, I have a disability", value: "yes" },
+    { label: "No, I do not have a disability", value: "no" },
+    { label: "Prefer not to say", value: "prefer_not_to_say" },
+  ];
+
   const renderStep = () => {
     switch (currentStep) {
       case 2:
@@ -169,7 +210,15 @@ export const useOnboarding = () => {
       case 4:
         return <OnboardingWorkType formik={formik} />;
       case 5:
-        return <OnboardingLanguage formik={formik} />;
+        return (
+          <OnboardingLanguage
+            formik={formik}
+            workingLanguageOptions={workingLanguageOptions}
+            ethnicityOptions={ethnicityOptions}
+            genderOptions={genderOptions}
+            disabilityStatusOptions={disabilityStatusOptions}
+          />
+        );
       case 6:
         return <OnboardingAccountSetup formik={formik} />;
       default:

@@ -4,3 +4,4 @@ export * from "./step-indicator";
 export * from "./auth-header";
 export * from "./select";
 export * from "./checkbox";
+export * from "./dropzone";

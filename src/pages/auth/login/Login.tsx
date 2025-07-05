@@ -1,5 +1,6 @@
 import { AuthHeader, Button, Input } from "@/components";
 import { useLogin } from "./logic";
+import { onboardingShellClassName } from "@/libs";
 
 const Login = () => {
   const { formik } = useLogin();
@@ -17,7 +18,7 @@ const Login = () => {
   } = formik;
 
   return (
-    <div className="w-full flex flex-col items-center py-14 px-4 xs:px-20 border border-zana-grey-300 -mt-24">
+    <div className={onboardingShellClassName}>
       <AuthHeader
         title="Welcome back"
         subTitle="Enter your correct details to continue"
