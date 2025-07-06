@@ -1,4 +1,11 @@
-import { Landing, Login, Onboarding, Signup, VerifyEmail } from "@/pages";
+import {
+  Landing,
+  Login,
+  Onboarding,
+  ProfilePreview,
+  Signup,
+  VerifyEmail,
+} from "@/pages";
 
 export const authRoutes = [
   {
@@ -16,6 +23,10 @@ export const authRoutes = [
   {
     path: "onboarding",
     element: <Onboarding />,
+  },
+  {
+    path: "preview",
+    element: <ProfilePreview />,
   },
 ];
 

@@ -12,15 +12,14 @@ const client: AxiosInstance = axios.create({
 
 const exceptionEndpoint = [`${config.BASE_URL}/auth/login`];
 
-// You’ll replace this with your auth state logic
 const getTokenData = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("access_token");
   const tokenExpiry = localStorage.getItem("tokenExpiry");
   return { token, tokenExpiry };
 };
 
 const handleLogout = () => {
-  localStorage.removeItem("token");
+  localStorage.removeItem("access_token");
   localStorage.removeItem("tokenExpiry");
   window.location.href = "/login";
 };

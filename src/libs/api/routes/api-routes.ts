@@ -12,4 +12,7 @@ export const apiRoutes = {
     refreshToken: `${serviceRoot.auth}/refresh-token`,
     logout: `${serviceRoot.auth}/logout`,
   },
+  profile: {
+    index: `${serviceRoot.profile}`,
+  },
 };

@@ -1,6 +1,7 @@
 export interface Step {
   step: number;
   title: string;
+  route: string;
 }
 
 export type Option<T = unknown> = {
@@ -10,4 +11,5 @@ export type Option<T = unknown> = {
 
 export interface FileWithPreview extends File {
   preview?: string;
+  originalUrl?: string;
 }

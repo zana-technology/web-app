@@ -1,15 +1,25 @@
 import { Step } from "@/types";
 import { BsCheck } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 interface StepIndicatorProps {
   steps: Step[];
   currentStep: number;
 }
 export const StepIndicator = ({ steps, currentStep }: StepIndicatorProps) => {
+  const navigate = useNavigate();
   return (
     <div className="flex">
       {steps?.map((x, i) => (
-        <div key={i} className={`flex items-center`}>
+        <div
+          key={i}
+          className={`flex items-center cursor-pointer`}
+          onClick={() => {
+            if (x.step <= currentStep) {
+              navigate(x.route);
+            }
+          }}
+        >
           {currentStep === x.step ? (
             <div className="flex h-7 items-center px-[3px] rounded-full border border-zana-primary-normal gap-0.5 ">
               <div className="h-5 w-5 rounded-full border border-dashed border-green-500 bg-green-50"></div>

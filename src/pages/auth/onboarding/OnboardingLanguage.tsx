@@ -29,6 +29,13 @@ const OnboardingLanguage = ({
         touched={touched.preferred_language}
         onChange={(item) => {
           setFieldValue("preferred_language", item.value);
+          const languages = [
+            {
+              language: item.value,
+              proficiency: "Native",
+            },
+          ];
+          setFieldValue("languages", languages);
         }}
         options={workingLanguageOptions}
         note="This helps us find jobs that match your language skills and show roles in companies where your language is valued."

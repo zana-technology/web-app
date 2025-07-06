@@ -55,8 +55,6 @@ const apiRequest = async <T>({
       }
     );
 
-    console.log("data in try", data);
-
     return {
       success: true,
       data: data.data as T,

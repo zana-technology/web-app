@@ -1,5 +1,7 @@
 import {
+  CandidateProfileDto,
   LoginFormValues,
+  OnboardingFormValues,
   SignupDto,
   SignupFormValues,
   VerifyEmailFormValues,
@@ -31,8 +33,17 @@ const verifyEmail = async (payload: VerifyEmailFormValues) => {
   });
 };
 
+const onboarding = async (payload: OnboardingFormValues) => {
+  return await apiRequest<CandidateProfileDto>({
+    url: apiRoutes.profile.index,
+    method: "patch",
+    payload,
+  });
+};
+
 export const authApi = {
   login,
   signup,
   verifyEmail,
+  onboarding,
 };

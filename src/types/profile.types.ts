@@ -37,32 +37,19 @@ export interface Certification {
   };
 }
 
-export interface CandidateProfile {
-  full_name: string;
+export interface Languages {
+  language: string;
+  proficiency: string;
+}
+
+export type CandidateProfileDto = OnboardingFormValues & {
   avatar_url: string;
   phone_number: string;
   platform_email: string;
-  ethnicity: string;
-  gender: string;
-  disability_status: string | null;
-  languages: {
-    [language: string]: {
-      proficiency: string;
-    };
-  };
   skills: string[];
   professional_summary: string;
-  preferred_role: string;
-  min_years_of_experience: number;
-  max_years_of_experience: number;
-  current_location: string;
-  needs_visa_sponsorship: boolean;
-  visa_regions: string[];
   linkedin_url: string;
   github_url: string;
-  portfolio_url: string;
-  preferred_employment_types: string[];
-  work_preferences: string[];
   min_salary_expectation: number;
   max_salary_expectation: number;
   preferred_currency: string;
@@ -73,10 +60,24 @@ export interface CandidateProfile {
   work_experiences: WorkExperience[];
   educational_qualifications: Education[];
   certifications: Certification[];
-  preferred_language: string;
-}
+};
 
-export type OnboardingFormValues = CandidateProfile & {
-  resume?: File[];
+export type OnboardingFormValues = {
+  preferred_role: string;
   experience_level?: string;
+  min_years_of_experience: number;
+  max_years_of_experience: number;
+  current_location: string;
+  needs_visa_sponsorship: boolean;
+  visa_regions: string[];
+  preferred_employment_types: string[];
+  work_preferences: string[];
+  ethnicity: string;
+  preferred_language: string;
+  languages: Languages[];
+  gender: string;
+  disability_status: string | null;
+  full_name: string;
+  portfolio_url: string;
+  resume?: File[];
 };

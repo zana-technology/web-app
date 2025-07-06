@@ -1,6 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import OnboardingRole from "../OnboardingRole";
-import * as yup from "yup";
 import { useFormik } from "formik";
 import { OnboardingFormValues } from "@/types";
 import OnboardingLocation from "../OnboardingLocation";
@@ -8,7 +7,8 @@ import OnboardingWorkType from "../OnboardingWorkType";
 import OnboardingLanguage from "../OnboardingLanguage";
 import OnboardingAccountSetup from "../OnboardingAccountSetup";
 import { routes } from "@/router";
-import { countriesAndStates } from "@/libs";
+import { authApi, countriesAndStates, removeEmptyKeys } from "@/libs";
+import useOnboardingValidationSchema from "./useOnboardingValidationSchema";
 
 export const useOnboarding = () => {
   const navigate = useNavigate();
@@ -52,88 +52,105 @@ export const useOnboarding = () => {
   };
 
   const initialValues: OnboardingFormValues = {
-    full_name: "",
-    avatar_url: "",
-    phone_number: "",
-    platform_email: "",
-    ethnicity: "",
-    gender: "",
-    disability_status: null,
-    languages: {
-      English: {
-        proficiency: "",
-      },
-    },
-    skills: [],
-    professional_summary: "",
+    //STEP2
     preferred_role: "",
+    experience_level: "",
     min_years_of_experience: 0,
     max_years_of_experience: 0,
+
+    //STEP3
     current_location: "",
     needs_visa_sponsorship: false,
     visa_regions: [],
-    linkedin_url: "",
-    github_url: "",
-    portfolio_url: "",
+
+    //STEP4
     preferred_employment_types: [],
     work_preferences: [],
-    min_salary_expectation: 0,
-    max_salary_expectation: 0,
-    preferred_currency: "",
-    auto_apply_enabled: false,
-    extras: {},
-    work_experiences: [
-      {
-        company_name: "",
-        job_title: "",
-        location: "",
-        description: "",
-        start_date: "",
-        end_date: "",
-        is_current: false,
-        extras: {},
-      },
-    ],
-    educational_qualifications: [
-      {
-        institution_name: "",
-        location: "",
-        degree: "",
-        field_of_study: "",
-        description: "",
-        grade: "",
-        start_date: "",
-        end_date: "",
-        extras: {},
-      },
-    ],
-    certifications: [
-      {
-        name: "",
-        issuing_organization: "",
-        issue_date: "",
-        expiration_date: null,
-        credential_id: "",
-        credential_url: "",
-        extras: {},
-      },
-    ],
-    resume: [],
+
+    //STEP5
+    ethnicity: "",
     preferred_language: "",
+    languages: [],
+    gender: "",
+    disability_status: null,
+
+    //STEP6
+    full_name: "",
+    portfolio_url: "",
+    resume: [],
+
+    //NOT USED
+    // avatar_url: "",
+    // phone_number: "",
+    // platform_email: "",
+    // skills: [],
+    // professional_summary: "",
+    // linkedin_url: "",
+    // github_url: "",
+    // min_salary_expectation: 0,
+    // max_salary_expectation: 0,
+    // preferred_currency: "",
+    // auto_apply_enabled: false,
+    // extras: {},
+    // work_experiences: [
+    //   {
+    //     company_name: "",
+    //     job_title: "",
+    //     location: "",
+    //     description: "",
+    //     start_date: "",
+    //     end_date: "",
+    //     is_current: false,
+    //     extras: {},
+    //   },
+    // ],
+    // educational_qualifications: [
+    //   {
+    //     institution_name: "",
+    //     location: "",
+    //     degree: "",
+    //     field_of_study: "",
+    //     description: "",
+    //     grade: "",
+    //     start_date: "",
+    //     end_date: "",
+    //     extras: {},
+    //   },
+    // ],
+    // certifications: [
+    //   {
+    //     name: "",
+    //     issuing_organization: "",
+    //     issue_date: "",
+    //     expiration_date: null,
+    //     credential_id: "",
+    //     credential_url: "",
+    //     extras: {},
+    //   },
+    // ],
   };
 
-  const validationSchema = yup.object().shape({
-    email: yup.string().email("Invalid email").required("Email is required"),
-    password: yup.string().required("Password is required"),
-  });
+  const { validationSchema } = useOnboardingValidationSchema();
 
   const formik = useFormik<OnboardingFormValues>({
     initialValues: initialValues,
-    // validationSchema: validationSchema,
+    validationSchema: validationSchema,
     onSubmit: async (values) => {
       console.log("values", values);
       if (currentStep < 6) {
         return navigate(`${routes.auth.onboarding}?step=${currentStep + 1}`);
+      }
+
+      const payload = { ...values };
+
+      delete payload?.resume;
+
+      removeEmptyKeys(payload);
+
+      const { success } = await authApi.onboarding(payload);
+
+      if (success) {
+        navigate(routes.auth.preview);
       }
     },
   });

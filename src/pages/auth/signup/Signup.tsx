@@ -52,7 +52,7 @@ const Signup = () => {
             label="confirm password"
             name="confirmPassword"
             type="password"
-            value={values.confirmPassword}
+            value={values.confirmPassword as string}
             onChange={handleChange}
             onBlur={handleBlur}
             errorMessage={errors.confirmPassword}
