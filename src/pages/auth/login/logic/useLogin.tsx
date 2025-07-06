@@ -9,12 +9,12 @@ export const useLogin = () => {
   const navigate = useNavigate();
 
   const initialValues = {
-    email: "",
+    username: "",
     password: "",
   };
 
   const validationSchema = yup.object().shape({
-    email: yup.string().email("Invalid email").required("Email is required"),
+    username: yup.string().email("Invalid email").required("Email is required"),
     password: yup.string().required("Password is required"),
   });
 

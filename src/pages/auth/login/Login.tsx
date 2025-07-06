@@ -27,12 +27,12 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
         <Input
           label="email"
-          name="email"
-          value={values.email}
+          name="username"
+          value={values.username}
           onChange={handleChange}
           onBlur={handleBlur}
-          errorMessage={errors.email}
-          touched={touched.email}
+          errorMessage={errors.username}
+          touched={touched.username}
         />
         <Input
           label="password"
