@@ -73,8 +73,10 @@ export interface CandidateProfile {
   work_experiences: WorkExperience[];
   educational_qualifications: Education[];
   certifications: Certification[];
+  preferred_language: string;
 }
 
 export type OnboardingFormValues = CandidateProfile & {
   resume?: File[];
+  experience_level?: string;
 };

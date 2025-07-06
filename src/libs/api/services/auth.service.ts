@@ -1,4 +1,9 @@
-import { LoginFormValues, SignupFormValues } from "@/types";
+import {
+  LoginFormValues,
+  SignupDto,
+  SignupFormValues,
+  VerifyEmailFormValues,
+} from "@/types";
 import { apiRequest } from "../config";
 import { apiRoutes } from "../routes";
 
@@ -11,15 +16,15 @@ const login = async (payload: LoginFormValues) => {
 };
 
 const signup = async (payload: SignupFormValues) => {
-  return await apiRequest<SignupFormValues>({
+  return await apiRequest<SignupDto>({
     url: apiRoutes.auth.signup,
     method: "post",
     payload,
   });
 };
 
-const verifyEmail = async (payload: SignupFormValues) => {
-  return await apiRequest<SignupFormValues>({
+const verifyEmail = async (payload: VerifyEmailFormValues) => {
+  return await apiRequest<VerifyEmailFormValues>({
     url: apiRoutes.auth.verifyEmail,
     method: "post",
     payload,

@@ -1,3 +1,5 @@
+import { SignupDto } from "@/types";
+
 export const capitalizeFirstLetter = function toTitleCase(str: string) {
   return str?.replace(/\w\S*/g, function (txt) {
     return txt?.charAt(0)?.toUpperCase() + txt?.substr(1)?.toLowerCase();
@@ -45,4 +47,14 @@ export const encodeQueryData = (
     return `${encodeURIComponent(key)}=${encodeURIComponent(value ?? "")}`;
   });
   return encodedQuery.join("&");
+};
+
+export const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+
+export const handleAuthSuccess = (authData: SignupDto) => {
+  const expiresAt = new Date(Date.now() + SEVEN_DAYS_MS).toISOString();
+
+  localStorage.setItem("access_token", authData.access_token);
+  localStorage.setItem("refresh_token", authData.refresh_token);
+  localStorage.setItem("token_expiry", expiresAt);
 };

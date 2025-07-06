@@ -55,14 +55,14 @@ const apiRequest = async <T>({
       }
     );
 
+    console.log("data in try", data);
+
     return {
       success: true,
       data: data.data as T,
-      message:
-        typeof data?.data?.message === "string"
-          ? data?.data?.message
-          : data?.data?.message?.[0],
-      ...(data?.data?.meta && { meta: data?.data?.meta }),
+      title: data?.message,
+      message: data?.detail,
+      ...(data?.meta && { meta: data?.meta }),
     };
   } catch (error: any) {
     const { data } = (error.response || {}) as IErrorMessageDTO;
@@ -82,28 +82,21 @@ const apiRequest = async <T>({
       };
     }
 
-    const errorMessage =
-      typeof data?.message === "string"
-        ? data.message
-        : Array.isArray(data?.message)
-        ? data.message[0]
-        : "Something went wrong";
+    const errorTitle = data?.message;
+    const errorMessage = data?.detail ? data?.detail : "Something went wrong";
 
     if (triggerError) {
       showToast({
         message: errorMessage,
         variant: "error",
-        title: data?.error || "Error",
+        title: errorTitle || "Error",
       });
     }
 
     return {
       success: false,
       errorMessage,
-      error: data?.error,
-      path: data?.path,
-      statusCode: data?.statusCode,
-      timeStamp: data?.timestamp,
+      errorTitle,
     };
   }
 };

@@ -3,5 +3,16 @@ export type LoginFormValues = {
   password: string;
 };
 export type SignupFormValues = LoginFormValues & {
-  confirmPassword: string;
+  confirmPassword?: string;
+};
+
+export type SignupDto = {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+};
+
+export type VerifyEmailFormValues = {
+  email: string;
+  token: string;
 };

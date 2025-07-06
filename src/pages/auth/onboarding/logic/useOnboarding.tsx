@@ -119,6 +119,7 @@ export const useOnboarding = () => {
       },
     ],
     resume: [],
+    preferred_language: "",
   };
 
   const validationSchema = yup.object().shape({
@@ -138,10 +139,10 @@ export const useOnboarding = () => {
   });
 
   const experienceLevels = [
-    { label: "Entry Level (0–2 years)", value: "entry" },
-    { label: "Mid Level (3–5 years)", value: "mid" },
-    { label: "Senior Level (6–10 years)", value: "senior" },
-    { label: "Lead/Principal (10+ years)", value: "lead" },
+    { label: "Entry Level (0–2 years)", value: "entry", min: 0, max: 2 },
+    { label: "Mid Level (3–5 years)", value: "mid", min: 3, max: 5 },
+    { label: "Senior Level (6–10 years)", value: "senior", min: 6, max: 10 },
+    { label: "Lead/Principal (10+ years)", value: "lead", min: 11, max: 25 },
   ];
 
   const countryOptions = countriesAndStates?.map((x) => ({

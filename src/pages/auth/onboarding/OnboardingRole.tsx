@@ -7,7 +7,7 @@ const OnboardingRole = ({
   experienceLevels,
 }: {
   formik: FormikProps<OnboardingFormValues>;
-  experienceLevels: Option[];
+  experienceLevels: Option<{ min: number; max: number }>[];
 }) => {
   const { values, touched, handleBlur, errors, handleChange, setFieldValue } =
     formik;
@@ -27,14 +27,16 @@ const OnboardingRole = ({
       />
       <Select
         label="Years of experience"
-        name="max_years_of_experience"
-        value={values.max_years_of_experience.toString()}
+        name="experience_level"
+        value={values.experience_level as string}
         onBlur={handleBlur}
-        errorMessage={errors.max_years_of_experience}
-        touched={touched.max_years_of_experience}
+        errorMessage={errors.experience_level}
+        touched={touched.experience_level}
         required
         onChange={(item) => {
-          setFieldValue(`max_years_of_experience`, item.value);
+          setFieldValue(`experience_level`, item.value);
+          setFieldValue(`min_years_of_experience`, item.min);
+          setFieldValue(`max_years_of_experience`, item.max);
         }}
         options={experienceLevels}
       />

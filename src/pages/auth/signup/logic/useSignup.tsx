@@ -1,6 +1,6 @@
-import { authApi, passwordRegex } from "@/libs";
+import { authApi, handleAuthSuccess, passwordRegex } from "@/libs";
 import { routes } from "@/router/routes";
-import { SignupFormValues } from "@/types";
+import { SignupDto, SignupFormValues } from "@/types";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -34,12 +34,15 @@ export const useSignup = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log("values", values);
+      const payload = { ...values };
 
-      const { success } = await authApi.signup(values);
+      delete payload.confirmPassword;
+
+      const { success, data } = await authApi.signup(payload);
 
       if (success) {
         navigate(`${routes.auth.verify.replace(":id", values?.email)}`);
+        handleAuthSuccess(data as SignupDto);
       }
     },
   });

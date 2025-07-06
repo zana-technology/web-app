@@ -3,6 +3,8 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { routes } from "@/router";
 import { useEffect, useState } from "react";
+import { authApi } from "@/libs";
+import { VerifyEmailFormValues } from "@/types";
 
 export const useVerifyEmail = () => {
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ export const useVerifyEmail = () => {
     code: yup
       .string()
       .required("Verification code is required")
-      .matches(/^\d{5}$/, "Verification code must be exactly 5 digits"),
+      .matches(/^\d{4}$/, "Verification code must be exactly 4 digits"),
   });
 
   const formik = useFormik<{ code: string }>({
@@ -24,6 +26,17 @@ export const useVerifyEmail = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       console.log("values", values);
+
+      const payload = {
+        email: id,
+        token: values.code,
+      } as VerifyEmailFormValues;
+
+      const { success } = await authApi.verifyEmail(payload);
+
+      if (success) {
+        navigate(routes.auth.onboarding);
+      }
     },
   });
 
@@ -31,7 +44,7 @@ export const useVerifyEmail = () => {
     navigate(routes.auth.signup);
   };
 
-  const RESEND_TIMEOUT = 30;
+  const RESEND_TIMEOUT = 15 * 60;
 
   const [secondsLeft, setSecondsLeft] = useState(RESEND_TIMEOUT);
   const [canResend, setCanResend] = useState(false);

@@ -4,12 +4,13 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import { constant, hasTokenExpired } from "../../utils";
+import config from "./config";
 
 const client: AxiosInstance = axios.create({
-  withCredentials: true,
+  //   withCredentials: true,
 });
 
-const exceptionEndpoint = ["/auth/login"];
+const exceptionEndpoint = [`${config.BASE_URL}/auth/login`];
 
 // You’ll replace this with your auth state logic
 const getTokenData = () => {

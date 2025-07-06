@@ -22,13 +22,13 @@ const OnboardingLanguage = ({
     <>
       <Select
         label="Preferred Working Language (optional)"
-        name={`current_location`}
-        value={values?.current_location as string}
+        name={`preferred_language`}
+        value={values?.preferred_language as string}
         onBlur={handleBlur}
-        errorMessage={errors.current_location}
-        touched={touched.current_location}
+        errorMessage={errors.preferred_language}
+        touched={touched.preferred_language}
         onChange={(item) => {
-          setFieldValue("current_location", item.value);
+          setFieldValue("preferred_language", item.value);
         }}
         options={workingLanguageOptions}
         note="This helps us find jobs that match your language skills and show roles in companies where your language is valued."
