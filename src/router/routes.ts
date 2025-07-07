@@ -1,8 +1,15 @@
 export const routes = {
+  home: "/",
   auth: {
-    index: "",
+    index: "/auth",
     login: "/auth/login",
     signup: "/auth/signup",
+    verify: "/auth/verify/:id",
+    onboarding: "/auth/onboarding",
+    preview: "/auth/preview",
   },
-  main: {},
+  app: {
+    index: "/app",
+    feed: "/app/feed",
+  },
 };
