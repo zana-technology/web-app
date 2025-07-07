@@ -2,7 +2,9 @@ export type LoginFormValues = {
   username: string;
   password: string;
 };
-export type SignupFormValues = LoginFormValues & {
+export type SignupFormValues = {
+  email: string;
+  password: string;
   confirmPassword?: string;
 };
 
