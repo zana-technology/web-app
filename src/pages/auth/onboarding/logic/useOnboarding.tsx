@@ -1,13 +1,19 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import OnboardingRole from "../OnboardingRole";
 import { useFormik } from "formik";
-import { OnboardingFormValues } from "@/types";
+import { OnboardingFormValues, UploadedResume } from "@/types";
 import OnboardingLocation from "../OnboardingLocation";
 import OnboardingWorkType from "../OnboardingWorkType";
 import OnboardingLanguage from "../OnboardingLanguage";
 import OnboardingAccountSetup from "../OnboardingAccountSetup";
 import { routes } from "@/router";
-import { authApi, countriesAndStates, removeEmptyKeys } from "@/libs";
+import {
+  authApi,
+  countriesAndStates,
+  handleUpload,
+  profileApi,
+  removeEmptyKeys,
+} from "@/libs";
 import useOnboardingValidationSchema from "./useOnboardingValidationSchema";
 
 export const useOnboarding = () => {
@@ -141,6 +147,21 @@ export const useOnboarding = () => {
         return navigate(`${routes.auth.onboarding}?step=${currentStep + 1}`);
       }
 
+      let resumePayload: UploadedResume | undefined;
+
+      if (values?.resume) {
+        const { success, data } = await handleUpload(values?.resume);
+
+        if (success) {
+          resumePayload = {
+            file_name: data?.[0]?.name as string,
+            file_type: data?.[0]?.type as string,
+            is_primary: true,
+            file_url: data?.[0]?.url as string,
+          };
+        }
+      }
+
       const payload = { ...values };
 
       delete payload?.resume;
@@ -150,6 +171,9 @@ export const useOnboarding = () => {
       const { success } = await authApi.onboarding(payload);
 
       if (success) {
+        if (resumePayload?.file_url) {
+          await profileApi.addResume(resumePayload as UploadedResume);
+        }
         navigate(routes.auth.preview);
       }
     },

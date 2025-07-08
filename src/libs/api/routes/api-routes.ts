@@ -1,6 +1,7 @@
 const serviceRoot = {
   auth: "/v1/auth",
   profile: "/v1/profile",
+  upload: "/v1/uploads/users",
 };
 
 export const apiRoutes = {
@@ -14,5 +15,9 @@ export const apiRoutes = {
   },
   profile: {
     index: `${serviceRoot.profile}`,
+    resume: `${serviceRoot.profile}/resume`,
+  },
+  upload: {
+    index: `${serviceRoot.upload}`,
   },
 };

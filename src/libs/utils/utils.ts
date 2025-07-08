@@ -1,4 +1,5 @@
-import { FileWithPreview, SignupDto } from "@/types";
+import { FileWithPreview, ResourceType, SignupDto } from "@/types";
+import { uploadApi } from "../api";
 
 export const capitalizeFirstLetter = function toTitleCase(str: string) {
   return str?.replace(/\w\S*/g, function (txt) {
@@ -59,27 +60,30 @@ export const handleAuthSuccess = (authData: SignupDto) => {
   localStorage.setItem("token_expiry", expiresAt);
 };
 
-// export const handleImageUpload = async (files: File[], fileType?: string) => {
-//   const results = [];
+export const handleUpload = async (
+  files: File[],
+  resourceType = ResourceType.Document
+) => {
+  const results = [];
 
-//   for (const file of files) {
-//     const formData = new FormData();
-//     formData.append('file', file);
+  for (const file of files) {
+    const formData = new FormData();
+    formData.append("resource", file); // Match backend's expected key
+    formData.append("resource_type", resourceType);
 
-//     const { data, success, errorMessage } = await uploadDocument(
-//       formData,
-//       fileType,
-//     );
+    const { data, success, errorMessage } = await uploadApi.upload(formData);
 
-//     if (!success) {
-//       return { success: false, errorMessage };
-//     }
+    console.log("data", data);
 
-//     results.push(data);
-//   }
+    if (!success) {
+      return { success: false, errorMessage };
+    }
 
-//   return { success: true, data: results };
-// };
+    results.push(data);
+  }
+
+  return { success: true, data: results };
+};
 
 const urlToFile = async (
   url: string,

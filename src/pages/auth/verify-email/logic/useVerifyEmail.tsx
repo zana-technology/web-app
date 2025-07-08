@@ -5,6 +5,7 @@ import { routes } from "@/router";
 import { useEffect, useState } from "react";
 import { authApi } from "@/libs";
 import { VerifyEmailFormValues } from "@/types";
+import { showToast } from "@/components";
 
 export const useVerifyEmail = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ export const useVerifyEmail = () => {
 
   const [secondsLeft, setSecondsLeft] = useState(RESEND_TIMEOUT);
   const [canResend, setCanResend] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (secondsLeft > 0) {
@@ -58,9 +60,19 @@ export const useVerifyEmail = () => {
     }
   }, [secondsLeft]);
 
-  const restartCountdown = () => {
-    setSecondsLeft(RESEND_TIMEOUT);
-    setCanResend(false);
+  const restartCountdown = async () => {
+    setLoading(true);
+    const { success, title, message } = await authApi.resendVerificationEmail();
+
+    if (success) {
+      showToast({
+        title: title,
+        message: message,
+      });
+      setSecondsLeft(RESEND_TIMEOUT);
+      setCanResend(false);
+    }
+    setLoading(false);
   };
 
   const minutes = Math.floor(secondsLeft / 60);
@@ -76,6 +88,7 @@ export const useVerifyEmail = () => {
     restartCountdown,
     timeLeft,
     secondsLeft,
+    loading,
   };
 };
 

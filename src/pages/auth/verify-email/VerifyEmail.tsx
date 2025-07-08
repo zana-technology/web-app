@@ -11,6 +11,7 @@ const VerifyEmail = () => {
     restartCountdown,
     timeLeft,
     secondsLeft,
+    loading,
   } = useVerifyEmail();
 
   const {
@@ -60,7 +61,7 @@ const VerifyEmail = () => {
           <Button
             title="Resend code"
             fullWidth
-            // loading={isSubmitting}
+            loading={loading}
             disabled={!canResend}
             onClick={restartCountdown}
           />

@@ -81,3 +81,9 @@ export type OnboardingFormValues = {
   portfolio_url: string;
   resume?: File[];
 };
+export interface UploadedResume {
+  file_name: string;
+  file_type: string;
+  is_primary: boolean;
+  file_url: string;
+}

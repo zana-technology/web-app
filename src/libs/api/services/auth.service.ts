@@ -41,9 +41,17 @@ const onboarding = async (payload: OnboardingFormValues) => {
   });
 };
 
+const resendVerificationEmail = async () => {
+  return await apiRequest({
+    url: apiRoutes.auth.resendVerificationEmail,
+    method: "post",
+  });
+};
+
 export const authApi = {
   login,
   signup,
   verifyEmail,
   onboarding,
+  resendVerificationEmail,
 };
