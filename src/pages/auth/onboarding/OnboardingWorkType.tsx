@@ -17,7 +17,6 @@ const OnboardingWorkType = ({
         value={values?.preferred_employment_types}
         name="preferred_employment_types"
         onChange={(item) => {
-          console.log(item);
           setFieldValue("preferred_employment_types", item);
         }}
         errorMessage={errors.preferred_employment_types as string}
@@ -37,7 +36,6 @@ const OnboardingWorkType = ({
         value={values?.work_preferences}
         name="work_preferences"
         onChange={(item) => {
-          console.log(item);
           setFieldValue("work_preferences", item);
         }}
         errorMessage={errors.work_preferences as string}

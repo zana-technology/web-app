@@ -26,8 +26,6 @@ export const useVerifyEmail = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log("values", values);
-
       const payload = {
         email: id,
         token: values.code,

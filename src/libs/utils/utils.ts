@@ -73,8 +73,6 @@ export const handleUpload = async (
 
     const { data, success, errorMessage } = await uploadApi.upload(formData);
 
-    console.log("data", data);
-
     if (!success) {
       return { success: false, errorMessage };
     }

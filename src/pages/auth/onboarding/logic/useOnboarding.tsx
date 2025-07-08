@@ -142,7 +142,6 @@ export const useOnboarding = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log("values", values);
       if (currentStep < 6) {
         return navigate(`${routes.auth.onboarding}?step=${currentStep + 1}`);
       }
