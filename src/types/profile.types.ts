@@ -60,6 +60,7 @@ export type CandidateProfileDto = OnboardingFormValues & {
   work_experiences: WorkExperience[];
   educational_qualifications: Education[];
   certifications: Certification[];
+  uid: string;
 };
 
 export type OnboardingFormValues = {

@@ -1,5 +1,5 @@
 import { CandidateProfileDto, UploadedResume } from "@/types";
-import { apiRequest } from "../config";
+import { apiQueryKeys, apiRequest, useFetcher } from "../config";
 import { apiRoutes } from "../routes";
 
 const updateProfile = async (payload: CandidateProfileDto) => {
@@ -17,7 +17,16 @@ const addResume = async (payload: UploadedResume) => {
   });
 };
 
+const useGetProfile = () => {
+  return useFetcher<CandidateProfileDto>({
+    queryKey: [apiQueryKeys.getProfile],
+    url: apiRoutes.profile.index,
+    triggerError: false,
+  });
+};
+
 export const profileApi = {
   updateProfile,
   addResume,
+  useGetProfile,
 };
