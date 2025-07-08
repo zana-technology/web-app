@@ -1,5 +1,6 @@
-import { FileWithPreview, ResourceType, SignupDto } from "@/types";
-import { uploadApi } from "../api";
+import { FileWithPreview, ResourceType, SignupDto } from '@/types';
+import { uploadApi } from '../api';
+import { queryClient } from '@/App';
 
 export const capitalizeFirstLetter = function toTitleCase(str: string) {
   return str?.replace(/\w\S*/g, function (txt) {
@@ -11,20 +12,20 @@ export const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>[\]_\-+=;'/\\])[A-Za-z\d!@#$%^&*(),.?":{}|<>[\]_\-+=;'/\\]+$/;
 
 export const toSentenceCase = (key: string) => {
-  if (!key) return "";
+  if (!key) return '';
 
-  const isSnake = key.includes("_");
-  const isKebab = key.includes("-");
+  const isSnake = key.includes('_');
+  const isKebab = key.includes('-');
   const isCamelOrPascal = /[a-z][A-Z]/.test(key) || /^[A-Z][a-z]+/.test(key);
 
   let spaced = key;
 
   if (isSnake) {
-    spaced = key.replace(/_/g, " ");
+    spaced = key.replace(/_/g, ' ');
   } else if (isKebab) {
-    spaced = key.replace(/-/g, " ");
+    spaced = key.replace(/-/g, ' ');
   } else if (isCamelOrPascal) {
-    spaced = key.replace(/([a-z])([A-Z])/g, "$1 $2");
+    spaced = key.replace(/([a-z])([A-Z])/g, '$1 $2');
   }
 
   const lower = spaced.toLowerCase();
@@ -45,9 +46,9 @@ export const encodeQueryData = (
   query: Record<string, string | number | boolean | undefined | null>
 ): string => {
   const encodedQuery = Object.entries(query).map(([key, value]) => {
-    return `${encodeURIComponent(key)}=${encodeURIComponent(value ?? "")}`;
+    return `${encodeURIComponent(key)}=${encodeURIComponent(value ?? '')}`;
   });
-  return encodedQuery.join("&");
+  return encodedQuery.join('&');
 };
 
 export const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
@@ -55,21 +56,18 @@ export const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 export const handleAuthSuccess = (authData: SignupDto) => {
   const expiresAt = new Date(Date.now() + SEVEN_DAYS_MS).toISOString();
 
-  localStorage.setItem("access_token", authData.access_token);
-  localStorage.setItem("refresh_token", authData.refresh_token);
-  localStorage.setItem("token_expiry", expiresAt);
+  localStorage.setItem('access_token', authData.access_token);
+  localStorage.setItem('refresh_token', authData.refresh_token);
+  localStorage.setItem('token_expiry', expiresAt);
 };
 
-export const handleUpload = async (
-  files: File[],
-  resourceType = ResourceType.Document
-) => {
+export const handleUpload = async (files: File[], resourceType = ResourceType.Document) => {
   const results = [];
 
   for (const file of files) {
     const formData = new FormData();
-    formData.append("resource", file); // Match backend's expected key
-    formData.append("resource_type", resourceType);
+    formData.append('resource', file); // Match backend's expected key
+    formData.append('resource_type', resourceType);
 
     const { data, success, errorMessage } = await uploadApi.upload(formData);
 
@@ -83,19 +81,16 @@ export const handleUpload = async (
   return { success: true, data: results };
 };
 
-const urlToFile = async (
-  url: string,
-  fileName: string
-): Promise<FileWithPreview> => {
+const urlToFile = async (url: string, fileName: string): Promise<FileWithPreview> => {
   try {
     const response = await fetch(url, {
-      mode: "no-cors", // Add no-cors mode to bypass CORS restrictions
+      mode: 'no-cors', // Add no-cors mode to bypass CORS restrictions
     });
 
-    const isVideo = url.toLowerCase().includes("video");
+    const isVideo = url.toLowerCase().includes('video');
 
     const blob = await response.blob();
-    const fileType = blob.type || isVideo ? "video/mp4" : "image/jpeg"; // Default to JPEG if type is missing
+    const fileType = blob.type || isVideo ? 'video/mp4' : 'image/jpeg'; // Default to JPEG if type is missing
 
     // Create a File object
     const file = new File([blob], fileName, {
@@ -108,7 +103,7 @@ const urlToFile = async (
 
     return file;
   } catch (error) {
-    console.error("Error fetching image:", error);
+    console.error('Error fetching image:', error);
     // Return a placeholder or handle error as needed
     throw new Error(`Failed to convert URL to file`);
   }
@@ -117,14 +112,12 @@ const urlToFile = async (
 export const convertUrlsToFiles = async (
   imageUrls: { url: string; fileName: string }[]
 ): Promise<FileWithPreview[]> => {
-  return await Promise.all(
-    imageUrls.map(({ url, fileName }) => urlToFile(url, fileName))
-  );
+  return await Promise.all(imageUrls.map(({ url, fileName }) => urlToFile(url, fileName)));
 };
 
 export const removeEmptyKeys = (payload: Record<string, any>) => {
   for (const key in payload) {
-    if (payload[key] && typeof payload[key] === "object") {
+    if (payload[key] && typeof payload[key] === 'object') {
       // Skip Date objects and other special objects
       if (payload[key] instanceof Date) {
         continue;
@@ -137,12 +130,16 @@ export const removeEmptyKeys = (payload: Record<string, any>) => {
       if (Object.keys(payload[key]).length === 0) {
         delete payload[key];
       }
-    } else if (
-      payload[key] === undefined ||
-      payload[key] === null ||
-      payload[key] === ""
-    ) {
+    } else if (payload[key] === undefined || payload[key] === null || payload[key] === '') {
       delete payload[key];
     }
   }
+};
+
+export const refreshQuery = ({ queryKey }: { queryKey: string[] }) => {
+  queryKey.forEach((key) => {
+    queryClient.invalidateQueries({
+      queryKey: [key],
+    });
+  });
 };

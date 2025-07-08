@@ -5,15 +5,29 @@ import {
   globeIcon,
   graduationHatIcon,
   userIcon,
-} from "@/assets";
-import { PageTitle, ProfileSection, Text } from "@/components";
-import { MdOutlineEdit } from "react-icons/md";
-import { useProfilePreview } from "./logic";
-import { IoMdAdd } from "react-icons/io";
-import { toSentenceCase } from "@/libs";
+} from '@/assets';
+import { PageTitle, ProfileSection, Text } from '@/components';
+import { MdOutlineEdit } from 'react-icons/md';
+import { useProfilePreview } from './logic';
+import { IoMdAdd } from 'react-icons/io';
+import { toSentenceCase } from '@/libs';
+import { FormikProvider } from 'formik';
+import PersonalInfo from './PersonalInfo';
 
 const ProfilePreview = () => {
-  const { isLoading, profile, personalInformation } = useProfilePreview();
+  const { isLoading, profile, personalInformation, formik, showForm, showFormHandler } =
+    useProfilePreview();
+
+  const {
+    values,
+    errors,
+    setFieldValue,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    touched,
+    isSubmitting,
+  } = formik;
 
   return (
     <div className="flex flex-col w-full gap-8">
@@ -23,29 +37,24 @@ const ProfilePreview = () => {
           subtitle="Review and edit where needed, the information extracted from your CV"
         />
       </div>
+      <FormikProvider value={formik}>
+        <form className="flex flex-col w-full gap-8" onSubmit={handleSubmit}>
+          <PersonalInfo
+            personalInformation={personalInformation}
+            formik={formik}
+            showForm={showForm}
+            showFormHandler={showFormHandler}
+          />
+        </form>
+      </FormikProvider>
+
       <ProfileSection
         section={{
-          title: "Personal information",
-          icon: userIcon,
-        }}
-        button={{
-          title: "Edit",
-          icon: <MdOutlineEdit />,
-        }}
-      >
-        <div className="flex flex-col gap-6">
-          {personalInformation?.map((x, i) => (
-            <Text key={i} label={x.label} value={x.value} />
-          ))}
-        </div>
-      </ProfileSection>
-      <ProfileSection
-        section={{
-          title: "Skills",
+          title: 'Skills',
           icon: codepenIcon,
         }}
         button={{
-          title: "Add skills",
+          title: 'Add skills',
           icon: <IoMdAdd />,
         }}
       >
@@ -57,17 +66,17 @@ const ProfilePreview = () => {
               ))}
             </>
           ) : (
-            "Skills not yet added"
+            'Skills not yet added'
           )}
         </div>
       </ProfileSection>
       <ProfileSection
         section={{
-          title: "Languages",
+          title: 'Languages',
           icon: globeIcon,
         }}
         button={{
-          title: "Add language",
+          title: 'Add language',
           icon: <IoMdAdd />,
         }}
       >
@@ -77,76 +86,67 @@ const ProfilePreview = () => {
               {profile?.languages?.map((x, i) => (
                 <div key={i} className="flex items-center justify-between">
                   <p>
-                    {toSentenceCase(x?.language)}{" "}
+                    {toSentenceCase(x?.language)}{' '}
                     <span className="text-gray-500 text-sm">Edit</span>
                   </p>
-                  <p className="text-gray-500">
-                    {toSentenceCase(x?.proficiency)}
-                  </p>
+                  <p className="text-gray-500">{toSentenceCase(x?.proficiency)}</p>
                 </div>
               ))}
             </>
           ) : (
-            "Languages not yet added"
+            'Languages not yet added'
           )}
         </div>
       </ProfileSection>
       <ProfileSection
         section={{
-          title: "Professional Summary ",
+          title: 'Professional Summary ',
           icon: fileIcon,
         }}
         button={{
-          title: "Edit",
+          title: 'Edit',
           icon: <MdOutlineEdit />,
         }}
       >
         <p className="w-full">
-          {profile?.professional_summary ??
-            "Professional summary not yet added"}
+          {profile?.professional_summary ?? 'Professional summary not yet added'}
         </p>
       </ProfileSection>
       <ProfileSection
         section={{
-          title: "Work Experience",
+          title: 'Work Experience',
           icon: briefcaseIcon,
         }}
         button={{
-          title: "Add experience",
+          title: 'Add experience',
           icon: <IoMdAdd />,
         }}
       >
-        <p className="w-full">
-          {profile?.professional_summary ?? "Work Experience not yet added"}
-        </p>
+        <p className="w-full">{profile?.professional_summary ?? 'Work Experience not yet added'}</p>
       </ProfileSection>
       <ProfileSection
         section={{
-          title: "Education",
+          title: 'Education',
           icon: graduationHatIcon,
         }}
         button={{
-          title: "Add education",
+          title: 'Add education',
           icon: <IoMdAdd />,
         }}
       >
-        <p className="w-full">
-          {profile?.professional_summary ?? "Work Experience not yet added"}
-        </p>
+        <p className="w-full">{profile?.professional_summary ?? 'Work Experience not yet added'}</p>
       </ProfileSection>
       <ProfileSection
         section={{
-          title: "Certifications",
+          title: 'Certifications',
           icon: graduationHatIcon,
         }}
         button={{
-          title: "Add certification",
+          title: 'Add certification',
           icon: <IoMdAdd />,
         }}
       >
-        <p className="w-full">
-          {profile?.professional_summary ?? "Work Experience not yet added"}
-        </p>
+        <p className="w-full">{profile?.professional_summary ?? 'Work Experience not yet added'}</p>
       </ProfileSection>
     </div>
   );
