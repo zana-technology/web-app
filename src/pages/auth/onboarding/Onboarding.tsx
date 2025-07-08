@@ -7,7 +7,7 @@ const Onboarding = () => {
     useOnboarding();
   const { handleSubmit, isSubmitting, isValid, dirty } = formik;
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center sm:mt-5 sm:mb-10">
       <StepIndicator steps={onboardingSteps} currentStep={currentStep} />
       <div className={onboardingShellClassName}>
         <AuthHeader

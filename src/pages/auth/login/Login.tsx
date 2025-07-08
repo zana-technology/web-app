@@ -1,6 +1,7 @@
 import { AuthHeader, Button, Input } from "@/components";
 import { useLogin } from "./logic";
 import { onboardingShellClassName } from "@/libs";
+import { twMerge } from "tailwind-merge";
 
 const Login = () => {
   const { formik } = useLogin();
@@ -18,7 +19,7 @@ const Login = () => {
   } = formik;
 
   return (
-    <div className={onboardingShellClassName}>
+    <div className={twMerge(onboardingShellClassName, "sm:mt-40 sm:mb-10")}>
       <AuthHeader
         title="Welcome back"
         subTitle="Enter your correct details to continue"
