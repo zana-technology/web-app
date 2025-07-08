@@ -44,7 +44,7 @@ const OnboardingWorkType = ({
         touched={touched.work_preferences}
         options={[
           { label: "On-site", value: "on_site" },
-          { label: "Remote", value: "remote" },
+          { label: "Remote", value: "remote_only" },
           { label: "Hybrid", value: "hybrid" },
         ]}
         multiple

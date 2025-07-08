@@ -181,7 +181,7 @@ export const Dropzone = ({
         ""
       )}
       <div
-        className={`border border-dashed border-zana-grey-200 rounded-lg w-full py-5 px-4 flex justify-center cursor-pointer items-center h-[259px] bg-zana-grey-500 ${
+        className={`border border-dashed border-zana-grey-200 rounded-lg w-full py-5 px-4 flex flex-col justify-center cursor-pointer items-center h-[259px] bg-zana-grey-500 ${
           isDragActive ? "bg-slate-600 opacity-5" : ""
         }`}
       >

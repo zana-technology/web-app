@@ -35,7 +35,7 @@ const OnboardingAccountSetup = ({
         placeholder="http:// "
       />
       <Dropzone
-        label="CV"
+        label="CV/Resume"
         title="Upload Your CV/Resume"
         subtitle="Upload your cv to start applying faster. Zana works best with a resume on file."
         info="Supports PDF, DOC, DOCX (Max 5MB)"
@@ -47,6 +47,7 @@ const OnboardingAccountSetup = ({
         errorMessage={errors.resume}
         fileTypes={["doc"]}
         maxSize={5}
+        required
       />
     </>
   );
