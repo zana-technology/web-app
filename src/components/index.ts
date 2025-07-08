@@ -6,3 +6,5 @@ export * from "./select";
 export * from "./checkbox";
 export * from "./dropzone";
 export * from "./toast";
+export * from "./page-title";
+export * from "./profile-section";

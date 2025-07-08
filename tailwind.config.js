@@ -22,6 +22,10 @@ module.exports = {
             normalHover: "#255A5A",
             light: "#EFF5F5",
           },
+          color: {
+            100: "#F7F2EB",
+            300: "#EEE2D3",
+          },
         },
       },
       fontFamily: {

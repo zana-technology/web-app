@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 interface ButtonProps {
   title: string;
   type?: "button" | "submit" | "reset";
-  variant?: "default" | "outlined";
+  variant?: "default" | "outlined" | "text";
   icon?: ReactNode;
   onClick?: () => void;
   className?: string;
@@ -43,6 +43,11 @@ export const Button = ({
       variantClass =
         "border border-zana-grey-200 text-dark-700 hover:border-dark-700 hover:text-dark-900 hover:bg-zana-grey-200";
       loadingColor = "#414651";
+      break;
+    case "text":
+      variantClass =
+        "text-zana-primary-normal hover:text-zana-primary-normalHover";
+      loadingColor = "#255A5A";
       break;
   }
 
