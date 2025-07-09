@@ -86,9 +86,7 @@ export const Select = <T,>({
         setFilteredOptions(options);
       } else if (query) {
         setFilteredOptions(
-          options.filter((opt) =>
-            opt?.label?.toLowerCase().includes(query.toLowerCase())
-          )
+          options.filter((opt) => opt?.label?.toLowerCase().includes(query.toLowerCase()))
         );
       } else {
         setFilteredOptions(options);
@@ -108,9 +106,7 @@ export const Select = <T,>({
       // Otherwise do local filtering
       if (value) {
         setFilteredOptions(
-          options.filter((opt) =>
-            opt?.label?.toLowerCase().includes(value.toLowerCase())
-          )
+          options.filter((opt) => opt?.label?.toLowerCase().includes(value.toLowerCase()))
         );
       } else {
         setFilteredOptions(options);
@@ -137,9 +133,7 @@ export const Select = <T,>({
 
   const hasQueryHandler = () => {
     //FOR INPUT BLUR AND AUTOFILL
-    const exactMatch = options.find(
-      (opt) => opt.label.toLowerCase() === query.toLowerCase()
-    );
+    const exactMatch = options.find((opt) => opt.label.toLowerCase() === query.toLowerCase());
 
     if (exactMatch) {
       handleSelect(exactMatch);
@@ -223,9 +217,7 @@ export const Select = <T,>({
         <div
           onClick={handleDropdownToggle}
           className={`absolute right-3  ${
-            isOpen
-              ? "rotate-180 transition-transform"
-              : "rotate-0 transition-transform"
+            isOpen ? "rotate-180 transition-transform" : "rotate-0 transition-transform"
           }`}
         >
           <IoIosArrowDown size={24} />
@@ -288,9 +280,7 @@ export const Select = <T,>({
         </div>
       </Portal>
       {note ? <p className="text-sm  mt-1">{note}</p> : null}
-      {touched && errorMessage ? (
-        <p className="text-sm text-red-500 mt-1">{errorMessage}</p>
-      ) : null}
+      {touched && errorMessage ? <p className="text-sm text-red-500 mt-1">{errorMessage}</p> : null}
     </div>
   );
 };

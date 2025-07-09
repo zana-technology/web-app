@@ -100,5 +100,10 @@ export interface UploadedResume {
 export interface ShowFormState {
   personalInfo: boolean;
   skills: boolean;
+  languages: boolean;
+  professionalSummary: boolean;
+  workExperience: boolean;
+  education: boolean;
+  certifications: boolean;
   // Add more if needed
 }

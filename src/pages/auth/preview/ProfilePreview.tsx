@@ -8,6 +8,7 @@ import { FormikProvider } from "formik";
 import PersonalInfo from "./PersonalInfo";
 import Skills from "./Skills";
 import { CandidateProfileDto } from "@/types";
+import Languages from "./Languages";
 
 const ProfilePreview = () => {
   const { isLoading, profile, personalInformation, formik, showForm, showFormHandler } =
@@ -46,37 +47,15 @@ const ProfilePreview = () => {
             showForm={showForm}
             showFormHandler={showFormHandler}
           />
+          <Languages
+            profile={profile as CandidateProfileDto}
+            formik={formik}
+            showForm={showForm}
+            showFormHandler={showFormHandler}
+          />
         </form>
       </FormikProvider>
 
-      <ProfileSection
-        section={{
-          title: "Languages",
-          icon: globeIcon,
-        }}
-        button={{
-          title: "Add language",
-          icon: <IoMdAdd />,
-        }}
-      >
-        <div className="flex flex-col gap-4">
-          {profile?.languages && profile?.languages?.length > 0 ? (
-            <>
-              {profile?.languages?.map((x, i) => (
-                <div key={i} className="flex items-center justify-between">
-                  <p>
-                    {toSentenceCase(x?.language)}{" "}
-                    <span className="text-gray-500 text-sm">Edit</span>
-                  </p>
-                  <p className="text-gray-500">{toSentenceCase(x?.proficiency)}</p>
-                </div>
-              ))}
-            </>
-          ) : (
-            "Languages not yet added"
-          )}
-        </div>
-      </ProfileSection>
       <ProfileSection
         section={{
           title: "Professional Summary ",
