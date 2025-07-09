@@ -41,7 +41,7 @@ const OnboardingLanguage = ({
         note="This helps us find jobs that match your language skills and show roles in companies where your language is valued."
       />
       <div className="border border-zana-grey-300 bg-zana-grey-500 px-5 py-6 rounded-lg flex flex-col gap-3">
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <TbUsers size={24} />
           <p className="text-xl font-medium">Optional Diversity Information</p>
         </div>

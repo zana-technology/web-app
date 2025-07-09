@@ -2,10 +2,12 @@ import {
   Landing,
   Login,
   Onboarding,
+  OnboardingComplete,
   ProfilePreview,
   Signup,
   VerifyEmail,
 } from "@/pages";
+import { routes } from "./routes";
 
 export const authRoutes = [
   {
@@ -30,4 +32,10 @@ export const authRoutes = [
   },
 ];
 
-export const openRoutes = [{ path: "/", element: <Landing /> }];
+export const openRoutes = [
+  { path: "/", element: <Landing /> },
+  {
+    path: routes.auth.complete,
+    element: <OnboardingComplete />,
+  },
+];

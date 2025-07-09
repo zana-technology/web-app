@@ -7,6 +7,7 @@ export const routes = {
     verify: "/auth/verify/:id",
     onboarding: "/auth/onboarding",
     preview: "/auth/preview",
+    complete: "/auth/complete",
   },
   app: {
     index: "/app",

@@ -69,17 +69,12 @@ export const Input = ({
           [&::-webkit-outer-spin-button]:appearance-none 
           [&::-webkit-inner-spin-button]:appearance-none 
           [&::-moz-appearance]:textfield`,
-            touched && errorMessage
-              ? "border-red-500"
-              : "border-zana-grey-200 ",
+            touched && errorMessage ? "border-red-500" : "border-zana-grey-200 ",
             inputClass
           )}
         />
         {type === "password" ? (
-          <span
-            className="absolute right-3 cursor-pointer "
-            onClick={showpassword}
-          >
+          <span className="absolute right-3 cursor-pointer " onClick={showpassword}>
             {!hide ? <EyeIcon size={16} /> : <EyeSlashIcon size={16} />}
           </span>
         ) : (
@@ -87,9 +82,7 @@ export const Input = ({
         )}
       </div>
       {note ? <p className="text-sm  mt-1">{note}</p> : null}
-      {touched && errorMessage ? (
-        <p className="text-sm text-red-500 mt-1">{errorMessage}</p>
-      ) : null}
+      {touched && errorMessage ? <p className="text-sm text-red-500 mt-1">{errorMessage}</p> : null}
     </div>
   );
 };

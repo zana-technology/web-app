@@ -1,4 +1,6 @@
-import { FileWithPreview, SignupDto } from "@/types";
+import { FileWithPreview, ResourceType, SignupDto } from "@/types";
+import { uploadApi } from "../api";
+import { queryClient } from "@/App";
 
 export const capitalizeFirstLetter = function toTitleCase(str: string) {
   return str?.replace(/\w\S*/g, function (txt) {
@@ -8,6 +10,8 @@ export const capitalizeFirstLetter = function toTitleCase(str: string) {
 
 export const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>[\]_\-+=;'/\\])[A-Za-z\d!@#$%^&*(),.?":{}|<>[\]_\-+=;'/\\]+$/;
+
+export const phoneNumberRegex = /^[+0-9\s()-]{7,20}$/;
 
 export const toSentenceCase = (key: string) => {
   if (!key) return "";
@@ -59,32 +63,27 @@ export const handleAuthSuccess = (authData: SignupDto) => {
   localStorage.setItem("token_expiry", expiresAt);
 };
 
-// export const handleImageUpload = async (files: File[], fileType?: string) => {
-//   const results = [];
+export const handleUpload = async (files: File[], resourceType = ResourceType.Document) => {
+  const results = [];
 
-//   for (const file of files) {
-//     const formData = new FormData();
-//     formData.append('file', file);
+  for (const file of files) {
+    const formData = new FormData();
+    formData.append("resource", file); // Match backend's expected key
+    formData.append("resource_type", resourceType);
 
-//     const { data, success, errorMessage } = await uploadDocument(
-//       formData,
-//       fileType,
-//     );
+    const { data, success, errorMessage } = await uploadApi.upload(formData);
 
-//     if (!success) {
-//       return { success: false, errorMessage };
-//     }
+    if (!success) {
+      return { success: false, errorMessage };
+    }
 
-//     results.push(data);
-//   }
+    results.push(data);
+  }
 
-//   return { success: true, data: results };
-// };
+  return { success: true, data: results };
+};
 
-const urlToFile = async (
-  url: string,
-  fileName: string
-): Promise<FileWithPreview> => {
+const urlToFile = async (url: string, fileName: string): Promise<FileWithPreview> => {
   try {
     const response = await fetch(url, {
       mode: "no-cors", // Add no-cors mode to bypass CORS restrictions
@@ -115,9 +114,7 @@ const urlToFile = async (
 export const convertUrlsToFiles = async (
   imageUrls: { url: string; fileName: string }[]
 ): Promise<FileWithPreview[]> => {
-  return await Promise.all(
-    imageUrls.map(({ url, fileName }) => urlToFile(url, fileName))
-  );
+  return await Promise.all(imageUrls.map(({ url, fileName }) => urlToFile(url, fileName)));
 };
 
 export const removeEmptyKeys = (payload: Record<string, any>) => {
@@ -135,12 +132,16 @@ export const removeEmptyKeys = (payload: Record<string, any>) => {
       if (Object.keys(payload[key]).length === 0) {
         delete payload[key];
       }
-    } else if (
-      payload[key] === undefined ||
-      payload[key] === null ||
-      payload[key] === ""
-    ) {
+    } else if (payload[key] === undefined || payload[key] === null || payload[key] === "") {
       delete payload[key];
     }
   }
+};
+
+export const refreshQuery = ({ queryKey }: { queryKey: string[] }) => {
+  queryKey.forEach((key) => {
+    queryClient.invalidateQueries({
+      queryKey: [key],
+    });
+  });
 };

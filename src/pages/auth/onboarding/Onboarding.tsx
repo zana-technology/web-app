@@ -1,22 +1,18 @@
-import { AuthHeader, Button, StepIndicator } from "@/components";
-import { onboardingShellClassName, onboardingSteps } from "@/libs";
+import { AuthHeader, Button, OnboardingHash, StepIndicator } from "@/components";
+import { onboardingSteps } from "@/libs";
 import { useOnboarding } from "./logic";
 
 const Onboarding = () => {
-  const { currentStep, formik, renderStep, renderAuthHeader, goBack } =
-    useOnboarding();
+  const { currentStep, formik, renderStep, renderAuthHeader, goBack } = useOnboarding();
   const { handleSubmit, isSubmitting, isValid, dirty } = formik;
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center sm:mt-5 sm:mb-10">
       <StepIndicator steps={onboardingSteps} currentStep={currentStep} />
-      <div className={onboardingShellClassName}>
-        <AuthHeader
-          title={renderAuthHeader().title}
-          subTitle={renderAuthHeader().subTitle}
-        />
+      <OnboardingHash>
+        <AuthHeader title={renderAuthHeader().title} subTitle={renderAuthHeader().subTitle} />
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
           {renderStep()}
-          <div className="flex items-center gap-7">
+          <div className="flex items-center gap-7 mt-3">
             {currentStep > 2 ? (
               <Button
                 title="Back"
@@ -38,7 +34,7 @@ const Onboarding = () => {
             />
           </div>
         </form>
-      </div>
+      </OnboardingHash>
     </div>
   );
 };

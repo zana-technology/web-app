@@ -36,7 +36,6 @@ const OnboardingLocation = ({
         value={values?.needs_visa_sponsorship ? "YES" : "NO"}
         name="needs_visa_sponsorship"
         onChange={(item) => {
-          console.log(item);
           setFieldValue(
             "needs_visa_sponsorship",
             item === "YES" ? true : false

@@ -1,13 +1,13 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import OnboardingRole from "../OnboardingRole";
 import { useFormik } from "formik";
-import { OnboardingFormValues } from "@/types";
+import { OnboardingFormValues, UploadedResume } from "@/types";
 import OnboardingLocation from "../OnboardingLocation";
 import OnboardingWorkType from "../OnboardingWorkType";
 import OnboardingLanguage from "../OnboardingLanguage";
 import OnboardingAccountSetup from "../OnboardingAccountSetup";
 import { routes } from "@/router";
-import { authApi, countriesAndStates, removeEmptyKeys } from "@/libs";
+import { authApi, countriesAndStates, handleUpload, profileApi, removeEmptyKeys } from "@/libs";
 import useOnboardingValidationSchema from "./useOnboardingValidationSchema";
 
 export const useOnboarding = () => {
@@ -78,56 +78,6 @@ export const useOnboarding = () => {
     full_name: "",
     portfolio_url: "",
     resume: [],
-
-    //NOT USED
-    // avatar_url: "",
-    // phone_number: "",
-    // platform_email: "",
-    // skills: [],
-    // professional_summary: "",
-    // linkedin_url: "",
-    // github_url: "",
-    // min_salary_expectation: 0,
-    // max_salary_expectation: 0,
-    // preferred_currency: "",
-    // auto_apply_enabled: false,
-    // extras: {},
-    // work_experiences: [
-    //   {
-    //     company_name: "",
-    //     job_title: "",
-    //     location: "",
-    //     description: "",
-    //     start_date: "",
-    //     end_date: "",
-    //     is_current: false,
-    //     extras: {},
-    //   },
-    // ],
-    // educational_qualifications: [
-    //   {
-    //     institution_name: "",
-    //     location: "",
-    //     degree: "",
-    //     field_of_study: "",
-    //     description: "",
-    //     grade: "",
-    //     start_date: "",
-    //     end_date: "",
-    //     extras: {},
-    //   },
-    // ],
-    // certifications: [
-    //   {
-    //     name: "",
-    //     issuing_organization: "",
-    //     issue_date: "",
-    //     expiration_date: null,
-    //     credential_id: "",
-    //     credential_url: "",
-    //     extras: {},
-    //   },
-    // ],
   };
 
   const { validationSchema } = useOnboardingValidationSchema();
@@ -136,9 +86,23 @@ export const useOnboarding = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log("values", values);
       if (currentStep < 6) {
         return navigate(`${routes.auth.onboarding}?step=${currentStep + 1}`);
+      }
+
+      let resumePayload: UploadedResume | undefined;
+
+      if (values?.resume) {
+        const { success, data } = await handleUpload(values?.resume);
+
+        if (success) {
+          resumePayload = {
+            file_name: data?.[0]?.name as string,
+            file_type: data?.[0]?.type as string,
+            is_primary: true,
+            file_url: data?.[0]?.url as string,
+          };
+        }
       }
 
       const payload = { ...values };
@@ -150,6 +114,9 @@ export const useOnboarding = () => {
       const { success } = await authApi.onboarding(payload);
 
       if (success) {
+        if (resumePayload?.file_url) {
+          await profileApi.addResume(resumePayload as UploadedResume);
+        }
         navigate(routes.auth.preview);
       }
     },
@@ -159,7 +126,7 @@ export const useOnboarding = () => {
     { label: "Entry Level (0–2 years)", value: "entry", min: 0, max: 2 },
     { label: "Mid Level (3–5 years)", value: "mid", min: 3, max: 5 },
     { label: "Senior Level (6–10 years)", value: "senior", min: 6, max: 10 },
-    { label: "Lead/Principal (10+ years)", value: "lead", min: 11, max: 25 },
+    { label: "Lead/Principal (10+ years)", value: "lead", min: 11, max: 15 },
   ];
 
   const countryOptions = countriesAndStates?.map((x) => ({
@@ -214,9 +181,7 @@ export const useOnboarding = () => {
   const renderStep = () => {
     switch (currentStep) {
       case 2:
-        return (
-          <OnboardingRole formik={formik} experienceLevels={experienceLevels} />
-        );
+        return <OnboardingRole formik={formik} experienceLevels={experienceLevels} />;
       case 3:
         return (
           <OnboardingLocation
@@ -240,9 +205,7 @@ export const useOnboarding = () => {
       case 6:
         return <OnboardingAccountSetup formik={formik} />;
       default:
-        return (
-          <OnboardingRole formik={formik} experienceLevels={experienceLevels} />
-        );
+        return <OnboardingRole formik={formik} experienceLevels={experienceLevels} />;
     }
   };
 

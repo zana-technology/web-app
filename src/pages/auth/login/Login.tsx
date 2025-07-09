@@ -1,6 +1,5 @@
-import { AuthHeader, Button, Input } from "@/components";
+import { AuthHeader, Button, Input, OnboardingHash } from "@/components";
 import { useLogin } from "./logic";
-import { onboardingShellClassName } from "@/libs";
 
 const Login = () => {
   const { formik } = useLogin();
@@ -18,11 +17,8 @@ const Login = () => {
   } = formik;
 
   return (
-    <div className={onboardingShellClassName}>
-      <AuthHeader
-        title="Welcome back"
-        subTitle="Enter your correct details to continue"
-      />
+    <OnboardingHash className="sm:mt-40 sm:mb-10">
+      <AuthHeader title="Welcome back" subTitle="Enter your correct details to continue" />
 
       <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
         <Input
@@ -53,7 +49,7 @@ const Login = () => {
           disabled={!(isValid && dirty)}
         />
       </form>
-    </div>
+    </OnboardingHash>
   );
 };
 

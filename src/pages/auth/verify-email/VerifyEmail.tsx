@@ -1,6 +1,6 @@
-import { AuthHeader, Button, Input, StepIndicator } from "@/components";
+import { AuthHeader, Button, Input, OnboardingHash, StepIndicator } from "@/components";
 import { useVerifyEmail } from "./logic";
-import { onboardingShellClassName, onboardingSteps } from "@/libs";
+import { onboardingSteps } from "@/libs";
 
 const VerifyEmail = () => {
   const {
@@ -11,6 +11,7 @@ const VerifyEmail = () => {
     restartCountdown,
     timeLeft,
     secondsLeft,
+    loading,
   } = useVerifyEmail();
 
   const {
@@ -26,9 +27,9 @@ const VerifyEmail = () => {
   } = formik;
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center sm:mt-28 sm:mb-10">
       <StepIndicator steps={onboardingSteps} currentStep={1} />
-      <div className={onboardingShellClassName}>
+      <OnboardingHash>
         <AuthHeader
           title="Check your email"
           subTitle={`We sent a code to ${id}.`}
@@ -60,15 +61,13 @@ const VerifyEmail = () => {
           <Button
             title="Resend code"
             fullWidth
-            // loading={isSubmitting}
+            loading={loading}
             disabled={!canResend}
             onClick={restartCountdown}
           />
-          {secondsLeft !== 0 && (
-            <p className="text-center">Resend code in {timeLeft}</p>
-          )}
+          {secondsLeft !== 0 && <p className="text-center">Resend code in {timeLeft}</p>}
         </form>
-      </div>
+      </OnboardingHash>
     </div>
   );
 };
