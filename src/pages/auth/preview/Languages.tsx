@@ -1,21 +1,14 @@
 import { globeIcon } from "@/assets";
 import { Button, Input, PageTitle, ProfileSection, Select } from "@/components";
 import { toSentenceCase } from "@/libs";
-import { CandidateProfileDto, OnboardingProfileFormValues, ShowFormState } from "@/types";
-import { FieldArray, FormikProps, getIn } from "formik";
+import { PreviewChildProps } from "@/types";
+import { FieldArray, getIn } from "formik";
 import { BsCheck } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
 
-interface LangProps {
-  profile: CandidateProfileDto;
-  formik: FormikProps<OnboardingProfileFormValues>;
-  showForm: ShowFormState;
-  showFormHandler: (obj: Partial<ShowFormState>) => void;
-}
-
-const Languages = ({ profile, formik, showForm, showFormHandler }: LangProps) => {
+const Languages = ({ profile, formik, showForm, showFormHandler }: PreviewChildProps) => {
   const {
     values,
     errors,

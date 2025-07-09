@@ -9,3 +9,4 @@ export * from "./toast";
 export * from "./page-title";
 export * from "./profile-section";
 export * from "./text";
+export * from "./dangerous-content";

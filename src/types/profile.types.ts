@@ -1,3 +1,5 @@
+import { FormikProps } from "formik";
+
 export interface WorkExperience {
   company_name: string;
   job_title: string;
@@ -106,4 +108,11 @@ export interface ShowFormState {
   education: boolean;
   certifications: boolean;
   // Add more if needed
+}
+
+export interface PreviewChildProps {
+  profile: CandidateProfileDto;
+  formik: FormikProps<OnboardingProfileFormValues>;
+  showForm: ShowFormState;
+  showFormHandler: (obj: Partial<ShowFormState>) => void;
 }

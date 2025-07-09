@@ -13,6 +13,7 @@ interface TextAreaProps {
   onBlur?: FocusEventHandler<HTMLTextAreaElement>;
   required?: boolean;
   className?: string;
+  placeholder?: string;
   note?: string;
 }
 
@@ -27,6 +28,7 @@ export const TextArea = ({
   touched,
   disabled = false,
   className,
+  placeholder,
   note,
 }: TextAreaProps) => {
   return (
@@ -41,7 +43,7 @@ export const TextArea = ({
       <textarea
         id={name}
         name={name}
-        placeholder={`Enter ${label}`}
+        placeholder={placeholder ? placeholder : `Enter ${label}`}
         required={required}
         value={value}
         onChange={onChange}

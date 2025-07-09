@@ -1,18 +1,10 @@
 import { codepenIcon } from "@/assets";
 import { ProfileSection, Taginput } from "@/components";
-import { CandidateProfileDto, OnboardingProfileFormValues, ShowFormState } from "@/types";
-import { FormikProps } from "formik";
+import { PreviewChildProps } from "@/types";
 import { BsCheck } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 
-interface SkillsProps {
-  profile: CandidateProfileDto;
-  formik: FormikProps<OnboardingProfileFormValues>;
-  showForm: ShowFormState;
-  showFormHandler: (obj: Partial<ShowFormState>) => void;
-}
-
-const Skills = ({ profile, formik, showForm, showFormHandler }: SkillsProps) => {
+const Skills = ({ profile, formik, showForm, showFormHandler }: PreviewChildProps) => {
   const { values, errors, setFieldValue, handleBlur, touched, isSubmitting, handleSubmit } = formik;
 
   return (

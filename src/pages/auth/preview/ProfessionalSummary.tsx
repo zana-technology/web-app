@@ -1,19 +1,11 @@
 import { fileIcon } from "@/assets";
 import { ProfileSection } from "@/components";
 import TextArea from "@/components/input/TextArea";
-import { CandidateProfileDto, OnboardingProfileFormValues, ShowFormState } from "@/types";
-import { FormikProps } from "formik";
+import { PreviewChildProps } from "@/types";
 import { BsCheck } from "react-icons/bs";
 import { MdOutlineEdit } from "react-icons/md";
 
-interface PSProps {
-  profile: CandidateProfileDto;
-  formik: FormikProps<OnboardingProfileFormValues>;
-  showForm: ShowFormState;
-  showFormHandler: (obj: Partial<ShowFormState>) => void;
-}
-
-const ProfessionalSummary = ({ profile, formik, showForm, showFormHandler }: PSProps) => {
+const ProfessionalSummary = ({ profile, formik, showForm, showFormHandler }: PreviewChildProps) => {
   const { values, errors, handleChange, handleBlur, touched, isSubmitting, handleSubmit } = formik;
 
   return (
