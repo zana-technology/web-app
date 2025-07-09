@@ -1,2 +1,3 @@
-export * from './Input';
-export * from './PhoneInput';
+export * from "./Input";
+export * from "./PhoneInput";
+export * from "./Taginput";
