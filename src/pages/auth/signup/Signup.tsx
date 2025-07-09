@@ -1,5 +1,5 @@
-import { AuthHeader, Button, Input, StepIndicator } from "@/components";
-import { onboardingShellClassName, onboardingSteps } from "@/libs";
+import { AuthHeader, Button, Input, OnboardingHash, StepIndicator } from "@/components";
+import { onboardingSteps } from "@/libs";
 import { useSignup } from "./logic";
 
 const Signup = () => {
@@ -20,7 +20,7 @@ const Signup = () => {
   return (
     <div className="w-full flex flex-col items-center sm:mt-28 sm:mb-10">
       <StepIndicator steps={onboardingSteps} currentStep={1} />
-      <div className={onboardingShellClassName}>
+      <OnboardingHash>
         <AuthHeader
           title="Let’s get you started"
           subTitle="Put in your email address and create a password"
@@ -68,7 +68,7 @@ const Signup = () => {
             disabled={!(isValid && dirty)}
           />
         </form>
-      </div>
+      </OnboardingHash>
     </div>
   );
 };

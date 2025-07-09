@@ -1,8 +1,10 @@
 import { constant, profileApi, refreshQuery, removeEmptyKeys } from "@/libs";
 import { apiQueryKeys } from "@/libs/api/config";
+import { routes } from "@/router";
 import { OnboardingProfileFormValues } from "@/types";
 import { useFormik } from "formik";
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useProfilePreview = () => {
   const { isLoading, data } = profileApi.useGetProfile();
@@ -163,8 +165,12 @@ export const useProfilePreview = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile?.uid]);
 
-  console.log("profile", profile);
-  return { isLoading, profile, personalInformation, formik, showForm, showFormHandler };
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(`${routes.auth.onboarding}?step=6`);
+  };
+  return { isLoading, profile, personalInformation, formik, showForm, showFormHandler, goBack };
 };
 
 export default useProfilePreview;

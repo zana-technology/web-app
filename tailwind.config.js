@@ -24,6 +24,7 @@ export const theme = {
         color: {
           100: "#F7F2EB",
           300: "#EEE2D3",
+          500: "#E5D4BD",
         },
       },
     },
