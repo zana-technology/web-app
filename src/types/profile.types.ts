@@ -20,8 +20,7 @@ export interface Education {
   field_of_study: string;
   description: string;
   grade: string;
-  start_date: string;
-  end_date: string;
+  completion_year: number;
   extras: {
     [key: string]: unknown;
   };
@@ -77,6 +76,7 @@ export type OnboardingProfileFormValues = {
   work_experiences: WorkExperience[];
   educational_qualifications: Education[];
   certifications: Certification[];
+  completed?: boolean;
 };
 
 export type CandidateProfileDto = OnboardingFormValues &

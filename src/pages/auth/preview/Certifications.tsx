@@ -183,7 +183,7 @@ const Certifications = ({ profile, formik, showForm, showFormHandler }: PreviewC
                   {capitalizeFirstLetter(x.issuing_organization)}
                 </p>
 
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col sm:flex-row justify-between sm:items-center">
                   <p>Credential ID: {x.credential_id}</p>
                   <p>Issued: {moment(x.issue_date).format("MMMM YYYY")}</p>
                 </div>

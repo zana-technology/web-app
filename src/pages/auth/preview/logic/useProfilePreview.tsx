@@ -106,8 +106,7 @@ export const useProfilePreview = () => {
                 field_of_study: "",
                 description: "",
                 grade: "",
-                start_date: "",
-                end_date: "",
+                completion_year: 0,
                 extras: {},
               },
             ],
@@ -127,6 +126,7 @@ export const useProfilePreview = () => {
                 extras: {},
               },
             ],
+      completed: false,
     };
   }, [profile]);
 
@@ -137,6 +137,9 @@ export const useProfilePreview = () => {
       console.log("values", values);
 
       const payload = { ...values };
+
+      delete payload?.completed;
+
       removeEmptyKeys(payload);
 
       const { success } = await profileApi.updateProfile(payload);
@@ -152,6 +155,10 @@ export const useProfilePreview = () => {
           education: false,
           certifications: false,
         });
+
+        if (values?.completed) {
+          navigate(routes.auth.complete);
+        }
       }
     },
   });
@@ -163,7 +170,7 @@ export const useProfilePreview = () => {
       formik.setValues(initialValues);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profile?.uid]);
+  }, [profile?.uid, initialValues]);
 
   const navigate = useNavigate();
 

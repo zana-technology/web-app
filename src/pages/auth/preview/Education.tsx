@@ -19,15 +19,25 @@ const Education = ({ profile, formik, showForm, showFormHandler }: PreviewChildP
   } = formik;
 
   const degreeOptions = [
-    { label: "High School Diploma", value: "high_school" },
-    { label: "Associate Degree", value: "associate" },
-    { label: "Bachelor's Degree", value: "bachelor" },
-    { label: "Master's Degree", value: "master" },
-    { label: "Doctorate (Ph.D.)", value: "phd" },
-    { label: "Professional Degree (e.g. MD, JD)", value: "professional" },
-    { label: "Certificate / Diploma", value: "certificate" },
+    { label: "High School Diploma", value: "high_school_diploma" },
+    { label: "Associate of Arts", value: "associate_arts" },
+    { label: "Associate of Science", value: "associate_science" },
+    { label: "Bachelor of Arts", value: "bachelor_arts" },
+    { label: "Bachelor of Science", value: "bachelor_science" },
+    { label: "Master of Arts", value: "master_arts" },
+    { label: "Master of Science", value: "master_science" },
+    { label: "Master of Business Administration", value: "mba" },
+    { label: "Doctor of Philosophy (Ph.D.)", value: "phd" },
+    { label: "Doctor of Medicine (MD)", value: "md" },
+    { label: "Juris Doctor (JD)", value: "jd" },
+    { label: "Professional Certificate", value: "certificate" },
+    { label: "Diploma", value: "diploma" },
     { label: "Some College", value: "some_college" },
   ];
+
+  function getDegreeLabel(value: string): string {
+    return degreeOptions.find((opt) => opt.value === value)?.label || value;
+  }
 
   return (
     <ProfileSection
@@ -80,19 +90,41 @@ const Education = ({ profile, formik, showForm, showFormHandler }: PreviewChildP
                       placeholder="College / University"
                     />
                     <Input
-                      label="Graduation"
-                      name={`educational_qualifications.${i}.end_date`}
-                      value={values?.educational_qualifications?.[i]?.end_date as string}
+                      label="Location"
+                      name={`educational_qualifications.${i}.location`}
+                      value={values?.educational_qualifications?.[i]?.location as string}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       errorMessage={
-                        getIn(errors, `educational_qualifications.${i}.end_date`) as string
+                        getIn(errors, `educational_qualifications.${i}.location`) as string
                       }
                       touched={
-                        getIn(touched, `educational_qualifications.${i}.end_date`) as boolean
+                        getIn(touched, `educational_qualifications.${i}.location`) as boolean
+                      }
+                      required
+                      placeholder="College / University"
+                    />
+                    <Input
+                      label="Graduation"
+                      name={`educational_qualifications.${i}.completion_year`}
+                      value={values?.educational_qualifications?.[i]?.completion_year as number}
+                      onChange={(e) => {
+                        const num = e.target.value ? Number(e.target.value) : "";
+                        formik.setFieldValue(
+                          `educational_qualifications.${i}.completion_year`,
+                          num
+                        );
+                      }}
+                      onBlur={handleBlur}
+                      errorMessage={
+                        getIn(errors, `educational_qualifications.${i}.completion_year`) as string
+                      }
+                      touched={
+                        getIn(touched, `educational_qualifications.${i}.completion_year`) as boolean
                       }
                       required
                       placeholder="Year"
+                      type="number"
                     />
                     <Select
                       label="Degree and Major"
@@ -181,8 +213,7 @@ const Education = ({ profile, formik, showForm, showFormHandler }: PreviewChildP
                       field_of_study: "",
                       description: "",
                       grade: "",
-                      start_date: "",
-                      end_date: "",
+                      completion_year: "",
                     })
                   }
                 />
@@ -191,7 +222,31 @@ const Education = ({ profile, formik, showForm, showFormHandler }: PreviewChildP
           )}
         </FieldArray>
       ) : (
-        <p className="w-full">{profile?.professional_summary ?? "Work Experience not yet added"}</p>
+        <div className="flex flex-col gap-6">
+          {profile?.educational_qualifications.length > 0 ? (
+            profile?.educational_qualifications?.map((x, i) => (
+              <div
+                key={i}
+                className="w-full flex flex-col sm:flex-row justify-between sm:items-center gap-3"
+              >
+                <div>
+                  <p>
+                    {getDegreeLabel(x?.degree)} in {x?.field_of_study}
+                  </p>
+                  <p className="text-gray-400">{x.institution_name}</p>
+                </div>
+                <div className="flex flex-col sm:items-end">
+                  <p>
+                    {x?.completion_year} - GPA:{x?.grade}
+                  </p>
+                  <p className="text-gray-400">{x.location}</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="w-full"> Education not yet added</p>
+          )}
+        </div>
       )}
     </ProfileSection>
   );

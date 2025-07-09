@@ -14,7 +14,7 @@ const ProfilePreview = () => {
   const { isLoading, profile, personalInformation, formik, showForm, showFormHandler, goBack } =
     useProfilePreview();
 
-  const { handleSubmit, isValid, dirty, isSubmitting } = formik;
+  const { handleSubmit, isValid, dirty, isSubmitting, setFieldValue } = formik;
 
   return (
     <div className="flex flex-col w-full gap-8">
@@ -86,6 +86,9 @@ const ProfilePreview = () => {
                 loading={isSubmitting}
                 showArrow={true}
                 disabled={!(isValid && dirty)}
+                onClick={() => {
+                  setFieldValue("completed", true);
+                }}
               />
             </div>
           </form>

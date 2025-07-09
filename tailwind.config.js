@@ -35,6 +35,15 @@ export const theme = {
       slg: "900px",
       xs: "480px",
     },
+    keyframes: {
+      chatPop: {
+        "0%": { opacity: "0", transform: "scale(0.8)" },
+        "100%": { opacity: "1", transform: "scale(1)" },
+      },
+    },
+    animation: {
+      chatPop: "chatPop 0.4s ease-out forwards",
+    },
   },
 };
 export const plugins = [];

@@ -1,6 +1,6 @@
 import { AuthHeader, Button, Input, OnboardingHash, StepIndicator } from "@/components";
 import { useVerifyEmail } from "./logic";
-import { onboardingShellClassName, onboardingSteps } from "@/libs";
+import { onboardingSteps } from "@/libs";
 
 const VerifyEmail = () => {
   const {

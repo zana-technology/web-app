@@ -202,12 +202,12 @@ const WorkExperience = ({ profile, formik, showForm, showFormHandler }: PreviewC
           {profile?.work_experiences?.length > 0 ? (
             profile?.work_experiences?.map((x, i) => (
               <div className="w-full" key={i}>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col sm:flex-row justify-between sm:items-center">
                   <div>
                     <p>{capitalizeFirstLetter(x.job_title)}</p>
                     <p className="text-gray-400">{capitalizeFirstLetter(x.company_name)}</p>
                   </div>
-                  <div className="flex flex-col items-end">
+                  <div className="flex flex-col sm:items-end">
                     <p>
                       {moment(x.start_date).format("MMMM YYYY")} -{" "}
                       {moment(x.end_date).format("MMMM YYYY")}{" "}

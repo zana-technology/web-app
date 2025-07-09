@@ -11,10 +11,10 @@ const OnboardingComplete = () => {
       style={{ backgroundImage: `url(${confetti})` }}
     >
       <div className="w-full flex py-10 justify-center items-center">
-        <img src={logo} alt="Zana Logo" />
+        <img src={logo} alt="Zana Logo" className="h-[18px]" />
       </div>
       <div className="w-full flex flex-col justify-center items-center flex-1 p-5 -mt-28">
-        <img src={avatar} alt="Zana Logo" className="w-[142px]" />
+        <img src={avatar} alt="Zana Avatar" className="h-[142px]" />
         <div className="bg-zana-primary-normal text-white w-full xs:w-[442px] flex flex-col items-center justify-center text-center p-6 rounded-xl gap-8 min-h-[230px]">
           <div>
             <h4 className="text-2xl font-semibold">Onboarding completed!!</h4>
