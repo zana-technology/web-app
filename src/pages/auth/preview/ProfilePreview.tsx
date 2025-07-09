@@ -9,6 +9,7 @@ import PersonalInfo from "./PersonalInfo";
 import Skills from "./Skills";
 import { CandidateProfileDto } from "@/types";
 import Languages from "./Languages";
+import ProfessionalSummary from "./ProfessionalSummary";
 
 const ProfilePreview = () => {
   const { isLoading, profile, personalInformation, formik, showForm, showFormHandler } =
@@ -53,23 +54,15 @@ const ProfilePreview = () => {
             showForm={showForm}
             showFormHandler={showFormHandler}
           />
+          <ProfessionalSummary
+            profile={profile as CandidateProfileDto}
+            formik={formik}
+            showForm={showForm}
+            showFormHandler={showFormHandler}
+          />
         </form>
       </FormikProvider>
 
-      <ProfileSection
-        section={{
-          title: "Professional Summary ",
-          icon: fileIcon,
-        }}
-        button={{
-          title: "Edit",
-          icon: <MdOutlineEdit />,
-        }}
-      >
-        <p className="w-full">
-          {profile?.professional_summary ?? "Professional summary not yet added"}
-        </p>
-      </ProfileSection>
       <ProfileSection
         section={{
           title: "Work Experience",
