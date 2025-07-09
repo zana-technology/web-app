@@ -20,7 +20,7 @@ export interface Education {
   field_of_study: string;
   description: string;
   grade: string;
-  completion_year: number;
+  completion_year: number | null;
   extras: {
     [key: string]: unknown;
   };

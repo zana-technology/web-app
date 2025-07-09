@@ -7,13 +7,7 @@ import OnboardingWorkType from "../OnboardingWorkType";
 import OnboardingLanguage from "../OnboardingLanguage";
 import OnboardingAccountSetup from "../OnboardingAccountSetup";
 import { routes } from "@/router";
-import {
-  authApi,
-  countriesAndStates,
-  handleUpload,
-  profileApi,
-  removeEmptyKeys,
-} from "@/libs";
+import { authApi, countriesAndStates, handleUpload, profileApi, removeEmptyKeys } from "@/libs";
 import useOnboardingValidationSchema from "./useOnboardingValidationSchema";
 
 export const useOnboarding = () => {
@@ -84,56 +78,6 @@ export const useOnboarding = () => {
     full_name: "",
     portfolio_url: "",
     resume: [],
-
-    //NOT USED
-    // avatar_url: "",
-    // phone_number: "",
-    // platform_email: "",
-    // skills: [],
-    // professional_summary: "",
-    // linkedin_url: "",
-    // github_url: "",
-    // min_salary_expectation: 0,
-    // max_salary_expectation: 0,
-    // preferred_currency: "",
-    // auto_apply_enabled: false,
-    // extras: {},
-    // work_experiences: [
-    //   {
-    //     company_name: "",
-    //     job_title: "",
-    //     location: "",
-    //     description: "",
-    //     start_date: "",
-    //     end_date: "",
-    //     is_current: false,
-    //     extras: {},
-    //   },
-    // ],
-    // educational_qualifications: [
-    //   {
-    //     institution_name: "",
-    //     location: "",
-    //     degree: "",
-    //     field_of_study: "",
-    //     description: "",
-    //     grade: "",
-    //     start_date: "",
-    //     end_date: "",
-    //     extras: {},
-    //   },
-    // ],
-    // certifications: [
-    //   {
-    //     name: "",
-    //     issuing_organization: "",
-    //     issue_date: "",
-    //     expiration_date: null,
-    //     credential_id: "",
-    //     credential_url: "",
-    //     extras: {},
-    //   },
-    // ],
   };
 
   const { validationSchema } = useOnboardingValidationSchema();
@@ -237,9 +181,7 @@ export const useOnboarding = () => {
   const renderStep = () => {
     switch (currentStep) {
       case 2:
-        return (
-          <OnboardingRole formik={formik} experienceLevels={experienceLevels} />
-        );
+        return <OnboardingRole formik={formik} experienceLevels={experienceLevels} />;
       case 3:
         return (
           <OnboardingLocation
@@ -263,9 +205,7 @@ export const useOnboarding = () => {
       case 6:
         return <OnboardingAccountSetup formik={formik} />;
       default:
-        return (
-          <OnboardingRole formik={formik} experienceLevels={experienceLevels} />
-        );
+        return <OnboardingRole formik={formik} experienceLevels={experienceLevels} />;
     }
   };
 

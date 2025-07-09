@@ -25,7 +25,7 @@ export const useLogin = () => {
       const { success } = await authApi.login(values);
 
       if (success) {
-        navigate(routes.auth.preview);
+        navigate(routes.app.feed);
       }
     },
   });

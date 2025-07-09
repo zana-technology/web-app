@@ -106,7 +106,7 @@ export const useProfilePreview = () => {
                 field_of_study: "",
                 description: "",
                 grade: "",
-                completion_year: 0,
+                completion_year: null,
                 extras: {},
               },
             ],
@@ -134,8 +134,6 @@ export const useProfilePreview = () => {
     initialValues: initialValues,
     // validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log("values", values);
-
       const payload = { ...values };
 
       delete payload?.completed;
@@ -165,8 +163,6 @@ export const useProfilePreview = () => {
 
   useEffect(() => {
     if (profile?.uid) {
-      console.log("profile?.uid", profile?.uid);
-      console.log("initialValues", initialValues);
       formik.setValues(initialValues);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

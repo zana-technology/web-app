@@ -18,7 +18,6 @@ interface ProfileSectionProps {
 }
 
 export const ProfileSection = ({ section, button, children }: ProfileSectionProps) => {
-  console.log("btn", button?.type);
   return (
     <div className="border border-zana-grey-100 w-full rounded-xl  p-3">
       <div className="flex items-center justify-between border-b border-dashed border-b-zana-grey-300 mb-4 pb-1 flex-wrap">
