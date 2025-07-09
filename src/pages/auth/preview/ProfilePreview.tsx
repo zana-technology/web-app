@@ -1,9 +1,7 @@
-import { briefcaseIcon, fileIcon, globeIcon, graduationHatIcon } from "@/assets";
-import { PageTitle, ProfileSection, Text } from "@/components";
-import { MdOutlineEdit } from "react-icons/md";
+import { graduationHatIcon } from "@/assets";
+import { PageTitle, ProfileSection } from "@/components";
 import { useProfilePreview } from "./logic";
 import { IoMdAdd } from "react-icons/io";
-import { toSentenceCase } from "@/libs";
 import { FormikProvider } from "formik";
 import PersonalInfo from "./PersonalInfo";
 import Skills from "./Skills";
@@ -11,6 +9,7 @@ import { CandidateProfileDto } from "@/types";
 import Languages from "./Languages";
 import ProfessionalSummary from "./ProfessionalSummary";
 import WorkExperience from "./WorkExperience";
+import Education from "./Education";
 
 const ProfilePreview = () => {
   const { isLoading, profile, personalInformation, formik, showForm, showFormHandler } =
@@ -62,6 +61,12 @@ const ProfilePreview = () => {
             showFormHandler={showFormHandler}
           />
           <WorkExperience
+            profile={profile as CandidateProfileDto}
+            formik={formik}
+            showForm={showForm}
+            showFormHandler={showFormHandler}
+          />
+          <Education
             profile={profile as CandidateProfileDto}
             formik={formik}
             showForm={showForm}

@@ -14,7 +14,7 @@ import { BsCheck } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 import { twMerge } from "tailwind-merge";
 import moment from "moment";
-import { capitalizeFirstLetter, toSentenceCase } from "@/libs";
+import { capitalizeFirstLetter } from "@/libs";
 
 const WorkExperience = ({ profile, formik, showForm, showFormHandler }: PreviewChildProps) => {
   const {
