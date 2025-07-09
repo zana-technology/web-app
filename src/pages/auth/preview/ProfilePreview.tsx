@@ -28,7 +28,7 @@ const ProfilePreview = () => {
         <PageLoader />
       ) : (
         <FormikProvider value={formik}>
-          <form className="flex flex-col w-full gap-8" onSubmit={handleSubmit}>
+          <form className="flex flex-col w-full gap-8">
             <PersonalInfo
               personalInformation={personalInformation}
               formik={formik}
@@ -88,6 +88,7 @@ const ProfilePreview = () => {
                 disabled={!(isValid && dirty)}
                 onClick={() => {
                   setFieldValue("completed", true);
+                  handleSubmit();
                 }}
               />
             </div>

@@ -1,10 +1,11 @@
-import { constant, profileApi, refreshQuery, removeEmptyKeys } from "@/libs";
+import { constant, phoneNumberRegex, profileApi, refreshQuery, removeEmptyKeys } from "@/libs";
 import { apiQueryKeys } from "@/libs/api/config";
 import { routes } from "@/router";
 import { OnboardingProfileFormValues } from "@/types";
 import { useFormik } from "formik";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
 
 export const useProfilePreview = () => {
   const { isLoading, data } = profileApi.useGetProfile();
@@ -130,9 +131,77 @@ export const useProfilePreview = () => {
     };
   }, [profile]);
 
+  const validationSchema = yup.object().shape({
+    full_name: yup
+      .string()
+      .trim()
+      .required("Full name is required")
+      .min(3, "Full name must be at least 3 characters")
+      .test(
+        "is-full-name",
+        "Please enter your full name (first and last)",
+        (value) => !!value && value.trim().split(" ").length >= 2
+      ),
+    platform_email: yup.string().email("Invalid email format").nullable(),
+    phone_number: yup.string().matches(phoneNumberRegex, "Invalid phone number").nullable(),
+    current_location: yup.string().max(100),
+    linkedin_url: yup
+      .string()
+      .url("Enter a valid url starting with http:// or https://")
+      .nullable(),
+    portfolio_url: yup
+      .string()
+      .url("Enter a valid url starting with http:// or https://")
+      .nullable(),
+
+    skills: yup.array().of(yup.string().trim().max(50)).nullable(),
+    languages: yup.array().of(
+      yup.object().shape({
+        language: yup.string().trim().required("Language is required"),
+        proficiency: yup.string().trim().required("Proficiency is required"),
+      })
+    ),
+
+    professional_summary: yup.string().max(1000),
+
+    work_experiences: yup.array().of(
+      yup.object().shape({
+        company_name: yup.string().max(100),
+        job_title: yup.string().max(100),
+        location: yup.string().max(100),
+        description: yup.string().max(1000),
+        start_date: yup.string().nullable(),
+        end_date: yup.string().nullable(),
+        is_current: yup.boolean().nullable(),
+        extras: yup.object().shape({}),
+      })
+    ),
+
+    educational_qualifications: yup.array().of(
+      yup.object().shape({
+        institution_name: yup.string().max(100),
+        location: yup.string().max(100),
+        degree: yup.string().max(100),
+        field_of_study: yup.string().max(100),
+        grade: yup.string().max(50),
+        completion_year: yup.number().nullable().min(1900, "Too old"),
+      })
+    ),
+
+    certifications: yup.array().of(
+      yup.object().shape({
+        name: yup.string().max(100),
+        issuing_organization: yup.string().max(100),
+        issue_date: yup.string().nullable(),
+        expiration_date: yup.string().nullable(),
+        credential_id: yup.string().max(100),
+      })
+    ),
+  });
+
   const formik = useFormik<OnboardingProfileFormValues>({
     initialValues: initialValues,
-    // validationSchema: validationSchema,
+    validationSchema: validationSchema,
     onSubmit: async (values) => {
       const payload = { ...values };
 
