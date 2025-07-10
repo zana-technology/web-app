@@ -10,7 +10,7 @@ import { apiRequest } from "../config";
 import { apiRoutes } from "../routes";
 
 const login = async (payload: LoginFormValues) => {
-  return await apiRequest<LoginFormValues>({
+  return await apiRequest<SignupDto>({
     url: apiRoutes.auth.login,
     method: "post",
     payload,
