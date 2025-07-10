@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { LoginFormValues } from "@/types";
-import { authApi } from "@/libs";
+import { LoginFormValues, SignupDto } from "@/types";
+import { authApi, handleAuthSuccess } from "@/libs";
 import { routes } from "@/router";
 
 export const useLogin = () => {
@@ -22,9 +22,10 @@ export const useLogin = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      const { success } = await authApi.login(values);
+      const { success, data } = await authApi.login(values);
 
       if (success) {
+        handleAuthSuccess(data as SignupDto);
         navigate(routes.app.feed);
       }
     },
