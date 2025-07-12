@@ -6,6 +6,7 @@ export const theme = {
       dark: {
         400: "#535862",
         700: "#414651",
+        800: "#252B37",
         900: "#181D27",
       },
       zana: {
@@ -15,6 +16,8 @@ export const theme = {
           300: "#E9EAEB",
           400: "#A4A7AE",
           500: "#FAFAFA",
+          600: "#70707B",
+          700: "#717680",
         },
         primary: {
           normal: "#255A5A",
@@ -43,6 +46,15 @@ export const theme = {
     },
     animation: {
       chatPop: "chatPop 0.4s ease-out forwards",
+    },
+    backgroundImage: {
+      "diagonal-stripes": `repeating-linear-gradient(
+        135deg,
+        #E9EAEB,
+        #E9EAEB 1px,
+        transparent 1px,
+        transparent 6px
+      )`,
     },
   },
 };

@@ -1,9 +1,14 @@
+import { Sidebar } from "@/components";
 import { Outlet } from "react-router-dom";
 
 export const AppLayout = () => {
   return (
-    <div>
-      <Outlet />
+    <div className="flex">
+      <Sidebar />
+      <div className="w-[280px]"></div>
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 };

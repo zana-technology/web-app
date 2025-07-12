@@ -10,3 +10,4 @@ export * from "./text";
 export * from "./dangerous-content";
 export * from "./onboarding";
 export * from "./page-loader";
+export * from "./sidebar";
