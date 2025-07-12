@@ -1,10 +1,7 @@
-import axios, {
-  AxiosInstance,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from "axios";
+import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { constant, hasTokenExpired } from "../../utils";
 import config from "./config";
+import { routes } from "@/router";
 
 const client: AxiosInstance = axios.create({
   //   withCredentials: true,
@@ -21,7 +18,7 @@ const getTokenData = () => {
 const handleLogout = () => {
   localStorage.removeItem("access_token");
   localStorage.removeItem("tokenExpiry");
-  window.location.href = "/login";
+  window.location.href = routes.auth.login;
 };
 
 client.interceptors.request.use(

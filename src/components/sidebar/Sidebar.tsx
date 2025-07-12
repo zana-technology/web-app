@@ -1,39 +1,74 @@
-import { logoAvatar } from "@/assets";
-import { sidebarData } from "./sidebarData";
-import { Link, useLocation } from "react-router-dom";
-import { twMerge } from "tailwind-merge";
-import SidebarBottom from "./SidebarBottom";
+import { logo, logoAvatar } from "@/assets";
+import { useWindowWidth } from "@/hooks";
+import { MdClose } from "react-icons/md";
+import { Dispatch, SetStateAction } from "react";
+import SidebarMenu from "./SidebarMenu";
+import { motion } from "framer-motion";
 
-export const Sidebar = () => {
-  const location = useLocation();
+export const Sidebar = ({
+  showSidebar,
+  setShowSidebar,
+}: {
+  showSidebar: boolean;
+  setShowSidebar: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const width = useWindowWidth();
 
-  const pathname = location?.pathname;
+  if (width > 768) {
+    return <DesktopSidebar />;
+  } else {
+    return <MobileSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />;
+  }
+};
 
+const DesktopSidebar = () => {
   return (
     <div className="fixed w-[280px] bg-white flex flex-col gap-4 h-screen">
       <div className="h-14 flex items-center px-6 py-2.5">
         <img src={logoAvatar} alt="Zana Logo" className="h-9" />
       </div>
-      <div className="flex flex-col justify-between px-4 flex-1">
-        <div className="flex flex-col gap-2">
-          {sidebarData?.map((x, i) => (
-            <Link
-              to={x.link}
-              key={i}
-              className={twMerge(
-                "flex items-center gap-2 px-2 py-1.5 text-dark-400 rounded hover:text-dark-800 cursor-pointer font-medium",
-                pathname === x?.link ? "bg-zana-grey-500 text-dark-800" : ""
-              )}
-            >
-              <img src={x.icon} alt={x.title} className="h-[18px]" />
-              <p>{x?.title}</p>
-            </Link>
-          ))}
-        </div>
-        <SidebarBottom />
-      </div>
+      <SidebarMenu />
     </div>
   );
+};
+
+const MobileSidebar = ({
+  showSidebar,
+  setShowSidebar,
+}: {
+  showSidebar: boolean;
+  setShowSidebar: Dispatch<SetStateAction<boolean>>;
+}) => {
+  if (showSidebar) {
+    return (
+      <div className="fixed w-screen bg-dark-1000 flex justify-between backdrop-blur-md bg-opacity-70 z-[100]">
+        <motion.div
+          initial={{ x: -50 }}
+          animate={{ x: 0 }}
+          exit={{ x: -50 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="min-w-[280px] w-[70%]"
+        >
+          <div className="w-full bg-white flex flex-col gap-4 h-screen ">
+            <div className="h-14 flex items-center px-4 py-6 border-b border-b-gray-300">
+              <img src={logo} alt="Zana Logo" className="h-[18px]" />
+            </div>
+
+            <SidebarMenu />
+          </div>
+        </motion.div>
+
+        <div
+          className="mt-6 mr-5 flex-1 flex justify-end"
+          onClick={() => {
+            setShowSidebar(false);
+          }}
+        >
+          <MdClose className="text-white" size={24} />
+        </div>
+      </div>
+    );
+  }
 };
 
 export default Sidebar;

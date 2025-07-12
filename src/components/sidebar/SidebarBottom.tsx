@@ -1,12 +1,30 @@
 import { twMerge } from "tailwind-merge";
 import { RiExpandUpDownLine } from "react-icons/ri";
 import { avatar } from "@/assets";
+import { profileApi } from "@/libs";
+import { useMemo } from "react";
 
 const SidebarBottom = () => {
   const creditsLeft = 100;
   const creditsBought = 200;
 
   const percentageLeft = (creditsLeft / creditsBought) * 100;
+
+  const { isLoading, data } = profileApi.useGetProfile();
+
+  const user = useMemo(() => {
+    if (data?.success) {
+      const profile = data?.data;
+
+      const user = {
+        name: profile?.full_name,
+        email: profile?.platform_email,
+        avatar: profile?.avatar_url,
+      };
+
+      return user;
+    }
+  }, [data]);
   return (
     <div className="mb-4 flex flex-col items-center">
       <div className="w-full border border-zana-grey-300 p-4 flex flex-col gap-3 mb-6 rounded-xl">
@@ -29,16 +47,16 @@ const SidebarBottom = () => {
 
       <div className="w-full border border-zana-grey-300 p-4 flex gap-2 justify-between mb-5 rounded-xl bg-zana-grey-500">
         <div className="flex gap-2">
-          <div className="border border-zana-grey-300 rounded-full p-[5px]">
+          <div className="border border-zana-grey-300 rounded-full p-[5px]w-[35px] h-[35px] flex-shrink-0">
             <img
-              src={avatar}
+              src={user?.avatar ?? avatar}
               alt="Zana Avatar"
               className="w-[30px] h-[30px] object-cover rounded-full grayscale"
             />
           </div>
           <div className="text-sm">
-            <p className="text-dark-900 font-medium">User Name</p>
-            <p className="text-dark-400">User Email</p>
+            <p className="text-dark-900 font-medium">{user?.name}</p>
+            <p className="text-dark-400">{user?.email}</p>
           </div>
         </div>
         <RiExpandUpDownLine size={24} className="text-zana-grey-400 cursor-pointer" />
