@@ -1,5 +1,7 @@
-import { bullseyeIcon } from "@/assets";
-import { JobData } from "@/types";
+import { appliedIcon, bullseyeIcon, needsReviewIcon } from "@/assets";
+import { StatusTag } from "@/components";
+import { toSentenceCase } from "@/libs";
+import { JobData, JobStatus } from "@/types";
 
 const Jobs = ({ jobs }: { jobs: JobData[] }) => {
   return (
@@ -15,8 +17,19 @@ const Jobs = ({ jobs }: { jobs: JobData[] }) => {
                   <p className="text-sm text-gray-500">{x?.company}</p>
                 </div>
               </div>
-              <div>
+              <div className="flex items-center gap-2">
                 <MatchPercentage value={x.match as number} key={i} />
+                <StatusTag
+                  value={toSentenceCase(x.status as string)}
+                  status={x.status === JobStatus?.AutoApplied ? "success" : "pending"}
+                  icon={
+                    <img
+                      src={x.status === JobStatus?.AutoApplied ? appliedIcon : needsReviewIcon}
+                      alt="Job status"
+                      className="w-4 h-4"
+                    />
+                  }
+                />
               </div>
             </div>
             <div></div>

@@ -1,6 +1,6 @@
 import { Button, PageLoader, PageTitle, SearchInput, TabMenu } from "@/components";
 import { useFeed } from "./logic";
-import { JobData } from "@/types";
+import { JobData, JobStatus } from "@/types";
 import { CiFilter } from "react-icons/ci";
 import Jobs from "./Jobs";
 import { companyLogo } from "@/assets";
@@ -31,6 +31,7 @@ const Feed = () => {
       updated_at: "2025-07-10T10:00:00.000Z",
       companyLogo: companyLogo,
       match: 87,
+      status: JobStatus.AutoApplied,
     },
     {
       title: "Backend Engineer",
@@ -54,6 +55,7 @@ const Feed = () => {
       updated_at: "2025-07-11T09:30:00.000Z",
       companyLogo: companyLogo,
       match: 56,
+      status: JobStatus.NeedsReview,
     },
     {
       title: "Fullstack Developer",
@@ -77,6 +79,7 @@ const Feed = () => {
       updated_at: "2025-07-09T12:15:00.000Z",
       companyLogo: companyLogo,
       match: 87,
+      status: JobStatus.AutoApplied,
     },
     {
       title: "DevOps Engineer",
@@ -100,6 +103,7 @@ const Feed = () => {
       updated_at: "2025-07-08T08:00:00.000Z",
       companyLogo: companyLogo,
       match: 66,
+      status: JobStatus.NeedsReview,
     },
     {
       title: "UI/UX Designer",
@@ -123,6 +127,7 @@ const Feed = () => {
       updated_at: "2025-07-07T15:45:00.000Z",
       companyLogo: companyLogo,
       match: 87,
+      status: JobStatus.AutoApplied,
     },
   ];
 

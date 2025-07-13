@@ -35,6 +35,16 @@ export const theme = {
         brand: {
           500: "#9E77ED",
         },
+        success: {
+          50: "#ECFDF3",
+          200: "#ABEFC6",
+          700: "#067647",
+        },
+        warning: {
+          50: "#FFFAEB",
+          200: "#FEDF89",
+          700: "#B54708",
+        },
       },
     },
     fontFamily: {

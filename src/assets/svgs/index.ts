@@ -14,6 +14,8 @@ import feedIcon from "./feed.svg";
 import mailIcon from "./mail.svg";
 import starIcon from "./star.svg";
 import bullseyeIcon from "./bullseye.svg";
+import appliedIcon from "./applied.svg";
+import needsReviewIcon from "./needs-review.svg";
 
 export {
   errorIcon,
@@ -32,4 +34,6 @@ export {
   mailIcon,
   starIcon,
   bullseyeIcon,
+  appliedIcon,
+  needsReviewIcon,
 };

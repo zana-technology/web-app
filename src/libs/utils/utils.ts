@@ -150,8 +150,7 @@ export const generateStatusColor = (status: string) => {
   switch (status?.toLowerCase()) {
     case "pending":
     case "not verified":
-      return "text-amber-600 bg-amber-100";
-    case "published":
+      return "text-util-warning-700 bg-util-warning-50 border-util-warning-200";
     case "active":
     case "yes":
     case "success":
@@ -159,11 +158,8 @@ export const generateStatusColor = (status: string) => {
     case "completed":
     case "confirmed":
     case "verified":
-    case "cleared":
-    case "credit":
     case "approved":
-    case "shipped":
-      return "text-green-600 bg-green-100";
+      return "text-util-success-700 bg-util-success-50 border-util-success-200";
     case "failed":
     case "no":
     case "blocked":

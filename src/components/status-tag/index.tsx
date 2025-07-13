@@ -1,21 +1,24 @@
-import { generateStatusColor } from '@retailyft/common';
+import { capitalizeFirstLetter, generateStatusColor } from "@/libs";
+import { ReactNode } from "react";
 
 export const StatusTag = ({
   status,
   value,
   className,
+  icon,
 }: {
   status: string;
   value: string;
   className?: string;
+  icon?: ReactNode;
 }) => {
   return (
     <div
-      className={`min-w-24 w-fit px-3 h-8 flex justify-center items-center rounded-full py-2 font-semibold text-[12px] ${generateStatusColor(
-        status,
-      )} ${className ? className : ''}`}
+      className={`w-fit px-2 py-0.5 flex justify-center items-center rounded-full text-xs font-medium whitespace-nowrap border gap-0.5 ${generateStatusColor(
+        status
+      )} ${className ? className : ""}`}
     >
-      {value?.toUpperCase()}
+      {icon ? icon : ""} <p>{capitalizeFirstLetter(value)}</p>
     </div>
   );
 };

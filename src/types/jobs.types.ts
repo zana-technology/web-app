@@ -22,6 +22,12 @@ export interface JobData {
   // I added
   companyLogo?: string;
   match?: number;
+  status?: JobStatus;
+}
+
+export enum JobStatus {
+  AutoApplied = "AUTO-APPLIED",
+  NeedsReview = "NEEDS-REVIEW",
 }
 
 //company logo missing
