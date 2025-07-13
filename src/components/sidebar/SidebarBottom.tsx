@@ -10,7 +10,7 @@ const SidebarBottom = () => {
 
   const percentageLeft = (creditsLeft / creditsBought) * 100;
 
-  const { isLoading, data } = profileApi.useGetProfile();
+  const { data } = profileApi.useGetProfile();
 
   const user = useMemo(() => {
     if (data?.success) {

@@ -11,3 +11,4 @@ export * from "./dangerous-content";
 export * from "./onboarding";
 export * from "./page-loader";
 export * from "./sidebar";
+export * from "./tab-menu";

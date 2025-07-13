@@ -34,7 +34,7 @@ export const useFetcher = <T>(props: FetcherProps) => {
   const encodeQuery = encodeQueryData({
     ...(paginate && {
       limit: pageLimit ?? 50,
-      page: currentPage,
+      offset: currentPage,
     }),
     ...(hasFilters && { ...filters }),
     ...(searchQuery && { search: searchQuery.trim().toLowerCase() }),

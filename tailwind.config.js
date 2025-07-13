@@ -31,6 +31,11 @@ export const theme = {
           500: "#E5D4BD",
         },
       },
+      util: {
+        brand: {
+          500: "#9E77ED",
+        },
+      },
     },
     fontFamily: {
       primary: ["var(--primary-font)"],

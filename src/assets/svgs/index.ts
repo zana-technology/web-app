@@ -13,6 +13,7 @@ import applicationIcon from "./application.svg";
 import feedIcon from "./feed.svg";
 import mailIcon from "./mail.svg";
 import starIcon from "./star.svg";
+import bullseyeIcon from "./bullseye.svg";
 
 export {
   errorIcon,
@@ -30,4 +31,5 @@ export {
   feedIcon,
   mailIcon,
   starIcon,
+  bullseyeIcon,
 };

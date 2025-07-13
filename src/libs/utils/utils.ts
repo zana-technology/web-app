@@ -145,3 +145,40 @@ export const refreshQuery = ({ queryKey }: { queryKey: string[] }) => {
     });
   });
 };
+
+export const generateStatusColor = (status: string) => {
+  switch (status?.toLowerCase()) {
+    case "pending":
+    case "not verified":
+      return "text-amber-600 bg-amber-100";
+    case "published":
+    case "active":
+    case "yes":
+    case "success":
+    case "successful":
+    case "completed":
+    case "confirmed":
+    case "verified":
+    case "cleared":
+    case "credit":
+    case "approved":
+    case "shipped":
+      return "text-green-600 bg-green-100";
+    case "failed":
+    case "no":
+    case "blocked":
+    case "inactive":
+    case "cancelled":
+    case "rejected":
+    case "out of stock":
+    case "debit":
+      return "text-red-600 bg-red-100";
+    case "processing":
+    case "ready to ship":
+      return "text-blue-600 bg-blue-100";
+    case "onhold":
+      return "text-purple-600 bg-purple-100";
+    default:
+      return "text-r-dark-2 bg-r-grey-2";
+  }
+};
