@@ -178,3 +178,30 @@ export const generateStatusColor = (status: string) => {
       return "text-r-dark-2 bg-r-grey-2";
   }
 };
+
+export const currencyFormatter = ({
+  amount,
+  currency = "NGN",
+  subUnit = false,
+  compact = false,
+}: {
+  amount: number;
+  currency?: string;
+  subUnit?: boolean;
+  compact?: boolean;
+}) => {
+  const value = subUnit ? amount / 100 : amount;
+
+  return new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency,
+    currencyDisplay: "narrowSymbol",
+    notation: compact ? "compact" : "standard",
+    compactDisplay: "short",
+    maximumFractionDigits: 1,
+  }).format(value);
+};
+
+export function truncateText(text: string, maxLength: number) {
+  return text.length > maxLength ? text.slice(0, maxLength).trimEnd() + "..." : text;
+}

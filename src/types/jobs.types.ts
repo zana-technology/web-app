@@ -23,11 +23,17 @@ export interface JobData {
   companyLogo?: string;
   match?: number;
   status?: JobStatus;
+  mode: JobMode;
 }
 
 export enum JobStatus {
   AutoApplied = "AUTO-APPLIED",
   NeedsReview = "NEEDS-REVIEW",
+}
+export enum JobMode {
+  Remote = "Remote",
+  Hybrid = "Hybrid",
+  Onsite = "Onsite",
 }
 
 //company logo missing

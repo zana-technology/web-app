@@ -13,6 +13,7 @@ type FetcherProps = {
   enabled?: boolean;
   url: string;
   triggerError?: boolean;
+  initialFilter?: Record<string, any>;
 };
 
 export const useFetcher = <T>(props: FetcherProps) => {
@@ -25,6 +26,7 @@ export const useFetcher = <T>(props: FetcherProps) => {
     pageLimit,
     enabled,
     triggerError = true,
+    initialFilter,
   } = props;
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,7 +38,7 @@ export const useFetcher = <T>(props: FetcherProps) => {
       limit: pageLimit ?? 50,
       offset: currentPage,
     }),
-    ...(hasFilters && { ...filters }),
+    ...(hasFilters && { ...filters, ...initialFilter }),
     ...(searchQuery && { search: searchQuery.trim().toLowerCase() }),
   });
 

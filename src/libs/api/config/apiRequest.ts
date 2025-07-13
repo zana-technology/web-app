@@ -34,8 +34,9 @@ const apiRequest = async <T>({
     let headers = {};
     if (hasImageUpload) {
       headers = {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "multipart/form-data",
+        "Cache-Control": "no-cache",
       };
     }
     if (hasImageDownload) {
@@ -44,16 +45,12 @@ const apiRequest = async <T>({
       };
     }
 
-    const { data } = await client[method]<IApiResponseDTO<T>>(
-      baseUrl + url,
-      payload,
-      {
-        headers,
-        timeout: 30000,
-        onUploadProgress,
-        onDownloadProgress,
-      }
-    );
+    const { data } = await client[method]<IApiResponseDTO<T>>(baseUrl + url, payload, {
+      headers,
+      timeout: 30000,
+      onUploadProgress,
+      onDownloadProgress,
+    });
 
     return {
       success: true,

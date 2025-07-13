@@ -18,7 +18,6 @@ export const theme = {
           400: "#A4A7AE",
           500: "#FAFAFA",
           600: "#70707B",
-          700: "#717680",
         },
         primary: {
           normal: "#255A5A",
@@ -44,6 +43,9 @@ export const theme = {
           50: "#FFFAEB",
           200: "#FEDF89",
           700: "#B54708",
+        },
+        grey: {
+          500: "#717680",
         },
       },
     },

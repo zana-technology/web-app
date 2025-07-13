@@ -12,7 +12,7 @@ export const AppLayout = () => {
       <div className="flex flex-col h-screen flex-1 relative">
         <AppNavbar setShowSidebar={setShowSidebar} />
         <div className="h-14"></div>
-        <div className="flex-1 md:border-l md:border-l-zana-grey-300 py-5 md:py-8 px-4 md:px-6">
+        <div className="flex-1 md:border-l md:border-l-zana-grey-300 py-5 md:py-8 px-4 md:px-6 overflow-y-scroll md:w-auto w-screen overflow-x-hidden">
           <Outlet />
         </div>
       </div>

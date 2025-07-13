@@ -1,4 +1,6 @@
+import { companyLogo } from "@/assets";
 import { jobsApi } from "@/libs";
+import { JobMode, JobStatus } from "@/types";
 import { useMemo } from "react";
 
 export const useFeed = () => {
@@ -6,7 +8,13 @@ export const useFeed = () => {
 
   const jobs = useMemo(() => {
     if (data?.success) {
-      return data?.data?.data;
+      return data?.data?.data?.map((x) => ({
+        ...x,
+        companyLogo: companyLogo,
+        match: 70,
+        status: x?.applied ? JobStatus.AutoApplied : JobStatus.NeedsReview,
+        mode: x?.is_remote ? JobMode.Remote : JobMode.Onsite,
+      }));
     }
   }, [data?.data, data?.success]);
 
@@ -38,7 +46,7 @@ export const useFeed = () => {
     },
   ];
 
-  return { isLoading, tabMenu, setSearchQuery };
+  return { isLoading, tabMenu, setSearchQuery, jobs };
 };
 
 export default useFeed;
