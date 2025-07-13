@@ -21,6 +21,11 @@ import locationIcon from "./location.svg";
 import salaryIcon from "./salary.svg";
 import timeIcon from "./time.svg";
 import bookmarkIcon from "./bookmark.svg";
+import passportIcon from "./passport.svg";
+import bankNoteIcon from "./bank-note.svg";
+import eyeIcon from "./eye.svg";
+import globeBlueIcon from "./globe-blue.svg";
+import locationPinkIcon from "./location-pink.svg";
 
 export {
   errorIcon,
@@ -46,4 +51,9 @@ export {
   timeIcon,
   salaryIcon,
   bookmarkIcon,
+  passportIcon,
+  bankNoteIcon,
+  eyeIcon,
+  locationPinkIcon,
+  globeBlueIcon,
 };

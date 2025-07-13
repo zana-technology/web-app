@@ -28,8 +28,6 @@ export const useFeed = () => {
     }
   }, [data]);
 
-  console.log("jobs", jobs);
-
   const tabMenu = [
     { label: "All Jobs", value: "all" },
     {

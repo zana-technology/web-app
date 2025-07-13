@@ -16,5 +16,6 @@ export const routes = {
     analytics: "/app/analytics",
     inbox: "/app/inbox",
     upskilling: "/app/upskilling",
+    JobDetails: "/app/job/%id%",
   },
 };

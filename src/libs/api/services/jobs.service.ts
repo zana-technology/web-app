@@ -10,7 +10,14 @@ const useGetJobs = () => {
     hasFilters: true,
   });
 };
+const useGetSingleJob = ({ id }: { id: string }) => {
+  return useFetcher<JobResponse>({
+    queryKey: [apiQueryKeys.getProfile],
+    url: apiRoutes.jobs.single.replace("%id%", id),
+  });
+};
 
 export const jobsApi = {
   useGetJobs,
+  useGetSingleJob,
 };

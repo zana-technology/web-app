@@ -1,10 +1,13 @@
-import { appliedIcon, bookmarkIcon, bullseyeIcon, needsReviewIcon } from "@/assets";
-import { Button, StatusTag } from "@/components";
+import { appliedIcon, bookmarkIcon, needsReviewIcon } from "@/assets";
+import { Button, MatchPercentage, StatusTag } from "@/components";
 import { toSentenceCase, truncateText } from "@/libs";
 import { JobData, JobStatus } from "@/types";
 import JobHighlights from "./JobHighlights";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@/router";
 
 const Jobs = ({ jobs }: { jobs: JobData[] }) => {
+  const navigate = useNavigate();
   return (
     <div className="w-full grid lg:grid-cols-2 gap-6 mt-8">
       {jobs?.map((x, i) => (
@@ -55,8 +58,9 @@ const Jobs = ({ jobs }: { jobs: JobData[] }) => {
             />
             <Button
               title="View details"
-              //   icon={button.icon}
-              //   iconPosition="left"
+              onClick={() => {
+                navigate(routes.app.JobDetails.replace("%id%", x?.uid));
+              }}
             />
           </div>
         </div>
@@ -66,12 +70,3 @@ const Jobs = ({ jobs }: { jobs: JobData[] }) => {
 };
 
 export default Jobs;
-
-const MatchPercentage = ({ value }: { value: number }) => {
-  return (
-    <div className="flex items-center text-xs text-util-brand-500">
-      <img src={bullseyeIcon} alt="match" className="w-4 h-4 mr-0.5" />
-      <p>{value}% match</p>
-    </div>
-  );
-};
