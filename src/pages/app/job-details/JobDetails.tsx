@@ -12,9 +12,10 @@ const JobDetails = () => {
     <>
       <Button
         title="Back"
-        className="bg-transparent text-dark-400 mb-7"
+        className="p-0 text-dark-400 mb-7"
         icon={<IoMdArrowBack size={20} />}
         iconPosition="left"
+        variant="text"
       />
       <div className="w-full border border-zana-grey-300 px-4 md:px-5 py-4 rounded-xl md:rounded-2xl mb-16">
         <JobDetailsCompany job={job} />
@@ -28,7 +29,8 @@ const JobDetails = () => {
             title="Save"
             icon={<img src={bookmarkIcon} alt="save" className="w-5" />}
             iconPosition="left"
-            className="bg-transparent text-dark-400 hover:bg-transparent"
+            className=" text-dark-400"
+            variant="text"
           />
         </div>
       </div>

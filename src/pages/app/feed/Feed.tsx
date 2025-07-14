@@ -1,11 +1,11 @@
-import { Button, PageLoader, PageTitle, SearchInput, TabMenu } from "@/components";
+import { Button, PageLoader, PageTitle, Pagination, SearchInput, TabMenu } from "@/components";
 import { useFeed } from "./logic";
 import { JobData } from "@/types";
 import { CiFilter } from "react-icons/ci";
 import Jobs from "./Jobs";
 
 const Feed = () => {
-  const { isLoading, tabMenu, setSearchQuery, jobs } = useFeed();
+  const { isLoading, tabMenu, setSearchQuery, jobs, meta, currentPage, setCurrentPage } = useFeed();
 
   return (
     <>
@@ -32,6 +32,14 @@ const Feed = () => {
               </div>
             </div>
             <Jobs jobs={jobs as JobData[]} />
+            <Pagination
+              currentOffset={currentPage}
+              // totalPages={meta?.total as number}
+              total={200}
+              setCurrentOffset={setCurrentPage}
+              limit={meta?.limit as number}
+              className="mt-4"
+            />
           </>
         )}
       </div>

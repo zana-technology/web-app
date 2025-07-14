@@ -54,7 +54,8 @@ const Jobs = ({ jobs }: { jobs: JobData[] }) => {
               title="Save"
               icon={<img src={bookmarkIcon} alt="save" className="w-5" />}
               iconPosition="left"
-              className="bg-transparent text-dark-400 hover:bg-transparent"
+              className="text-dark-400"
+              variant="text"
             />
             <Button
               title="View details"

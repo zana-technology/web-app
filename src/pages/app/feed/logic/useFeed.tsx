@@ -4,7 +4,7 @@ import { JobMode, JobStatus } from "@/types";
 import { useMemo } from "react";
 
 export const useFeed = () => {
-  const { isLoading, data, setCurrentPage, setSearchQuery } = jobsApi.useGetJobs();
+  const { isLoading, data, setCurrentPage, currentPage, setSearchQuery } = jobsApi.useGetJobs();
 
   const jobs = useMemo(() => {
     if (data?.success) {
@@ -12,6 +12,7 @@ export const useFeed = () => {
         ...x,
         companyLogo: companyLogo,
         match: 70,
+        salary_currency: x?.salary_currency ?? "USD",
         status: x?.applied ? JobStatus.AutoApplied : JobStatus.NeedsReview,
         mode: x?.is_remote ? JobMode.Remote : JobMode.Onsite,
       }));
@@ -44,7 +45,7 @@ export const useFeed = () => {
     },
   ];
 
-  return { isLoading, tabMenu, setSearchQuery, jobs };
+  return { isLoading, tabMenu, setSearchQuery, jobs, meta, currentPage, setCurrentPage };
 };
 
 export default useFeed;

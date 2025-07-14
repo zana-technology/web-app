@@ -14,3 +14,4 @@ export * from "./sidebar";
 export * from "./tab-menu";
 export * from "./status-tag";
 export * from "./jobs";
+export * from "./pagination";

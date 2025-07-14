@@ -29,7 +29,7 @@ export const useFetcher = <T>(props: FetcherProps) => {
     initialFilter,
   } = props;
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({});
 

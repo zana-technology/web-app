@@ -1,5 +1,3 @@
-import { Option } from "./util.types";
-
 export interface JobData {
   title: string;
   description: string;
