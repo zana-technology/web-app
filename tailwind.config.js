@@ -6,7 +6,9 @@ export const theme = {
       dark: {
         400: "#535862",
         700: "#414651",
+        800: "#252B37",
         900: "#181D27",
+        1000: "#0A0D12",
       },
       zana: {
         grey: {
@@ -15,6 +17,7 @@ export const theme = {
           300: "#E9EAEB",
           400: "#A4A7AE",
           500: "#FAFAFA",
+          600: "#70707B",
         },
         primary: {
           normal: "#255A5A",
@@ -25,6 +28,24 @@ export const theme = {
           100: "#F7F2EB",
           300: "#EEE2D3",
           500: "#E5D4BD",
+        },
+      },
+      util: {
+        brand: {
+          500: "#9E77ED",
+        },
+        success: {
+          50: "#ECFDF3",
+          200: "#ABEFC6",
+          700: "#067647",
+        },
+        warning: {
+          50: "#FFFAEB",
+          200: "#FEDF89",
+          700: "#B54708",
+        },
+        grey: {
+          500: "#717680",
         },
       },
     },
@@ -43,6 +64,15 @@ export const theme = {
     },
     animation: {
       chatPop: "chatPop 0.4s ease-out forwards",
+    },
+    backgroundImage: {
+      "diagonal-stripes": `repeating-linear-gradient(
+        135deg,
+        #E9EAEB,
+        #E9EAEB 1px,
+        transparent 1px,
+        transparent 6px
+      )`,
     },
   },
 };

@@ -12,5 +12,10 @@ export const routes = {
   app: {
     index: "/app",
     feed: "/app/feed",
+    applications: "/app/applications",
+    analytics: "/app/analytics",
+    inbox: "/app/inbox",
+    upskilling: "/app/upskilling",
+    JobDetails: "/app/job/%id%",
   },
 };

@@ -145,3 +145,63 @@ export const refreshQuery = ({ queryKey }: { queryKey: string[] }) => {
     });
   });
 };
+
+export const generateStatusColor = (status: string) => {
+  switch (status?.toLowerCase()) {
+    case "pending":
+    case "not verified":
+      return "text-util-warning-700 bg-util-warning-50 border-util-warning-200";
+    case "active":
+    case "yes":
+    case "success":
+    case "successful":
+    case "completed":
+    case "confirmed":
+    case "verified":
+    case "approved":
+      return "text-util-success-700 bg-util-success-50 border-util-success-200";
+    case "failed":
+    case "no":
+    case "blocked":
+    case "inactive":
+    case "cancelled":
+    case "rejected":
+    case "out of stock":
+    case "debit":
+      return "text-red-600 bg-red-100";
+    case "processing":
+    case "ready to ship":
+      return "text-blue-600 bg-blue-100";
+    case "onhold":
+      return "text-purple-600 bg-purple-100";
+    default:
+      return "text-r-dark-2 bg-r-grey-2";
+  }
+};
+
+export const currencyFormatter = ({
+  amount,
+  currency = "NGN",
+  subUnit = false,
+  compact = false,
+}: {
+  amount: number;
+  currency?: string;
+  subUnit?: boolean;
+  compact?: boolean;
+}) => {
+  const value = subUnit ? amount / 100 : amount;
+
+  return new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency,
+    currencyDisplay: "narrowSymbol",
+    notation: compact ? "compact" : "standard",
+    compactDisplay: "short",
+    maximumFractionDigits: 1,
+  }).format(value);
+};
+
+export function truncateText(text: string, maxLength: number) {
+  return text.length > maxLength ? text.slice(0, maxLength).trimEnd() + "..." : text;
+}

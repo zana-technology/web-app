@@ -2,6 +2,7 @@ const serviceRoot = {
   auth: "/v1/auth",
   profile: "/v1/profile",
   upload: "/v1/uploads/users",
+  jobs: "/v1/jobs",
 };
 
 export const apiRoutes = {
@@ -19,5 +20,13 @@ export const apiRoutes = {
   },
   upload: {
     index: `${serviceRoot.upload}`,
+  },
+  jobs: {
+    index: `${serviceRoot.jobs}`,
+    applications: `${serviceRoot.jobs}/applications`,
+    singleApplication: `${serviceRoot.jobs}/applications/%id%`,
+    single: `${serviceRoot.jobs}/%id%`,
+    save: `${serviceRoot.jobs}/%id%/save-unsave`,
+    sse: `${serviceRoot.jobs}/sse/auto-apply-credits`,
   },
 };

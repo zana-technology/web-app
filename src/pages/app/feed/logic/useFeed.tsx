@@ -1,0 +1,51 @@
+import { companyLogo } from "@/assets";
+import { jobsApi } from "@/libs";
+import { JobMode, JobStatus } from "@/types";
+import { useMemo } from "react";
+
+export const useFeed = () => {
+  const { isLoading, data, setCurrentPage, currentPage, setSearchQuery } = jobsApi.useGetJobs();
+
+  const jobs = useMemo(() => {
+    if (data?.success) {
+      return data?.data?.data?.map((x) => ({
+        ...x,
+        companyLogo: companyLogo,
+        match: 70,
+        salary_currency: x?.salary_currency ?? "USD",
+        status: x?.applied ? JobStatus.AutoApplied : JobStatus.NeedsReview,
+        mode: x?.is_remote ? JobMode.Remote : JobMode.Onsite,
+      }));
+    }
+  }, [data?.data, data?.success]);
+
+  const meta = useMemo(() => {
+    if (data?.success) {
+      return {
+        total: data?.data?.count,
+        page: data?.data?.offset,
+        limit: data?.data?.limit,
+      };
+    }
+  }, [data]);
+
+  const tabMenu = [
+    { label: "All Jobs", value: "all" },
+    {
+      label: "Auto-Applied",
+      value: "applied",
+    },
+    {
+      label: "To Review",
+      value: "review",
+    },
+    {
+      label: "Saved",
+      value: "saved",
+    },
+  ];
+
+  return { isLoading, tabMenu, setSearchQuery, jobs, meta, currentPage, setCurrentPage };
+};
+
+export default useFeed;

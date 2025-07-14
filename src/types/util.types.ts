@@ -1,3 +1,5 @@
+import { IconType } from "react-icons/lib";
+
 export interface Step {
   step: number;
   title: string;
@@ -26,4 +28,11 @@ export interface UploadedResourceDto {
   url: string;
   type: "image" | "video" | "document" | "other" | string;
   format: "pdf" | "jpg" | "png" | "docx" | string;
+}
+
+export interface SidebarItem {
+  title: string;
+  icon: IconType | string;
+  link?: string;
+  disabled?: boolean;
 }
