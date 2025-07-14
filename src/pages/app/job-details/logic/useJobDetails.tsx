@@ -92,6 +92,35 @@ export const useJobDetails = () => {
       "Unlimited PTO policy",
       "Top-tier equipment and home office setup",
     ],
+    requirements: [
+      "5+ years of frontend development experience",
+      "Expert knowledge of React and TypeScript",
+      "Experience with modern CSS frameworks (Tailwind, Styled Components)",
+      "Proficiency in Node.js and Express",
+      "Experience with state management (Redux, Zustand)",
+      "Knowledge of testing frameworks (Jest, Cypress)",
+      "Understanding of CI/CD pipelines",
+    ],
+    niceToHaves: [
+      "Experience with Next.js or similar frameworks",
+      "Knowledge of GraphQL",
+      "DevOps experience with AWS or similar platforms",
+      "Top-tier equipment and home office setup",
+    ],
+    companyInfo: {
+      industry: "Software Development",
+      size: "51–200 employees",
+      founded: 2018,
+      website: "https://examplecompany.com",
+      about:
+        "TechNova is a leading software company that builds innovative solutions for modern businesses. We're passionate about creating technology that makes work more efficient and enjoyable.",
+    },
+    matchBreakdown: [
+      { label: "You have 3+ years experience in frontend development", value: 20 },
+      { label: "Your have experience in modern CSS frameworks", value: 10 },
+      { label: "Your CV was a solid match", value: 30 },
+      { label: "Your CV was a solid match", value: 10 },
+    ],
   };
 
   const renderTab = () => {

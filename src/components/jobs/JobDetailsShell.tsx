@@ -12,7 +12,7 @@ export const JobDetailsShell = ({
 }) => {
   return (
     <div className={twMerge("w-full p-3 border border-zana-grey-300 rounded-xl", className)}>
-      <h4 className="pb-4 w-full border-b border-dashed font-semibold">{title}</h4>
+      <h4 className="pb-4 w-full border-b border-dashed font-semibold mb-4">{title}</h4>
       {children}
     </div>
   );

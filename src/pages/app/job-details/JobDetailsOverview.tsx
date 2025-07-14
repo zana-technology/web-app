@@ -14,7 +14,7 @@ const JobDetailsOverview = ({ job }: { job: JobData }) => {
   return (
     <>
       <JobDetailsShell title="Job Description">
-        <p className="mt-4 mb-2">{displayedDescription}</p>
+        <p className="mb-2">{displayedDescription}</p>
         <Button
           title={expanded ? "Read Less" : "Read More"}
           variant="text"

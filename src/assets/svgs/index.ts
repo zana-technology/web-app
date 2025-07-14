@@ -36,6 +36,8 @@ import zanaInsightsIcon from "./zana-insights.svg";
 import zanaInsightsColoredIcon from "./zana-insights-colored.svg";
 import questionIcon from "./question.svg";
 import starGoldIcon from "./star-gold.svg";
+import checkedIcon from "./checked.svg";
+import linkIcon from "./link.svg";
 
 export {
   errorIcon,
@@ -76,4 +78,6 @@ export {
   zanaInsightsIcon,
   zanaInsightsColoredIcon,
   starGoldIcon,
+  checkedIcon,
+  linkIcon,
 };

@@ -1,3 +1,5 @@
+import { Option } from "./util.types";
+
 export interface JobData {
   title: string;
   description: string;
@@ -25,6 +27,16 @@ export interface JobData {
   status?: JobStatus;
   mode: JobMode;
   perks?: string[];
+  requirements?: string[];
+  niceToHaves?: string[];
+  companyInfo?: {
+    industry?: string;
+    size?: string;
+    founded?: number;
+    website?: string;
+    about?: string;
+  };
+  matchBreakdown?: { label: string; value: number }[];
 }
 
 export enum JobStatus {
