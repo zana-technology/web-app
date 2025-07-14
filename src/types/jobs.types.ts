@@ -24,6 +24,7 @@ export interface JobData {
   match?: number;
   status?: JobStatus;
   mode: JobMode;
+  perks?: string[];
 }
 
 export enum JobStatus {

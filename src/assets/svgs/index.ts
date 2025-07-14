@@ -26,6 +26,16 @@ import bankNoteIcon from "./bank-note.svg";
 import eyeIcon from "./eye.svg";
 import globeBlueIcon from "./globe-blue.svg";
 import locationPinkIcon from "./location-pink.svg";
+import companyIcon from "./company.svg";
+import companyColoredIcon from "./company-colored.svg";
+import overviewIcon from "./overview.svg";
+import overviewColoredIcon from "./overview-colored.svg";
+import requirementsIcon from "./requirements.svg";
+import requirementsColoredIcon from "./requirements-colored.svg";
+import zanaInsightsIcon from "./zana-insights.svg";
+import zanaInsightsColoredIcon from "./zana-insights-colored.svg";
+import questionIcon from "./question.svg";
+import starGoldIcon from "./star-gold.svg";
 
 export {
   errorIcon,
@@ -56,4 +66,14 @@ export {
   eyeIcon,
   locationPinkIcon,
   globeBlueIcon,
+  companyIcon,
+  companyColoredIcon,
+  overviewIcon,
+  overviewColoredIcon,
+  questionIcon,
+  requirementsIcon,
+  requirementsColoredIcon,
+  zanaInsightsIcon,
+  zanaInsightsColoredIcon,
+  starGoldIcon,
 };
