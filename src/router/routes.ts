@@ -8,6 +8,7 @@ export const routes = {
     onboarding: "/auth/onboarding",
     preview: "/auth/preview",
     complete: "/auth/complete",
+    forgotPassword: "/auth/forgot-password",
   },
   app: {
     index: "/app",

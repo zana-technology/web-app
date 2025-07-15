@@ -2,7 +2,7 @@ import { AuthHeader, Button, Input, OnboardingHash } from "@/components";
 import { useLogin } from "./logic";
 
 const Login = () => {
-  const { formik } = useLogin();
+  const { formik, goToForgotPw, goToSignup } = useLogin();
 
   const {
     values,
@@ -41,6 +41,13 @@ const Login = () => {
           touched={touched.password}
         />
         <Button
+          title="Forgot password"
+          type="button"
+          variant="text"
+          className="p-0 text-sm font-semibold"
+          onClick={goToForgotPw}
+        />
+        <Button
           title="Continue"
           fullWidth
           type="submit"
@@ -48,6 +55,16 @@ const Login = () => {
           showArrow={true}
           disabled={!(isValid && dirty)}
         />
+        <div className="flex items-center text-sm justify-center gap-1">
+          <p>Don't have an account?</p>{" "}
+          <Button
+            title="Sign up"
+            type="button"
+            variant="text"
+            className="p-0 text-sm font-semibold"
+            onClick={goToSignup}
+          />{" "}
+        </div>
       </form>
     </OnboardingHash>
   );

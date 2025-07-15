@@ -1,9 +1,11 @@
 import {
+  ForgotPassword,
   Landing,
   Login,
   Onboarding,
   OnboardingComplete,
   ProfilePreview,
+  ResetPassword,
   Signup,
   VerifyEmail,
 } from "@/pages";
@@ -29,6 +31,14 @@ export const authRoutes = [
   {
     path: "preview",
     element: <ProfilePreview />,
+  },
+  {
+    path: "forgot-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "reset-password/:token",
+    element: <ResetPassword />,
   },
 ];
 
