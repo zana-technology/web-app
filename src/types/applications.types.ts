@@ -46,8 +46,8 @@ export interface ApplicationsResponse {
 }
 
 export interface JobCorrespondence {
-  company: string;
-  jobTitle: string;
+  company?: string;
+  jobTitle?: string;
   applicationId?: string;
   thread?: EmailMessage[];
 }

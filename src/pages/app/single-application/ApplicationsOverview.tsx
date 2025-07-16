@@ -8,7 +8,7 @@ const ApplicationsOverview = ({ application }: { application: ApplicationData })
 
   const maxLength = 300;
 
-  const isLong = application?.description.length > maxLength;
+  const isLong = (application?.description as string).length > maxLength;
   const displayedDescription =
     expanded || !isLong
       ? application?.description
