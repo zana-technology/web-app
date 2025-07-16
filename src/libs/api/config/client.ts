@@ -9,9 +9,21 @@ const client: AxiosInstance = axios.create({
 
 const exceptionEndpoint = [`${config.BASE_URL}/auth/login`];
 
-const getTokenData = () => {
-  const token = localStorage.getItem("access_token");
-  const tokenExpiry = localStorage.getItem("tokenExpiry");
+const getToken = () => {
+  const accessToken = localStorage.getItem("access_token");
+  const refreshToken = localStorage.getItem("refresh_token");
+  const expiry = localStorage.getItem("token_expiry");
+  const tokenExpiry = localStorage.getItem("refresh_token_expiry");
+
+  if (!accessToken || !expiry) return { token: refreshToken, tokenExpiry };
+
+  const now = new Date();
+  const expiresAt = new Date(expiry);
+
+  const isExpired = now >= expiresAt;
+
+  const token = isExpired ? refreshToken : accessToken;
+
   return { token, tokenExpiry };
 };
 
@@ -23,7 +35,7 @@ const handleLogout = () => {
 
 client.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    const { token, tokenExpiry } = getTokenData();
+    const { token, tokenExpiry } = getToken();
 
     if (!token) return config;
 

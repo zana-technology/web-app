@@ -2,6 +2,7 @@ import { FileWithPreview, ResourceType, SignupDto } from "@/types";
 import { jobsApi, uploadApi } from "../api";
 import { queryClient } from "@/App";
 import { showToast } from "@/components";
+import { apiQueryKeys } from "../api/config";
 
 export const capitalizeFirstLetter = function toTitleCase(str: string) {
   return str?.replace(/\w\S*/g, function (txt) {
@@ -57,11 +58,13 @@ export const encodeQueryData = (
 export const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 
 export const handleAuthSuccess = (authData: SignupDto) => {
-  const expiresAt = new Date(Date.now() + SEVEN_DAYS_MS).toISOString();
+  const expiresAt = new Date(authData.expires_at * 1000).toISOString();
+  const refreshExpiresAt = new Date(Date.now() + SEVEN_DAYS_MS).toISOString();
 
   localStorage.setItem("access_token", authData.access_token);
   localStorage.setItem("refresh_token", authData.refresh_token);
   localStorage.setItem("token_expiry", expiresAt);
+  localStorage.setItem("refresh_token_expiry", refreshExpiresAt);
 };
 
 export const handleUpload = async (files: File[], resourceType = ResourceType.Document) => {
@@ -213,6 +216,7 @@ export const saveJob = async (id: string) => {
   const { success, message, title } = await jobsApi.save(id);
 
   if (success) {
+    refreshQuery({ queryKey: [apiQueryKeys.getJobs] });
     showToast({
       title: title,
       message: message,
