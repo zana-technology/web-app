@@ -4,8 +4,13 @@ import { twMerge } from "tailwind-merge";
 import SidebarBottom from "./SidebarBottom";
 import { IoMdAdd } from "react-icons/io";
 import { Button } from "../button";
+import { Dispatch, SetStateAction } from "react";
 
-const SidebarMenu = () => {
+const SidebarMenu = ({
+  setShowSidebar,
+}: {
+  setShowSidebar?: Dispatch<SetStateAction<boolean>>;
+}) => {
   const location = useLocation();
 
   const pathname = location?.pathname;
@@ -20,6 +25,9 @@ const SidebarMenu = () => {
               "flex items-center gap-2 px-2 py-1.5 text-dark-400 rounded hover:text-dark-800 cursor-pointer font-medium",
               pathname === x?.link ? "bg-zana-grey-500 text-dark-800" : ""
             )}
+            onClick={() => {
+              if (setShowSidebar) setShowSidebar(false);
+            }}
           >
             <img src={x.icon} alt={x.title} className="h-[18px]" />
             <p>{x?.title}</p>

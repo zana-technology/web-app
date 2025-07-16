@@ -54,7 +54,7 @@ const MobileSidebar = ({
               <img src={logo} alt="Zana Logo" className="h-[18px]" />
             </div>
 
-            <SidebarMenu />
+            <SidebarMenu setShowSidebar={setShowSidebar} />
           </div>
         </motion.div>
 
