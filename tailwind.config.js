@@ -42,6 +42,7 @@ export const theme = {
         warning: {
           50: "#FFFAEB",
           200: "#FEDF89",
+          500: "#F79009",
           700: "#B54708",
         },
         indigo: {

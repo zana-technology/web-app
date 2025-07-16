@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Data, IApiResponseDTO, IErrorMessageDTO, Response } from "@/types";
 import { constant } from "../../utils";
 import client from "./client";
@@ -44,9 +43,6 @@ const apiRequest = async <T>({
         responseType: "blob",
       };
     }
-    headers = {
-      "Cache-Control": "no-cache",
-    };
 
     const { data } = await client[method]<IApiResponseDTO<T>>(baseUrl + url, payload, {
       headers,

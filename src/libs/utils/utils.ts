@@ -115,6 +115,28 @@ const urlToFile = async (url: string, fileName: string): Promise<FileWithPreview
   }
 };
 
+const urlToFile2 = async (url: string, fileName: string): Promise<FileWithPreview> => {
+  try {
+    const response = await fetch(url);
+
+    const blob = await response.blob();
+    const isVideo = url.toLowerCase().includes("video");
+    const fileType = blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+
+    const file = new File([blob], fileName, { type: fileType }) as FileWithPreview;
+
+    file.preview = url;
+    file.originalUrl = url;
+
+    console.log("File size in bytes:", file.size); // ← here it is
+
+    return file;
+  } catch (error) {
+    console.error("Error fetching image:", error);
+    throw new Error("Failed to convert URL to file");
+  }
+};
+
 export const convertUrlsToFiles = async (
   imageUrls: { url: string; fileName: string }[]
 ): Promise<FileWithPreview[]> => {
