@@ -216,7 +216,7 @@ export const saveJob = async (id: string) => {
   const { success, message, title } = await jobsApi.save(id);
 
   if (success) {
-    refreshQuery({ queryKey: [apiQueryKeys.getJobs] });
+    refreshQuery({ queryKey: [apiQueryKeys.getJobs, apiQueryKeys.getSingleJob] });
     showToast({
       title: title,
       message: message,
