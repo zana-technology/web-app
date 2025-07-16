@@ -266,7 +266,7 @@ export const Table = <TData,>({
       </div> */}
       <div className="w-full overflow-x-auto">
         {table.getRowModel().rows.length > 0 ? (
-          <table className="table-fixed w-full min-w-full border-collapse">
+          <table className="table-auto w-full border-collapse min-w-max">
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr
