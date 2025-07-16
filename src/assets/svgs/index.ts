@@ -48,6 +48,7 @@ import presentationIcon from "./presentation.svg";
 import fileGreyIcon from "./file-grey.svg";
 import mailReadIcon from "./mail-read.svg";
 import mailUnreadIcon from "./mail-unread.svg";
+import infoCircleIcon from "./info-circle.svg";
 
 export {
   errorIcon,
@@ -100,4 +101,5 @@ export {
   fileGreyIcon,
   mailReadIcon,
   mailUnreadIcon,
+  infoCircleIcon,
 };

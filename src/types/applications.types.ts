@@ -33,6 +33,7 @@ export interface ApplicationData {
   description: string;
   perks?: string[];
   requirements?: string[];
+  thread?: EmailMessage[];
 }
 
 export interface ApplicationsResponse {
@@ -47,8 +48,8 @@ export interface ApplicationsResponse {
 export interface JobCorrespondence {
   company: string;
   jobTitle: string;
-  applicationId: string;
-  thread: EmailMessage[];
+  applicationId?: string;
+  thread?: EmailMessage[];
 }
 
 export interface EmailMessage {

@@ -37,6 +37,7 @@ export const theme = {
         success: {
           50: "#ECFDF3",
           200: "#ABEFC6",
+          500: "#12B76A",
           700: "#067647",
         },
         warning: {

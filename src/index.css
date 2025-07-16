@@ -177,6 +177,27 @@ code {
   color: #aaa;
 }
 
+.pin {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional white center */
+.pin::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: var(--pin-center-color, white);
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 50%;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

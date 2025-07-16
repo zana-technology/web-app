@@ -2,7 +2,6 @@ import {
   companyLogo,
   fileColoredIcon,
   fileGreyIcon,
-  fileIcon,
   mailColoredIcon,
   mailIcon,
   overviewColoredIcon,
@@ -43,7 +42,7 @@ export const useSingleApplication = () => {
       updated_at: "2025-07-10T12:45:00.000Z",
     },
     cover_letter_url: "https://example.com/coverletters/janedoe_coverletter.pdf",
-    ats_score: 82,
+    ats_score: 92,
     ats_stats: {
       strengths: ["Relevant experience", "Strong keywords match", "Clear formatting"],
       improvements: ["Add measurable achievements", "Customize summary"],
@@ -71,6 +70,24 @@ export const useSingleApplication = () => {
       "Remote-first culture",
       "Learning & development budget",
       "Health insurance",
+    ],
+    thread: [
+      {
+        subject: "Application for Frontend Engineer Role",
+        body: "Dear OpenAI, I’m excited to apply...",
+        sentAt: "2025-07-10T14:32:00Z",
+        isRead: false,
+        from: "me",
+        status: "sent",
+      },
+      {
+        subject: "Thanks for your application",
+        body: "Hi Nathaniel, thanks for applying. We'd like to schedule an interview.",
+        sentAt: "2025-07-11T08:45:00Z",
+        isRead: true,
+        from: "company",
+        status: "interview scheduled",
+      },
     ],
   };
 

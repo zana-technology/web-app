@@ -5,27 +5,9 @@ import moment from "moment";
 
 const ApplicationsEmails = ({ application }: { application: ApplicationData }) => {
   const correspondence: JobCorrespondence = {
-    company: "Tech Nova",
-    jobTitle: "Frontend Engineer",
-    applicationId: "app_001",
-    thread: [
-      {
-        subject: "Application for Frontend Engineer Role",
-        body: "Dear OpenAI, I’m excited to apply...",
-        sentAt: "2025-07-10T14:32:00Z",
-        isRead: false,
-        from: "me",
-        status: "sent",
-      },
-      {
-        subject: "Thanks for your application",
-        body: "Hi Nathaniel, thanks for applying. We'd like to schedule an interview.",
-        sentAt: "2025-07-11T08:45:00Z",
-        isRead: true,
-        from: "company",
-        status: "interview scheduled",
-      },
-    ],
+    company: application.company,
+    jobTitle: application.job_role,
+    thread: application.thread,
   };
 
   const formatDateForDisplay = (dateString: string): string => {
