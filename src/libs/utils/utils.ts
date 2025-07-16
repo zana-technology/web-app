@@ -128,8 +128,6 @@ const urlToFile2 = async (url: string, fileName: string): Promise<FileWithPrevie
     file.preview = url;
     file.originalUrl = url;
 
-    console.log("File size in bytes:", file.size); // ← here it is
-
     return file;
   } catch (error) {
     console.error("Error fetching image:", error);

@@ -23,14 +23,14 @@ export interface ApplicationData {
   };
 
   //I added
-  company: string;
-  companyLogo: string;
-  job_role: string;
+  company?: string;
+  companyLogo?: string;
+  job_role?: string;
   is_remote?: boolean;
   salary_range?: [number | null, number | null];
   salary_currency?: string;
   location?: string;
-  description: string;
+  description?: string;
   perks?: string[];
   requirements?: string[];
   thread?: EmailMessage[];
