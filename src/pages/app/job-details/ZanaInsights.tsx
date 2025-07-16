@@ -6,7 +6,9 @@ const ZanaInsights = ({ job }: { job: JobData }) => {
   return (
     <>
       {" "}
-      <JobDetailsShell title={`What made you a ${job.match}% match for this job?`}>
+      <JobDetailsShell
+        title={`What made you a ${job?.match_score ? `${job?.match_score}%` : ""} match for this job?`}
+      >
         <div className="flex flex-col gap-3">
           {job?.matchBreakdown?.map((x, i) => (
             <div className="flex items-center gap-2" key={i}>

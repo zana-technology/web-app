@@ -43,7 +43,7 @@ export const useVerifyEmail = () => {
     navigate(routes.auth.signup);
   };
 
-  const RESEND_TIMEOUT = 15 * 60;
+  const RESEND_TIMEOUT = 3 * 60;
 
   const [secondsLeft, setSecondsLeft] = useState(RESEND_TIMEOUT);
   const [canResend, setCanResend] = useState(false);

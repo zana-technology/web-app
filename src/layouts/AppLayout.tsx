@@ -8,7 +8,7 @@ export const AppLayout = () => {
   return (
     <div className="flex">
       <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-      <div className="w-[280px] hidden md:block"></div>
+      <div className="w-[280px] hidden md:block flex-shrink-0"></div>
       <div className="flex flex-col h-screen flex-1 relative">
         <AppNavbar setShowSidebar={setShowSidebar} />
         <div className="h-14"></div>

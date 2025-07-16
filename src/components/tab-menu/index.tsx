@@ -15,8 +15,6 @@ export const TabMenu = ({
   const currentTab = searchParams.get("tab") ?? menu[0]?.value;
   const navigate = useNavigate();
 
-  console.log("currentTab", currentTab);
-
   const switchTab = (key: string, index: number) => {
     const url = new URL(window.location.href);
 

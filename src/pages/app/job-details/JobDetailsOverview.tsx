@@ -8,19 +8,21 @@ const JobDetailsOverview = ({ job }: { job: JobData }) => {
 
   const maxLength = 300;
 
-  const isLong = job.description.length > maxLength;
+  const isLong = job?.description.length > maxLength;
   const displayedDescription =
-    expanded || !isLong ? job.description : job.description.slice(0, maxLength) + "...";
+    expanded || !isLong ? job?.description : job?.description?.slice(0, maxLength) + "...";
   return (
     <>
       <JobDetailsShell title="Job Description">
         <p className="mb-2">{displayedDescription}</p>
-        <Button
-          title={expanded ? "Read Less" : "Read More"}
-          variant="text"
-          className="p-0"
-          onClick={() => setExpanded((prev) => !prev)}
-        />
+        {isLong && (
+          <Button
+            title={expanded ? "Read Less" : "Read More"}
+            variant="text"
+            className="p-0"
+            onClick={() => setExpanded((prev) => !prev)}
+          />
+        )}
       </JobDetailsShell>
       <JobDetailsShell title="Benefits and Perks" className="mt-6">
         <div className="flex flex-col gap-3">

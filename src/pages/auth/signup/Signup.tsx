@@ -3,7 +3,7 @@ import { onboardingSteps } from "@/libs";
 import { useSignup } from "./logic";
 
 const Signup = () => {
-  const { formik } = useSignup();
+  const { formik, goToLogin } = useSignup();
 
   const {
     values,
@@ -18,7 +18,7 @@ const Signup = () => {
   } = formik;
 
   return (
-    <div className="w-full flex flex-col items-center sm:mt-28 sm:mb-10">
+    <div className="w-full flex flex-col items-center sm:mt-16 sm:mb-5">
       <StepIndicator steps={onboardingSteps} currentStep={1} />
       <OnboardingHash>
         <AuthHeader
@@ -67,6 +67,16 @@ const Signup = () => {
             showArrow={true}
             disabled={!(isValid && dirty)}
           />
+          <div className="flex items-center text-sm justify-center gap-1">
+            <p>Already have an account?</p>{" "}
+            <Button
+              title="Log in"
+              type="button"
+              variant="text"
+              className="p-0 text-sm font-semibold"
+              onClick={goToLogin}
+            />{" "}
+          </div>
         </form>
       </OnboardingHash>
     </div>

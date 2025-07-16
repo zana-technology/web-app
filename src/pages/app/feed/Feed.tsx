@@ -32,14 +32,16 @@ const Feed = () => {
               </div>
             </div>
             <Jobs jobs={jobs as JobData[]} />
-            <Pagination
-              currentOffset={currentPage}
-              // totalPages={meta?.total as number}
-              total={200}
-              setCurrentOffset={setCurrentPage}
-              limit={meta?.limit as number}
-              className="mt-4"
-            />
+            {jobs && jobs?.length > 0 && (
+              <Pagination
+                currentOffset={currentPage}
+                // totalPages={meta?.total as number}
+                total={jobs?.length >= 50 ? 200 : (meta?.total as number)}
+                setCurrentOffset={setCurrentPage}
+                limit={meta?.limit as number}
+                className="mt-4"
+              />
+            )}
           </>
         )}
       </div>

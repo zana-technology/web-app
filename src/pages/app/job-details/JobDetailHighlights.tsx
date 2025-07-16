@@ -23,19 +23,21 @@ const JobDetailHighlights = ({ job }: { job: JobData }) => {
 
       <div className="flex flex-col">
         <img src={bankNoteIcon} alt="salary" className="w-4 h-4 mb-2" />
-        <p className="font-medium">
-          {currencyFormatter({
-            amount: job.salary_range?.[0] as number,
-            currency: job.salary_currency,
-            compact: true,
-          })}{" "}
-          -{" "}
-          {currencyFormatter({
-            amount: job.salary_range?.[1] as number,
-            currency: job.salary_currency,
-            compact: true,
-          })}
-        </p>
+        {job?.salary_range?.length > 0 && (
+          <p className="font-medium">
+            {currencyFormatter({
+              amount: job?.salary_range?.[0] as number,
+              currency: job?.salary_currency,
+              compact: true,
+            })}{" "}
+            -{" "}
+            {currencyFormatter({
+              amount: job?.salary_range?.[1] as number,
+              currency: job.salary_currency,
+              compact: true,
+            })}
+          </p>
+        )}
         <p className="text-util-grey-500">Salary Range</p>
       </div>
 
@@ -43,7 +45,7 @@ const JobDetailHighlights = ({ job }: { job: JobData }) => {
 
       <div className="flex flex-col">
         <img src={passportIcon} alt="applicants" className="w-4 h-4 mb-2" />
-        <p className="font-medium">{job?.applicants}</p>
+        <p className="font-medium">{job?.applicants ?? 0}</p>
         <p className="text-util-grey-500">Applicants</p>
       </div>
 
@@ -51,7 +53,7 @@ const JobDetailHighlights = ({ job }: { job: JobData }) => {
 
       <div className="flex flex-col">
         <img src={eyeIcon} alt="applicants" className="w-4 h-4 mb-2" />
-        <p className="font-medium">{job?.views}</p>
+        <p className="font-medium">{job?.views ?? 0}</p>
         <p className="text-util-grey-500">Views</p>
       </div>
     </div>

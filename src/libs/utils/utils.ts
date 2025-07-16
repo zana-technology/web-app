@@ -1,6 +1,7 @@
 import { FileWithPreview, ResourceType, SignupDto } from "@/types";
-import { uploadApi } from "../api";
+import { jobsApi, uploadApi } from "../api";
 import { queryClient } from "@/App";
+import { showToast } from "@/components";
 
 export const capitalizeFirstLetter = function toTitleCase(str: string) {
   return str?.replace(/\w\S*/g, function (txt) {
@@ -150,6 +151,7 @@ export const generateStatusColor = (status: string) => {
   switch (status?.toLowerCase()) {
     case "pending":
     case "not verified":
+    case "interview scheduled":
       return "text-util-warning-700 bg-util-warning-50 border-util-warning-200";
     case "active":
     case "yes":
@@ -159,6 +161,7 @@ export const generateStatusColor = (status: string) => {
     case "confirmed":
     case "verified":
     case "approved":
+    case "offer received":
       return "text-util-success-700 bg-util-success-50 border-util-success-200";
     case "failed":
     case "no":
@@ -168,12 +171,12 @@ export const generateStatusColor = (status: string) => {
     case "rejected":
     case "out of stock":
     case "debit":
-      return "text-red-600 bg-red-100";
+      return "text-util-error-700 bg-util-error-50 border-util-error-200";
     case "processing":
     case "ready to ship":
       return "text-blue-600 bg-blue-100";
-    case "onhold":
-      return "text-purple-600 bg-purple-100";
+    case "applied":
+      return "text-util-indigo-700 bg-util-indigo-50 border-util-indigo-200";
     default:
       return "text-r-dark-2 bg-r-grey-2";
   }
@@ -205,3 +208,14 @@ export const currencyFormatter = ({
 export function truncateText(text: string, maxLength: number) {
   return text.length > maxLength ? text.slice(0, maxLength).trimEnd() + "..." : text;
 }
+
+export const saveJob = async (id: string) => {
+  const { success, message, title } = await jobsApi.save(id);
+
+  if (success) {
+    showToast({
+      title: title,
+      message: message,
+    });
+  }
+};

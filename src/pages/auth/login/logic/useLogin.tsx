@@ -31,7 +31,15 @@ export const useLogin = () => {
     },
   });
 
-  return { formik };
+  const goToForgotPw = () => {
+    navigate(routes.auth.forgotPassword);
+  };
+
+  const goToSignup = () => {
+    navigate(routes.auth.signup);
+  };
+
+  return { formik, goToForgotPw, goToSignup };
 };
 
 export default useLogin;

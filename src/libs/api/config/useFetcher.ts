@@ -39,7 +39,7 @@ export const useFetcher = <T>(props: FetcherProps) => {
       offset: currentPage,
     }),
     ...(hasFilters && { ...filters, ...initialFilter }),
-    ...(searchQuery && { search: searchQuery.trim().toLowerCase() }),
+    ...(searchQuery && { query: searchQuery.trim().toLowerCase() }),
   });
 
   const response = useQuery<Response<T>>({

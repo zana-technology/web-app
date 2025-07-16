@@ -46,7 +46,11 @@ export const useSignup = () => {
       }
     },
   });
-  return { formik };
+
+  const goToLogin = () => {
+    navigate(routes.auth.login);
+  };
+  return { formik, goToLogin };
 };
 
 export default useSignup;

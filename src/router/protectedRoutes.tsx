@@ -1,5 +1,4 @@
-import { Feed } from "@/pages";
-import { JobDetails } from "@/pages/app/job-details";
+import { Applications, Feed, JobDetails, SingleApplication } from "@/pages";
 
 const protectedRoutes = [
   {
@@ -9,6 +8,14 @@ const protectedRoutes = [
   {
     path: "job/:id",
     element: <JobDetails />,
+  },
+  {
+    path: "applications",
+    element: <Applications />,
+  },
+  {
+    path: "applications/:id",
+    element: <SingleApplication />,
   },
 ];
 

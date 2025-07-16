@@ -38,6 +38,8 @@ import questionIcon from "./question.svg";
 import starGoldIcon from "./star-gold.svg";
 import checkedIcon from "./checked.svg";
 import linkIcon from "./link.svg";
+import downloadIcon from "./download.svg";
+import tableFileIcon from "./table-file.svg";
 
 export {
   errorIcon,
@@ -80,4 +82,6 @@ export {
   starGoldIcon,
   checkedIcon,
   linkIcon,
+  downloadIcon,
+  tableFileIcon,
 };
