@@ -22,7 +22,7 @@ export const AppNavbar = ({
   };
 
   return (
-    <div className="h-14 flex items-center justify-between gap-3 px-4 md:px-6 w-full border-b border-b-zana-grey-300 md:border-b-zana-grey-100 absolute">
+    <div className="h-14 flex items-center justify-between gap-3 px-4 md:px-6 md:pl-[304px] w-full border-b border-b-zana-grey-300 md:border-b-zana-grey-100 absolute ">
       <div className="font-semibold text-xs hidden md:flex gap-1 ">
         <p className="text-zana-grey-700">Zana</p>
         <p className="text-zana-grey-200">/</p>

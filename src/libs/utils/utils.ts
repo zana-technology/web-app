@@ -2,6 +2,7 @@ import { FileWithPreview, ResourceType, SignupDto } from "@/types";
 import { jobsApi, uploadApi } from "../api";
 import { queryClient } from "@/App";
 import { showToast } from "@/components";
+import { apiQueryKeys } from "../api/config";
 
 export const capitalizeFirstLetter = function toTitleCase(str: string) {
   return str?.replace(/\w\S*/g, function (txt) {
@@ -57,11 +58,13 @@ export const encodeQueryData = (
 export const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 
 export const handleAuthSuccess = (authData: SignupDto) => {
-  const expiresAt = new Date(Date.now() + SEVEN_DAYS_MS).toISOString();
+  const expiresAt = new Date(authData.expires_at * 1000).toISOString();
+  const refreshExpiresAt = new Date(Date.now() + SEVEN_DAYS_MS).toISOString();
 
   localStorage.setItem("access_token", authData.access_token);
   localStorage.setItem("refresh_token", authData.refresh_token);
   localStorage.setItem("token_expiry", expiresAt);
+  localStorage.setItem("refresh_token_expiry", refreshExpiresAt);
 };
 
 export const handleUpload = async (files: File[], resourceType = ResourceType.Document) => {
@@ -109,6 +112,26 @@ const urlToFile = async (url: string, fileName: string): Promise<FileWithPreview
     console.error("Error fetching image:", error);
     // Return a placeholder or handle error as needed
     throw new Error(`Failed to convert URL to file`);
+  }
+};
+
+const urlToFile2 = async (url: string, fileName: string): Promise<FileWithPreview> => {
+  try {
+    const response = await fetch(url);
+
+    const blob = await response.blob();
+    const isVideo = url.toLowerCase().includes("video");
+    const fileType = blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+
+    const file = new File([blob], fileName, { type: fileType }) as FileWithPreview;
+
+    file.preview = url;
+    file.originalUrl = url;
+
+    return file;
+  } catch (error) {
+    console.error("Error fetching image:", error);
+    throw new Error("Failed to convert URL to file");
   }
 };
 
@@ -213,6 +236,7 @@ export const saveJob = async (id: string) => {
   const { success, message, title } = await jobsApi.save(id);
 
   if (success) {
+    refreshQuery({ queryKey: [apiQueryKeys.getJobs, apiQueryKeys.getSingleJob] });
     showToast({
       title: title,
       message: message,

@@ -264,9 +264,9 @@ export const Table = <TData,>({
         </div>
         <div></div>
       </div> */}
-      <div className="w-full">
+      <div className="w-full overflow-x-auto">
         {table.getRowModel().rows.length > 0 ? (
-          <table className="w-full">
+          <table className="table-auto w-full border-collapse min-w-max">
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr
@@ -290,7 +290,7 @@ export const Table = <TData,>({
               {table.getRowModel().rows.map((row) => (
                 <tr key={row.id} className="border-b border-zana-grey-300  text-dark-400">
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="p-3 text-left whitespace-nowrap">
+                    <td key={cell.id} className="py-3 pr-3 text-left whitespace-nowrap">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}

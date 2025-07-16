@@ -1,11 +1,12 @@
-import { bookmarkIcon, timeIcon } from "@/assets";
+import { timeIcon } from "@/assets";
 import { useJobDetails } from "./logic";
 import { Button, PageLoader, TabMenu } from "@/components";
 import { IoMdArrowBack } from "react-icons/io";
 import JobDetailsCompany from "./JobDetailsCompany";
 import JobDetailHighlights from "./JobDetailHighlights";
 import moment from "moment";
-import { constant } from "@/libs";
+import { constant, saveJob } from "@/libs";
+import { FiBookmark } from "react-icons/fi";
 
 const JobDetails = () => {
   const { tabMenu, job, renderTab, isLoading, backToFeed } = useJobDetails();
@@ -34,11 +35,14 @@ const JobDetails = () => {
                 </p>
               </div>
               <Button
-                title="Save"
-                icon={<img src={bookmarkIcon} alt="save" className="w-5" />}
+                title={job?.saved ? "Unsave" : "Save"}
+                icon={<FiBookmark size={20} />}
                 iconPosition="left"
-                className=" text-dark-400"
+                className={job?.saved ? "text-zana-primary-normal" : "text-dark-400"}
                 variant="text"
+                onClick={() => {
+                  saveJob(job?.uid);
+                }}
               />
             </div>
           </div>

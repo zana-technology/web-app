@@ -23,9 +23,17 @@ export interface ApplicationData {
   };
 
   //I added
-  company: string;
-  companyLogo: string;
-  job_role: string;
+  company?: string;
+  companyLogo?: string;
+  job_role?: string;
+  is_remote?: boolean;
+  salary_range?: [number | null, number | null];
+  salary_currency?: string;
+  location?: string;
+  description?: string;
+  perks?: string[];
+  requirements?: string[];
+  thread?: EmailMessage[];
 }
 
 export interface ApplicationsResponse {
@@ -35,4 +43,20 @@ export interface ApplicationsResponse {
   offset: number;
   next: string | null;
   previous: string | null;
+}
+
+export interface JobCorrespondence {
+  company?: string;
+  jobTitle?: string;
+  applicationId?: string;
+  thread?: EmailMessage[];
+}
+
+export interface EmailMessage {
+  subject: string;
+  body: string;
+  sentAt: string; // ISO string
+  isRead: boolean;
+  from: "me" | "company";
+  status?: "sent" | "replied" | "interview scheduled" | "rejected" | "offer" | "follow-up";
 }

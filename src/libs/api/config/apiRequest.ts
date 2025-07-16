@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Data, IApiResponseDTO, IErrorMessageDTO, Response } from "@/types";
 import { constant } from "../../utils";
 import client from "./client";

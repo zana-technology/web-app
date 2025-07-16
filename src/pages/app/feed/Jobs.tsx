@@ -55,7 +55,7 @@ const Jobs = ({ jobs }: { jobs: JobData[] }) => {
               title={x?.saved ? "Unsave" : "Save"}
               icon={<FiBookmark size={20} />}
               iconPosition="left"
-              className={x?.saved ? `"text-zana-primary-normal"` : `"text-dark-400"`}
+              className={x?.saved ? "text-zana-primary-normal" : "text-dark-400"}
               variant="text"
               onClick={() => {
                 saveJob(x?.uid);

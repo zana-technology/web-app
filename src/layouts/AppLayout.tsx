@@ -8,11 +8,10 @@ export const AppLayout = () => {
   return (
     <div className="flex">
       <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-      <div className="w-[280px] hidden md:block flex-shrink-0"></div>
-      <div className="flex flex-col h-screen flex-1 relative">
+      <div className="flex flex-col h-screen flex-1 relative w-full">
         <AppNavbar setShowSidebar={setShowSidebar} />
         <div className="h-14"></div>
-        <div className="flex-1 md:border-l md:border-l-zana-grey-300 py-5 md:py-8 px-4 md:px-6 overflow-y-scroll md:w-auto w-screen overflow-x-hidden">
+        <div className="flex-1 md:border-l md:border-l-zana-grey-300 py-5 md:py-8 px-4 md:px-6 overflow-y-auto overflow-x-hidden min-w-0 md:ml-[280px]">
           <Outlet />
         </div>
       </div>
