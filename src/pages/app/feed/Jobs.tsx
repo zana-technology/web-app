@@ -1,10 +1,11 @@
-import { appliedIcon, bookmarkIcon, needsReviewIcon } from "@/assets";
+import { appliedIcon, needsReviewIcon } from "@/assets";
 import { Button, MatchPercentage, StatusTag } from "@/components";
-import { toSentenceCase, truncateText } from "@/libs";
+import { saveJob, toSentenceCase, truncateText } from "@/libs";
 import { JobData, JobStatus } from "@/types";
 import JobHighlights from "./JobHighlights";
 import { useNavigate } from "react-router-dom";
 import { routes } from "@/router";
+import { FiBookmark } from "react-icons/fi";
 
 const Jobs = ({ jobs }: { jobs: JobData[] }) => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Jobs = ({ jobs }: { jobs: JobData[] }) => {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <MatchPercentage value={x.match as number} key={i} />
+                <MatchPercentage value={x.match_score as number} key={i} />
                 <StatusTag
                   value={toSentenceCase(x.status as string)}
                   status={x.status === JobStatus?.AutoApplied ? "success" : "pending"}
@@ -51,11 +52,14 @@ const Jobs = ({ jobs }: { jobs: JobData[] }) => {
           </div>
           <div className="flex justify-between mt-3">
             <Button
-              title="Save"
-              icon={<img src={bookmarkIcon} alt="save" className="w-5" />}
+              title={x?.saved ? "Unsave" : "Save"}
+              icon={<FiBookmark size={20} />}
               iconPosition="left"
-              className="text-dark-400"
+              className={x?.saved ? `"text-zana-primary-normal"` : `"text-dark-400"`}
               variant="text"
+              onClick={() => {
+                saveJob(x?.uid);
+              }}
             />
             <Button
               title="View details"

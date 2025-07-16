@@ -1,17 +1,20 @@
 import { companyLogo } from "@/assets";
+import { showToast } from "@/components";
 import { jobsApi } from "@/libs";
 import { JobMode, JobStatus } from "@/types";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export const useFeed = () => {
-  const { isLoading, data, setCurrentPage, currentPage, setSearchQuery } = jobsApi.useGetJobs();
+  const { isLoading, data, setCurrentPage, currentPage, setSearchQuery, setFilters } =
+    jobsApi.useGetJobs();
 
   const jobs = useMemo(() => {
     if (data?.success) {
       return data?.data?.data?.map((x) => ({
         ...x,
         companyLogo: companyLogo,
-        match: 70,
+        match_score: x?.match_score ?? 0,
         salary_currency: x?.salary_currency ?? "USD",
         status: x?.applied ? JobStatus.AutoApplied : JobStatus.NeedsReview,
         mode: x?.is_remote ? JobMode.Remote : JobMode.Onsite,
@@ -45,7 +48,39 @@ export const useFeed = () => {
     },
   ];
 
-  return { isLoading, tabMenu, setSearchQuery, jobs, meta, currentPage, setCurrentPage };
+  const [searchParams] = useSearchParams();
+
+  const currentTab = searchParams.get("tab");
+
+  useEffect(() => {
+    if (currentTab === tabMenu[1]?.value) {
+      setFilters({
+        applied: true,
+      });
+    } else if (currentTab === tabMenu[2]?.value) {
+      setFilters({
+        applied: false,
+      });
+    } else if (currentTab === tabMenu[3]?.value) {
+      setFilters({
+        saved: true,
+      });
+    } else {
+      setFilters({});
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentTab]);
+
+  return {
+    isLoading,
+    tabMenu,
+    setSearchQuery,
+    jobs,
+    meta,
+    currentPage,
+    setCurrentPage,
+    setFilters,
+  };
 };
 
 export default useFeed;

@@ -1,6 +1,7 @@
 import { FileWithPreview, ResourceType, SignupDto } from "@/types";
-import { uploadApi } from "../api";
+import { jobsApi, uploadApi } from "../api";
 import { queryClient } from "@/App";
+import { showToast } from "@/components";
 
 export const capitalizeFirstLetter = function toTitleCase(str: string) {
   return str?.replace(/\w\S*/g, function (txt) {
@@ -207,3 +208,14 @@ export const currencyFormatter = ({
 export function truncateText(text: string, maxLength: number) {
   return text.length > maxLength ? text.slice(0, maxLength).trimEnd() + "..." : text;
 }
+
+export const saveJob = async (id: string) => {
+  const { success, message, title } = await jobsApi.save(id);
+
+  if (success) {
+    showToast({
+      title: title,
+      message: message,
+    });
+  }
+};

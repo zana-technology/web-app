@@ -20,7 +20,7 @@ export const SearchInput = ({
   const [value, setValue] = useState("");
   const onChange = useAsyncDebounce((value) => {
     setSearchQuery(value);
-  }, 1000);
+  }, 2000);
   return (
     <div className={`relative flex items-center w-full ${className ? className : ""}`}>
       <input

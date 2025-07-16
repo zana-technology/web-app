@@ -18,10 +18,10 @@ export interface JobData {
   saved: boolean;
   created_at: string;
   updated_at: string;
+  match_score: number;
 
   // I added
   companyLogo?: string;
-  match?: number;
   status?: JobStatus;
   mode: JobMode;
   perks?: string[];

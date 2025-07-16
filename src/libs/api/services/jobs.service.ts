@@ -1,5 +1,5 @@
-import { apiQueryKeys, useFetcher } from "../config";
-import { JobData, JobResponse } from "@/types";
+import { apiQueryKeys, apiRequest, useFetcher } from "../config";
+import { JobData, JobResponse, SignupDto } from "@/types";
 import { apiRoutes } from "../routes";
 
 const useGetJobs = () => {
@@ -12,12 +12,20 @@ const useGetJobs = () => {
 };
 const useGetSingleJob = ({ id }: { id: string }) => {
   return useFetcher<JobData>({
-    queryKey: [apiQueryKeys.getSingleJob],
+    queryKey: [apiQueryKeys.getSingleJob, id],
     url: apiRoutes.jobs.single.replace("%id%", id),
+  });
+};
+
+const save = async (id: string) => {
+  return await apiRequest<SignupDto>({
+    url: apiRoutes.jobs.save.replace("%id%", id),
+    method: "post",
   });
 };
 
 export const jobsApi = {
   useGetJobs,
   useGetSingleJob,
+  save,
 };
