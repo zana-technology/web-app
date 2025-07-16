@@ -14,7 +14,6 @@ const Applications = () => {
   } = useApplications();
   return (
     <>
-      {" "}
       <PageTitle
         title="Applications"
         subtitle="Monitor and manage your job applications"

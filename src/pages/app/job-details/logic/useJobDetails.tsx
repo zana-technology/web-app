@@ -53,12 +53,12 @@ export const useJobDetails = () => {
     {
       label: "Company",
       value: "company",
-      icon: currentTab === "requirements" ? companyColoredIcon : companyIcon,
+      icon: currentTab === "company" ? companyColoredIcon : companyIcon,
     },
     {
       label: "Zana Insights",
       value: "zana-insights",
-      icon: currentTab === "requirements" ? zanaInsightsColoredIcon : zanaInsightsIcon,
+      icon: currentTab === "zana-insights" ? zanaInsightsColoredIcon : zanaInsightsIcon,
     },
   ];
 

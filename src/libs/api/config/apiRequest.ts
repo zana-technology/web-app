@@ -44,6 +44,9 @@ const apiRequest = async <T>({
         responseType: "blob",
       };
     }
+    headers = {
+      "Cache-Control": "no-cache",
+    };
 
     const { data } = await client[method]<IApiResponseDTO<T>>(baseUrl + url, payload, {
       headers,

@@ -40,6 +40,14 @@ import checkedIcon from "./checked.svg";
 import linkIcon from "./link.svg";
 import downloadIcon from "./download.svg";
 import tableFileIcon from "./table-file.svg";
+import calendarIcon from "./calendar.svg";
+import mailColoredIcon from "./mail-colored.svg";
+import presentationColoredIcon from "./presentation-colored.svg";
+import fileColoredIcon from "./file-colored.svg";
+import presentationIcon from "./presentation.svg";
+import fileGreyIcon from "./file-grey.svg";
+import mailReadIcon from "./mail-read.svg";
+import mailUnreadIcon from "./mail-unread.svg";
 
 export {
   errorIcon,
@@ -84,4 +92,12 @@ export {
   linkIcon,
   downloadIcon,
   tableFileIcon,
+  calendarIcon,
+  mailColoredIcon,
+  presentationColoredIcon,
+  fileColoredIcon,
+  presentationIcon,
+  fileGreyIcon,
+  mailReadIcon,
+  mailUnreadIcon,
 };
