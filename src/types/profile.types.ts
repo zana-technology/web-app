@@ -79,14 +79,21 @@ export type OnboardingProfileFormValues = {
   completed?: boolean;
 };
 
+export type SettingsPreference = {
+  auto_apply_enabled: boolean;
+  preferred_employment_types: string[];
+  preferred_locations: string[];
+  visa_regions: string[];
+};
+
 export type CandidateProfileDto = OnboardingFormValues &
-  OnboardingProfileFormValues & {
+  OnboardingProfileFormValues &
+  SettingsPreference & {
     avatar_url: string;
     github_url: string;
     min_salary_expectation: number;
     max_salary_expectation: number;
     preferred_currency: string;
-    auto_apply_enabled: boolean;
     extras: {
       [key: string]: unknown;
     };
