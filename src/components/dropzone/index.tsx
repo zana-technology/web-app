@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   // fileIconDoc,
   fileIconPdf,
@@ -17,7 +16,7 @@ import { Button } from "../button";
 type FileTypes = "doc" | "video" | "image";
 
 interface DropzoneProps {
-  label: string;
+  label?: string;
   title?: string;
   subtitle?: string;
   info?: string;
@@ -94,14 +93,11 @@ export const Dropzone = ({
     }, {});
   };
 
-  const acceptedTypes =
-    fileTypes && fileTypes?.length > 0 ? getAcceptedTypes(fileTypes) : [];
+  const acceptedTypes = fileTypes && fileTypes?.length > 0 ? getAcceptedTypes(fileTypes) : [];
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
-      ...(fileTypes && fileTypes?.length > 0
-        ? (acceptedTypes as Accept)
-        : { "image/*": [] }),
+      ...(fileTypes && fileTypes?.length > 0 ? (acceptedTypes as Accept) : { "image/*": [] }),
     },
     maxSize: maxSize * 1024 * 1024,
     maxFiles: maxNumOfImages,
@@ -130,8 +126,7 @@ export const Dropzone = ({
   const getFileIcon = (type: string): string => {
     if (type.startsWith("image/")) return "";
     if (type === "application/pdf") return fileIconPdf;
-    if (type === "application/msword" || type.includes("word"))
-      return fileIconPdf;
+    if (type === "application/msword" || type.includes("word")) return fileIconPdf;
     if (type === "video/mp4" || type.startsWith("video/")) return fileIconPdf;
     return fileIconPdf;
   };
@@ -169,10 +164,7 @@ export const Dropzone = ({
                   removeFile(file.name);
                 }}
               >
-                <RiDeleteBin6Fill
-                  size={20}
-                  className="hover:text-red-600 cursor-pointer"
-                />
+                <RiDeleteBin6Fill size={20} className="hover:text-red-600 cursor-pointer" />
               </div>
             </div>
           ))}
@@ -186,21 +178,15 @@ export const Dropzone = ({
         }`}
       >
         <div {...getRootProps()}>
-          <input
-            {...getInputProps()}
-            disabled={files.length === maxNumOfImages}
-          />
+          <input {...getInputProps()} disabled={files.length === maxNumOfImages} />
           {isDragActive ? (
             <p className="text-slate-900">Drop the files here ...</p>
           ) : (
             <div className="flex gap-2.5 items-center flex-col text-center text-sm">
               <MdOutlineFileUpload size={24} />
               {title ? <p className="font-semibold text-xl">{title}</p> : ""}
-              {subtitle ? <p className="text-dark-400">{subtitle}</p> : ""}
-              <Button
-                title="Choose File"
-                disabled={files.length === maxNumOfImages}
-              />
+              {subtitle ? <p className="text-dark-400 max-w-[308px]">{subtitle}</p> : ""}
+              <Button title="Choose File" disabled={files.length === maxNumOfImages} />
               <p className="text-dark-400">{info}</p>
             </div>
           )}
@@ -219,11 +205,7 @@ export const Dropzone = ({
           ))}
         </div>
       </div>
-      {errorMessage ? (
-        <p className="text-sm text-red-500">{errorMessage}</p>
-      ) : (
-        ""
-      )}
+      {errorMessage ? <p className="text-sm text-red-500">{errorMessage}</p> : ""}
     </div>
   );
 };

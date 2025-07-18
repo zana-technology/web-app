@@ -2,7 +2,6 @@ import {
   analyticsIcon,
   applicationIcon,
   feedIcon,
-  fileGreyIcon,
   filePolicyIcon,
   giftIcon,
   linkGreyIcon,
