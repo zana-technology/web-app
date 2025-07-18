@@ -2,7 +2,8 @@ import { twMerge } from "tailwind-merge";
 import { RiExpandUpDownLine } from "react-icons/ri";
 import { avatar } from "@/assets";
 import { profileApi } from "@/libs";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import SidebarExtraMenu from "./SidebarExtraMenu";
 
 const SidebarBottom = () => {
   const creditsLeft = 100;
@@ -25,8 +26,17 @@ const SidebarBottom = () => {
       return user;
     }
   }, [data]);
+
+  const [showExtra, setShowExtra] = useState(false);
+
   return (
-    <div className="mb-4 flex flex-col items-center">
+    <div
+      className="mb-4 flex flex-col items-center relative"
+      onClick={() => {
+        setShowExtra(!showExtra);
+      }}
+    >
+      {showExtra && <SidebarExtraMenu setShowExtra={setShowExtra} />}
       <div className="w-full border border-zana-grey-300 p-4 flex flex-col gap-3 mb-6 rounded-xl">
         <div className="flex justify-between items-center">
           <p className="font-semibold">Job count</p>

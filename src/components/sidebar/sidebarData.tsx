@@ -1,4 +1,15 @@
-import { analyticsIcon, applicationIcon, feedIcon, mailIcon, starIcon } from "@/assets";
+import {
+  analyticsIcon,
+  applicationIcon,
+  feedIcon,
+  fileGreyIcon,
+  filePolicyIcon,
+  giftIcon,
+  linkGreyIcon,
+  mailIcon,
+  settingsIcon,
+  starIcon,
+} from "@/assets";
 import { routes } from "@/router";
 
 export const sidebarData = [
@@ -26,5 +37,28 @@ export const sidebarData = [
     title: "Zana Upskilling",
     icon: starIcon,
     link: routes.app.upskilling,
+  },
+];
+
+export const sidebarExtra = [
+  {
+    title: "Home Page",
+    icon: linkGreyIcon,
+    link: routes.home,
+  },
+  {
+    title: "Settings",
+    icon: settingsIcon,
+    link: routes.app.settings,
+  },
+  {
+    title: "Referral",
+    icon: giftIcon,
+    link: routes.app.referral,
+  },
+  {
+    title: "Policy",
+    icon: filePolicyIcon,
+    link: routes.policy,
   },
 ];

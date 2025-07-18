@@ -3,6 +3,7 @@ import { jobsApi, uploadApi } from "../api";
 import { queryClient } from "@/App";
 import { showToast } from "@/components";
 import { apiQueryKeys } from "../api/config";
+import { routes } from "@/router";
 
 export const capitalizeFirstLetter = function toTitleCase(str: string) {
   return str?.replace(/\w\S*/g, function (txt) {
@@ -242,4 +243,12 @@ export const saveJob = async (id: string) => {
       message: message,
     });
   }
+};
+
+export const handleLogout = () => {
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
+  localStorage.removeItem("token_expiry");
+  localStorage.removeItem("refresh_token_expiry");
+  window.location.href = routes.auth.login;
 };

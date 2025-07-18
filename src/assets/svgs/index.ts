@@ -49,6 +49,11 @@ import fileGreyIcon from "./file-grey.svg";
 import mailReadIcon from "./mail-read.svg";
 import mailUnreadIcon from "./mail-unread.svg";
 import infoCircleIcon from "./info-circle.svg";
+import filePolicyIcon from "./file-policy.svg";
+import giftIcon from "./gift.svg";
+import logoutIcon from "./logout.svg";
+import linkGreyIcon from "./link-grey.svg";
+import settingsIcon from "./settings.svg";
 
 export {
   errorIcon,
@@ -102,4 +107,9 @@ export {
   mailReadIcon,
   mailUnreadIcon,
   infoCircleIcon,
+  filePolicyIcon,
+  giftIcon,
+  logoutIcon,
+  linkGreyIcon,
+  settingsIcon,
 };
