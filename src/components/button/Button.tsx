@@ -52,7 +52,7 @@ export const Button = ({
   const mergedClassName = twMerge(
     `h-10 px-3 py-2 rounded-md cursor-pointer w-fit flex justify-center items-center gap-1.5  whitespace-nowrap
      ${variantClass} ${fullWidth ? "w-full" : ""} ${
-       disabled ? "bg-zana-grey-100 text-zana-grey-400" : ""
+       disabled ? "bg-zana-grey-100 text-zana-grey-400 hover:bg-zana-grey-100" : ""
      }`,
     className
   );

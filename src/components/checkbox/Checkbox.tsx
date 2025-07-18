@@ -1,4 +1,5 @@
 import { BsCheck } from "react-icons/bs";
+import { twMerge } from "tailwind-merge";
 
 interface CheckboxProps {
   title: string;
@@ -7,15 +8,26 @@ interface CheckboxProps {
   id: string;
   name: string;
   className?: string;
+  variant?: "default" | "alt";
   checked: boolean;
 }
-export const Checkbox = ({ title, checked, onChange, id, name, className }: CheckboxProps) => {
+export const Checkbox = ({
+  title,
+  checked,
+  onChange,
+  id,
+  name,
+  className,
+  variant = "default",
+}: CheckboxProps) => {
   return (
     <label
       htmlFor={id}
-      className={`flex min-w-full gap-2 items-center relative cursor-pointer ${
-        className ? className : ""
-      }`}
+      className={twMerge(
+        "flex min-w-full gap-2 items-center relative cursor-pointer",
+        className ? className : "",
+        variant === "alt" ? "flex-row-reverse" : ""
+      )}
     >
       <input
         type="checkbox"

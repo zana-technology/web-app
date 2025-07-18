@@ -1,5 +1,6 @@
 export const routes = {
   home: "/",
+  policy: "/policy",
   auth: {
     index: "/auth",
     login: "/auth/login",
@@ -18,5 +19,7 @@ export const routes = {
     inbox: "/app/inbox",
     upskilling: "/app/upskilling",
     JobDetails: "/app/job/%id%",
+    settings: "/app/settings",
+    referral: "/app/referral",
   },
 };

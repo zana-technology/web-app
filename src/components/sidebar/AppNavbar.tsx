@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { sidebarData } from "./sidebarData";
+import { sidebarData, sidebarExtra } from "./sidebarData";
 import { Button } from "../button";
 import { IoIosNotificationsOutline, IoMdAdd } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -15,8 +15,10 @@ export const AppNavbar = ({
 
   const pathname = location?.pathname;
 
+  const forPageTitle = [...sidebarData, ...sidebarExtra];
+
   const getPageTitle = () => {
-    const title = sidebarData?.filter((x) => x.link === pathname)[0]?.title;
+    const title = forPageTitle?.filter((x) => x.link === pathname)[0]?.title;
 
     return title;
   };
