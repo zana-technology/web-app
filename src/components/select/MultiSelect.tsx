@@ -22,6 +22,7 @@ export interface MultiSelectProps<T = unknown> {
   placeholder?: string;
   note?: string;
   noOptionsText?: string;
+  max?: number;
 }
 
 export const MultiSelect = ({
@@ -39,6 +40,7 @@ export const MultiSelect = ({
   placeholder,
   note,
   noOptionsText = "No results found",
+  max,
 }: MultiSelectProps) => {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -88,6 +90,10 @@ export const MultiSelect = ({
     if (isSelected) {
       updatedSelection = selectedOptions.filter((item) => item.value !== option.value);
     } else {
+      if (max && selectedOptions?.length === max) {
+        setQuery("");
+        return;
+      }
       updatedSelection = [...selectedOptions, option];
     }
 

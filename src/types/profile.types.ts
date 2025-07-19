@@ -61,6 +61,7 @@ export type OnboardingFormValues = {
   full_name: string;
   portfolio_url: string;
   resume?: File[];
+  preferred_work_regions: string[];
 };
 
 export type OnboardingProfileFormValues = {
@@ -82,7 +83,7 @@ export type OnboardingProfileFormValues = {
 export type SettingsPreference = {
   auto_apply_enabled: boolean;
   preferred_employment_types: string[];
-  preferred_locations: string[];
+  preferred_work_regions: string[];
   visa_regions: string[];
 };
 

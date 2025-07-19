@@ -27,7 +27,7 @@ const VerifyEmail = () => {
   } = formik;
 
   return (
-    <div className="w-full flex flex-col items-center sm:mt-28 sm:mb-10">
+    <div className="w-full flex flex-col items-center sm:mt-20 sm:mb-10">
       <StepIndicator steps={onboardingSteps} currentStep={1} />
       <OnboardingHash>
         <AuthHeader

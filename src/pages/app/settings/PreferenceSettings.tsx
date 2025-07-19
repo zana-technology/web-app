@@ -95,17 +95,17 @@ const PreferenceSettings = () => {
               variant="switch"
             />
             <MultiSelect
-              name={`preferred_locations`}
-              values={values?.preferred_locations.map((x) => ({
+              name={`preferred_work_regions`}
+              values={values?.preferred_work_regions.map((x) => ({
                 label: x,
                 value: x,
               }))}
               onBlur={handleBlur}
-              errorMessage={errors.preferred_locations as string}
-              touched={touched.preferred_locations}
+              errorMessage={errors.preferred_work_regions as string}
+              touched={touched.preferred_work_regions}
               onChange={(item) => {
                 const values = item.map((x) => x.value);
-                setFieldValue("preferred_locations", values);
+                setFieldValue("preferred_work_regions", values);
               }}
               options={countryOptions}
               placeholder="Select preferred locations to work"
@@ -118,7 +118,7 @@ const PreferenceSettings = () => {
               variant="switch"
             />
             <div className="flex flex-col gap-2.5">
-              {values?.preferred_locations?.map((x, i) => (
+              {values?.preferred_work_regions?.map((x, i) => (
                 <Checkbox
                   key={i}
                   id={`visa_regions-${x}`}

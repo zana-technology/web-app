@@ -23,7 +23,7 @@ export const StepIndicator = ({ steps, currentStep }: StepIndicatorProps) => {
           {currentStep === x.step ? (
             <div className="flex h-7 items-center px-[3px] rounded-full border border-zana-primary-normal gap-0.5 ">
               <div className="h-5 w-5 rounded-full border border-dashed border-green-500 bg-green-50"></div>
-              <p className="whitespace-nowrap">{x?.title}</p>
+              <p className="whitespace-nowrap text-xs sm:text-base">{x?.title}</p>
             </div>
           ) : currentStep > x.step ? (
             <div className="flex h-7 items-center justify-center rounded-full w-7 bg-green-500">
@@ -35,7 +35,7 @@ export const StepIndicator = ({ steps, currentStep }: StepIndicatorProps) => {
             </div>
           )}
           {i + 1 < steps.length ? (
-            <div className="w-7 border border-zana-grey-300"></div>
+            <div className="w-4 sm:w-7 border border-zana-grey-300"></div>
           ) : (
             ""
           )}

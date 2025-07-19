@@ -17,7 +17,7 @@ const Login = () => {
   } = formik;
 
   return (
-    <OnboardingHash className="sm:mt-40 sm:mb-10">
+    <OnboardingHash className="sm:mt-24 sm:mb-10">
       <AuthHeader title="Welcome back" subTitle="Enter your correct details to continue" />
 
       <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">

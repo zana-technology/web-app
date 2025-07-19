@@ -17,7 +17,7 @@ export const usePreferenceSettings = () => {
     return {
       auto_apply_enabled: profile?.auto_apply_enabled ?? true,
       preferred_employment_types: profile?.preferred_employment_types ?? [],
-      preferred_locations: profile?.preferred_locations ?? [],
+      preferred_work_regions: profile?.preferred_work_regions ?? [],
       visa_regions: profile?.visa_regions ?? [],
     };
   }, [profile]);

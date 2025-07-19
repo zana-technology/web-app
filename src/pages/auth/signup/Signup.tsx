@@ -18,7 +18,7 @@ const Signup = () => {
   } = formik;
 
   return (
-    <div className="w-full flex flex-col items-center sm:mt-16 sm:mb-5">
+    <div className="w-full flex flex-col items-center sm:mt-8 sm:mb-5">
       <StepIndicator steps={onboardingSteps} currentStep={1} />
       <OnboardingHash>
         <AuthHeader
