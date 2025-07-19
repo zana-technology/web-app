@@ -3,7 +3,7 @@ import ProfileSettings from "../ProfileSettings";
 import ResumeSettings from "../ResumeSettings";
 import PasswordSettings from "../PasswordSettings";
 import PreferenceSettings from "../PreferenceSettings";
-import ApperanceSettings from "../ApperanceSettings";
+// import ApperanceSettings from "../ApperanceSettings";
 import BillingSettings from "../BillingSettings";
 
 export const useSettings = () => {

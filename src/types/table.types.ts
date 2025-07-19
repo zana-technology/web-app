@@ -2,7 +2,7 @@ import { Option } from "./util.types";
 
 export interface IColumn<T> {
   accessorKey?: string;
-  header: string;
+  header?: string;
   cell?: (info: { getValue: () => any; row: { original: T } }) => React.ReactNode;
   type?: "link" | "status" | "date" | "currency" | "sn" | "dateAndTime" | "truncate" | "percentage";
 }
