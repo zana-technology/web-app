@@ -6,5 +6,16 @@ import logoAvatar from "./zana-logo-with-avatar.png";
 import companyLogo from "./company-logo.png";
 import darkTheme from "./dark-theme.png";
 import lightTheme from "./light-theme.png";
+import systemTheme from "./system-theme.png";
 
-export { logo, fileIconPdf, confetti, avatar, logoAvatar, companyLogo, darkTheme, lightTheme };
+export {
+  logo,
+  fileIconPdf,
+  confetti,
+  avatar,
+  logoAvatar,
+  companyLogo,
+  darkTheme,
+  lightTheme,
+  systemTheme,
+};

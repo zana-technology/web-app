@@ -65,7 +65,7 @@ export const MultiSelect = ({
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [options?.[0]?.value]);
+  }, [options?.[0]?.value, values]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

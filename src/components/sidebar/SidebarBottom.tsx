@@ -30,10 +30,10 @@ const SidebarBottom = () => {
   const [showExtra, setShowExtra] = useState(false);
 
   const trimmedEmail = (email: string) => {
-    if (email.length > 25) {
+    if (email?.length > 25) {
       return `${email.slice(0, 6)}...${email.slice(-12)}`;
     }
-    return email;
+    return email ?? "";
   };
 
   return (

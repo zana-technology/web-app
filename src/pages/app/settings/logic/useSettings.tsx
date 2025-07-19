@@ -24,10 +24,10 @@ export const useSettings = () => {
       label: "Preferences",
       value: "preferences",
     },
-    {
-      label: "Appearance",
-      value: "appearance",
-    },
+    // {
+    //   label: "Appearance",
+    //   value: "appearance",
+    // },
     {
       label: "Billing",
       value: "billing",
@@ -44,9 +44,9 @@ export const useSettings = () => {
         return <PasswordSettings />;
       case tabMenu[3]?.value:
         return <PreferenceSettings />;
+      // case tabMenu[4]?.value:
+      //   return <ApperanceSettings />;
       case tabMenu[4]?.value:
-        return <ApperanceSettings />;
-      case tabMenu[5]?.value:
         return <BillingSettings />;
 
       default:
