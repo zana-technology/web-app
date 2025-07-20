@@ -99,7 +99,19 @@ export type CandidateProfileDto = OnboardingFormValues &
       [key: string]: unknown;
     };
     uid: string;
+    resumes: UploadedFileDto[];
   };
+
+export interface UploadedFileDto {
+  file_name: string;
+  file_type: string;
+  is_primary: boolean;
+  file_url: string;
+  uid: string;
+  version: number;
+  created_at: string;
+  updated_at: string | null;
+}
 export interface UploadedResume {
   file_name: string;
   file_type: string;
