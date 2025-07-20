@@ -211,11 +211,13 @@ export const currencyFormatter = ({
   currency = "NGN",
   subUnit = false,
   compact = false,
+  showFraction = true,
 }: {
   amount: number;
   currency?: string;
   subUnit?: boolean;
   compact?: boolean;
+  showFraction?: boolean;
 }) => {
   const value = subUnit ? amount / 100 : amount;
 
@@ -225,7 +227,8 @@ export const currencyFormatter = ({
     currencyDisplay: "narrowSymbol",
     notation: compact ? "compact" : "standard",
     compactDisplay: "short",
-    maximumFractionDigits: 1,
+    maximumFractionDigits: showFraction ? 2 : 0,
+    minimumFractionDigits: showFraction ? 2 : 0,
   }).format(value);
 };
 

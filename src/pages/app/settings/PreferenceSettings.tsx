@@ -1,4 +1,4 @@
-import { Checkbox, MultiSelect, PageLoader, Text } from "@/components";
+import { Button, Checkbox, MultiSelect, PageLoader, Text } from "@/components";
 import { twMerge } from "tailwind-merge";
 import { usePreferenceSettings } from "./logic";
 import { countriesAndStates } from "@/libs";
@@ -11,7 +11,6 @@ const PreferenceSettings = () => {
     touched,
     handleBlur,
     errors,
-    handleChange,
     handleSubmit,
     isSubmitting,
     isValid,
@@ -31,7 +30,7 @@ const PreferenceSettings = () => {
         <PageLoader />
       ) : (
         <form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
-          <div className={twMerge(borderInfo)}>
+          {/* <div className={twMerge(borderInfo)}>
             <Text
               label="Auto apply"
               value="Allow Zana apply to job that matches your profile automatically."
@@ -58,7 +57,7 @@ const PreferenceSettings = () => {
                 className="border border-zana-grey-300 p-2.5 min-w-fit rounded-lg"
               />
             </div>
-          </div>
+          </div> */}
           <div className={twMerge(borderInfo)}>
             <Text
               label="Work type"
@@ -95,17 +94,26 @@ const PreferenceSettings = () => {
               variant="switch"
             />
             <MultiSelect
-              name={`preferred_locations`}
-              values={values?.preferred_locations.map((x) => ({
+              name={`preferred_work_regions`}
+              values={values?.preferred_work_regions.map((x) => ({
                 label: x,
                 value: x,
               }))}
               onBlur={handleBlur}
-              errorMessage={errors.preferred_locations as string}
-              touched={touched.preferred_locations}
+              errorMessage={errors.preferred_work_regions as string}
+              touched={touched.preferred_work_regions}
               onChange={(item) => {
-                const values = item.map((x) => x.value);
-                setFieldValue("preferred_locations", values);
+                const workRegions = item.map((x) => x.value);
+
+                const filterVisaRegions = () => {
+                  if (values?.visa_regions?.length > 0) {
+                    return values?.visa_regions.filter((country) => workRegions.includes(country));
+                  }
+
+                  return [];
+                };
+                setFieldValue("preferred_work_regions", workRegions);
+                setFieldValue("visa_regions", filterVisaRegions());
               }}
               options={countryOptions}
               placeholder="Select preferred locations to work"
@@ -118,7 +126,7 @@ const PreferenceSettings = () => {
               variant="switch"
             />
             <div className="flex flex-col gap-2.5">
-              {values?.preferred_locations?.map((x, i) => (
+              {values?.preferred_work_regions?.map((x, i) => (
                 <Checkbox
                   key={i}
                   id={`visa_regions-${x}`}
@@ -142,6 +150,17 @@ const PreferenceSettings = () => {
               ))}
             </div>
           </div>
+          {dirty && (
+            <div className="sm:flex w-full justify-end gap-8 mt-5">
+              <Button
+                title="Save"
+                type="submit"
+                loading={isSubmitting}
+                disabled={!(isValid && dirty)}
+                className="w-full sm:w-[380px]"
+              />
+            </div>
+          )}
         </form>
       )}
     </>

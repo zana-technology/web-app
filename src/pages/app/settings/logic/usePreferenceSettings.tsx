@@ -1,8 +1,9 @@
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useEffect, useMemo } from "react";
-import { profileApi } from "@/libs";
-import { SettingsPreference } from "@/types";
+import { profileApi, refreshQuery, removeEmptyKeys } from "@/libs";
+import { OnboardingProfileFormValues, SettingsPreference } from "@/types";
+import { apiQueryKeys } from "@/libs/api/config";
 
 export const usePreferenceSettings = () => {
   const { isLoading, data } = profileApi.useGetProfile();
@@ -17,7 +18,7 @@ export const usePreferenceSettings = () => {
     return {
       auto_apply_enabled: profile?.auto_apply_enabled ?? true,
       preferred_employment_types: profile?.preferred_employment_types ?? [],
-      preferred_locations: profile?.preferred_locations ?? [],
+      preferred_work_regions: profile?.preferred_work_regions ?? [],
       visa_regions: profile?.visa_regions ?? [],
     };
   }, [profile]);
@@ -34,12 +35,16 @@ export const usePreferenceSettings = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       console.log("values", values);
-      //   const { success, data } = await authApi.login(values);
 
-      //   if (success) {
-      //     handleAuthSuccess(data as SignupDto);
-      //     navigate(routes.app.feed);
-      //   }
+      const payload = { ...profile, ...values };
+
+      removeEmptyKeys(payload);
+
+      const { success } = await profileApi.updateProfile(payload as OnboardingProfileFormValues);
+
+      if (success) {
+        refreshQuery({ queryKey: [apiQueryKeys?.getProfile] });
+      }
     },
   });
 

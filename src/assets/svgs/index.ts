@@ -54,6 +54,7 @@ import giftIcon from "./gift.svg";
 import logoutIcon from "./logout.svg";
 import linkGreyIcon from "./link-grey.svg";
 import settingsIcon from "./settings.svg";
+import checkCircleIcon from "./check-circle.svg";
 
 export {
   errorIcon,
@@ -112,4 +113,5 @@ export {
   logoutIcon,
   linkGreyIcon,
   settingsIcon,
+  checkCircleIcon,
 };

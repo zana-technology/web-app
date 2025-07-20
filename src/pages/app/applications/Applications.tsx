@@ -25,6 +25,8 @@ const Applications = () => {
         tableColumns={tableColumns}
         tableData={tableData}
         meta={meta}
+        emptyMessage="No applications yet"
+        emptySubText="When Zana or you starts applying, they will show here "
       />
     </>
   );

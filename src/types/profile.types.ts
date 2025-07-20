@@ -61,6 +61,7 @@ export type OnboardingFormValues = {
   full_name: string;
   portfolio_url: string;
   resume?: File[];
+  preferred_work_regions: string[];
 };
 
 export type OnboardingProfileFormValues = {
@@ -82,7 +83,7 @@ export type OnboardingProfileFormValues = {
 export type SettingsPreference = {
   auto_apply_enabled: boolean;
   preferred_employment_types: string[];
-  preferred_locations: string[];
+  preferred_work_regions: string[];
   visa_regions: string[];
 };
 
@@ -98,7 +99,19 @@ export type CandidateProfileDto = OnboardingFormValues &
       [key: string]: unknown;
     };
     uid: string;
+    resumes: UploadedFileDto[];
   };
+
+export interface UploadedFileDto {
+  file_name: string;
+  file_type: string;
+  is_primary: boolean;
+  file_url: string;
+  uid: string;
+  version: number;
+  created_at: string;
+  updated_at: string | null;
+}
 export interface UploadedResume {
   file_name: string;
   file_type: string;

@@ -1,4 +1,4 @@
-import { darkTheme, lightTheme } from "@/assets";
+import { darkTheme, lightTheme, systemTheme } from "@/assets";
 import { JobDetailsShell } from "@/components";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -7,7 +7,7 @@ const ApperanceSettings = () => {
   const screenOptions = [
     {
       label: "System Preference",
-      image: darkTheme,
+      image: systemTheme,
     },
     {
       label: "Light mode",

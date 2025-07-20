@@ -35,6 +35,7 @@ interface TableProps<TData> {
   hasDateFilter?: boolean;
   hasHeader?: boolean;
   emptyMessage?: string;
+  emptySubText?: string;
   meta?: PaginationMeta;
   setCurrentPage?: Dispatch<SetStateAction<number>>;
   setSearchQuery?: Dispatch<SetStateAction<string>>;
@@ -53,6 +54,7 @@ export const Table = <TData,>({
   //   hasDateFilter,
   //   hasHeader,
   emptyMessage,
+  emptySubText,
   meta,
   setCurrentPage,
   setSearchQuery,
@@ -299,7 +301,7 @@ export const Table = <TData,>({
             </tbody>
           </table>
         ) : (
-          <EmptyState text={isLoading ? "Please wait" : emptyMessage} />
+          <EmptyState text={isLoading ? "Please wait" : emptyMessage} subText={emptySubText} />
         )}
 
         {isLoading && <PageLoader variant="bar" hideTitle className="mb-5 mt-5" />}

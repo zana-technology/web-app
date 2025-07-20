@@ -62,6 +62,7 @@ export const useOnboarding = () => {
     current_location: "",
     needs_visa_sponsorship: false,
     visa_regions: [],
+    preferred_work_regions: [],
 
     //STEP4
     preferred_employment_types: [],
@@ -133,10 +134,6 @@ export const useOnboarding = () => {
     label: x.name,
     value: x.name,
   }));
-  const visaRegionOptions = ["Africa", "Europe", "Asia"]?.map((x) => ({
-    label: x,
-    value: x,
-  }));
 
   const workingLanguageOptions = [
     { label: "English", value: "english" },
@@ -183,13 +180,7 @@ export const useOnboarding = () => {
       case 2:
         return <OnboardingRole formik={formik} experienceLevels={experienceLevels} />;
       case 3:
-        return (
-          <OnboardingLocation
-            formik={formik}
-            countryOptions={countryOptions}
-            visaRegionOptions={visaRegionOptions}
-          />
-        );
+        return <OnboardingLocation formik={formik} countryOptions={countryOptions} />;
       case 4:
         return <OnboardingWorkType formik={formik} />;
       case 5:

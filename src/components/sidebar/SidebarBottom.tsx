@@ -29,6 +29,13 @@ const SidebarBottom = () => {
 
   const [showExtra, setShowExtra] = useState(false);
 
+  const trimmedEmail = (email: string) => {
+    if (email?.length > 25) {
+      return `${email.slice(0, 6)}...${email.slice(-12)}`;
+    }
+    return email ?? "";
+  };
+
   return (
     <div
       className="mb-4 flex flex-col items-center relative"
@@ -66,7 +73,7 @@ const SidebarBottom = () => {
           </div>
           <div className="text-sm">
             <p className="text-dark-900 font-medium">{user?.name}</p>
-            <p className="text-dark-400">{user?.email}</p>
+            <p className="text-dark-400">{trimmedEmail(user?.email as string)}</p>
           </div>
         </div>
         <RiExpandUpDownLine size={24} className="text-zana-grey-400 cursor-pointer" />

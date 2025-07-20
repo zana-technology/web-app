@@ -1,16 +1,13 @@
-import { MultiSelect, Select } from "@/components";
-import { SelectButtonGroup } from "@/components/button";
+import { Checkbox, MultiSelect, Select } from "@/components";
 import { OnboardingFormValues, Option } from "@/types";
 import { FormikProps } from "formik";
 
 const OnboardingLocation = ({
   formik,
   countryOptions,
-  visaRegionOptions,
 }: {
   formik: FormikProps<OnboardingFormValues>;
   countryOptions: Option[];
-  visaRegionOptions: Option[];
 }) => {
   const { values, touched, handleBlur, errors, setFieldValue } = formik;
 
@@ -29,42 +26,55 @@ const OnboardingLocation = ({
         options={countryOptions}
         required
       />
-
-      <SelectButtonGroup
-        label="Do you require visa sponsorship ?"
-        required
-        value={values?.needs_visa_sponsorship ? "YES" : "NO"}
-        name="needs_visa_sponsorship"
-        onChange={(item) => {
-          setFieldValue(
-            "needs_visa_sponsorship",
-            item === "YES" ? true : false
-          );
-        }}
-        errorMessage={errors.needs_visa_sponsorship as string}
-        touched={touched.needs_visa_sponsorship}
-        options={[
-          { label: "Yes", value: "YES" },
-          { label: "No", value: "NO" },
-        ]}
-      />
       <MultiSelect
-        label="Regions you need visa"
-        name={`visa_regions`}
-        values={values?.visa_regions.map((x) => ({
+        label="Countries of interest (max of 5 selection)"
+        name={`preferred_work_regions`}
+        values={values?.preferred_work_regions.map((x) => ({
           label: x,
           value: x,
         }))}
         onBlur={handleBlur}
-        errorMessage={errors.visa_regions as string}
-        touched={touched.visa_regions}
+        errorMessage={errors.preferred_work_regions as string}
+        touched={touched.preferred_work_regions}
         onChange={(item) => {
           const values = item.map((x) => x.value);
-          setFieldValue("visa_regions", values);
+          setFieldValue("preferred_work_regions", values);
         }}
-        options={visaRegionOptions}
+        options={countryOptions}
+        placeholder="Select preferred locations to work"
         required
+        max={5}
       />
+
+      {values?.preferred_work_regions?.length > 0 && (
+        <div>
+          <p className="text-sm mb-2">Mark the countries you need visa sponsorship *</p>
+          <div className="flex flex-col gap-2.5 border border-zana-grey-300 rounded-lg p-3">
+            {values?.preferred_work_regions?.map((x, i) => (
+              <Checkbox
+                key={i}
+                id={`visa_regions-${x}`}
+                name={`visa_regions`}
+                title={x}
+                checked={values?.visa_regions.includes(x)}
+                onChange={() => {
+                  const previous = values?.visa_regions;
+
+                  let newRegions = [];
+
+                  if (previous?.includes(x)) {
+                    newRegions = previous.filter((region) => region !== x);
+                  } else {
+                    newRegions = [...previous, x];
+                  }
+                  setFieldValue("visa_regions", newRegions);
+                }}
+                variant="alt"
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 };
