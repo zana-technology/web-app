@@ -1,39 +1,48 @@
 import { checkCircleIcon, downloadIcon, pdfIcon2 } from "@/assets";
 import { Button, JobDetailsShell, showToast, Table } from "@/components";
 import { currencyFormatter, subscriptionApi } from "@/libs";
+import { useProfilePreview } from "@/pages/auth/preview/logic";
 import { IColumn } from "@/types";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 const BillingSettings = () => {
-  const plans = [
-    {
-      name: "Starter Plan",
-      features: [
-        "100 job applications",
-        "100 custom CV’s & Cover letters",
-        "Job sourced from over 1 million options in your niche",
-        "Remote job applications",
-        "Visa sponsored job applications",
-      ],
-      price: 20000,
-      isActive: false,
-      key: "starter",
-    },
-    {
-      name: "Pro Plan",
-      features: [
-        "350 job applications",
-        "350 custom CV’s & Cover letters",
-        "Job sourced from over 1 million options in your niche",
-        "Remote job applications",
-        "Visa sponsored job applications",
-      ],
-      price: 60000,
-      isActive: false,
-      key: "pro",
-    },
-  ];
+  const {
+    isLoading,
+    profile,
+    // goBack
+  } = useProfilePreview();
+
+  const plans = useMemo(() => {
+    return [
+      {
+        name: "Starter Plan",
+        features: [
+          "100 job applications",
+          "100 custom CV’s & Cover letters",
+          "Job sourced from over 1 million options in your niche",
+          "Remote job applications",
+          "Visa sponsored job applications",
+        ],
+        price: profile?.current_location?.toLowerCase() === "nigeria" ? 20000 : 20,
+        isActive: false,
+        key: "starter",
+      },
+      {
+        name: "Pro Plan",
+        features: [
+          "350 job applications",
+          "350 custom CV’s & Cover letters",
+          "Job sourced from over 1 million options in your niche",
+          "Remote job applications",
+          "Visa sponsored job applications",
+        ],
+        price: profile?.current_location?.toLowerCase() === "nigeria" ? 60000 : 60,
+        isActive: false,
+        key: "pro",
+      },
+    ];
+  }, [profile?.current_location]);
 
   const hasSub = false;
 
@@ -122,7 +131,16 @@ const BillingSettings = () => {
               <div className="flex items-center justify-between gap-2 font-semibold text-xl">
                 <p>{x.name}</p>
                 <p className="text-zana-primary-normal">
-                  {currencyFormatter({ amount: x.price, currency: "NGN", showFraction: false })}
+                  {currencyFormatter({
+                    amount: x.price,
+                    currency:
+                      profile?.current_location?.toLowerCase() === "nigeria"
+                        ? "NGN"
+                        : profile?.current_location?.toLowerCase() === "united kingdom"
+                          ? "GBP"
+                          : "USD",
+                    showFraction: false,
+                  })}
                 </p>
               </div>
               <div className="flex flex-col gap-3 mt-4 mb-7">

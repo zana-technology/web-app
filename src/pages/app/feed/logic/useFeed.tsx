@@ -79,6 +79,7 @@ export const useFeed = () => {
     currentPage,
     setCurrentPage,
     setFilters,
+    currentTab,
   };
 };
 

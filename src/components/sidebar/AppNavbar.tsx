@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { sidebarData, sidebarExtra } from "./sidebarData";
-import { Button } from "../button";
-import { IoIosNotificationsOutline, IoMdAdd } from "react-icons/io";
+import { IoIosNotificationsOutline } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { logo } from "@/assets";
 import { Dispatch, SetStateAction } from "react";
@@ -33,12 +32,12 @@ export const AppNavbar = ({
       <img src={logo} alt="Zana Logo" className="md:hidden h-[18px]" />
 
       <div className="flex items-center gap-8">
-        <Button
+        {/* <Button
           title="Add a Job"
           icon={<IoMdAdd />}
           iconPosition="left"
           className="h-9 text-sm hidden md:flex"
-        />
+        /> */}
 
         <div className="text-gray-500 flex items-center gap-1.5 cursor-pointer">
           <div className="p-2.5">

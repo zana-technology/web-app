@@ -1,11 +1,28 @@
-import { Button, PageLoader, PageTitle, Pagination, SearchInput, TabMenu } from "@/components";
+import {
+  Button,
+  EmptyState,
+  PageLoader,
+  PageTitle,
+  Pagination,
+  SearchInput,
+  TabMenu,
+} from "@/components";
 import { useFeed } from "./logic";
 import { JobData } from "@/types";
 import { CiFilter } from "react-icons/ci";
 import Jobs from "./Jobs";
 
 const Feed = () => {
-  const { isLoading, tabMenu, setSearchQuery, jobs, meta, currentPage, setCurrentPage } = useFeed();
+  const {
+    isLoading,
+    tabMenu,
+    setSearchQuery,
+    jobs,
+    meta,
+    currentPage,
+    setCurrentPage,
+    currentTab,
+  } = useFeed();
 
   return (
     <>
@@ -31,7 +48,14 @@ const Feed = () => {
                 />
               </div>
             </div>
-            <Jobs jobs={jobs as JobData[]} />
+            {jobs && jobs?.length > 0 ? (
+              <Jobs jobs={jobs as JobData[]} />
+            ) : (
+              <EmptyState
+                text={`No ${currentTab === "applied" ? "auto-applied" : currentTab === "reviewed" ? "Review needed" : "saved"} jobs yet`}
+                subText={`${currentTab === "applied" ? "When you have auto-applied jobs" : currentTab === "reviewed" ? "When you have jobs needing reviews" : "When you save a job"}, they will show here`}
+              />
+            )}
             {jobs && jobs?.length > 0 && (
               <Pagination
                 currentOffset={currentPage}
