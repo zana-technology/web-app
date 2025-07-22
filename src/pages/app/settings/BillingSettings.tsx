@@ -1,5 +1,5 @@
 import { checkCircleIcon, downloadIcon, pdfIcon2 } from "@/assets";
-import { Button, JobDetailsShell, Table } from "@/components";
+import { Button, JobDetailsShell, showToast, Table } from "@/components";
 import { currencyFormatter, subscriptionApi } from "@/libs";
 import { IColumn } from "@/types";
 import { useState } from "react";
@@ -35,7 +35,7 @@ const BillingSettings = () => {
     },
   ];
 
-  const hasSub = true;
+  const hasSub = false;
 
   interface BillData {
     name: string;
@@ -61,10 +61,13 @@ const BillingSettings = () => {
     setLoading(true);
     const { success, data } = await subscriptionApi.subscribe(plan);
 
-    console.log("data", data);
-    // if (success) {
-
-    // }
+    if (success) {
+      showToast({
+        message: "Navigating to payment URL",
+        title: "Success",
+      });
+      window.open(data?.url, "_blank");
+    }
     setLoading(false);
   };
 
@@ -139,7 +142,7 @@ const BillingSettings = () => {
                       : "Subscribe to plan"
                 }
                 // type="submit"
-                // loading={isSubmitting}
+                loading={loading}
                 disabled={x.isActive}
                 variant={hasSub ? "outlined" : "default"}
                 fullWidth

@@ -34,8 +34,6 @@ export const usePreferenceSettings = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log("values", values);
-
       const payload = { ...profile, ...values };
 
       removeEmptyKeys(payload);

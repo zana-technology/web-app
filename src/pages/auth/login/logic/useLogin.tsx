@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { LoginFormValues, SignupDto } from "@/types";
+import { LoginFormValues, TokenDto } from "@/types";
 import { authApi, handleAuthSuccess } from "@/libs";
 import { routes } from "@/router";
 
@@ -25,8 +25,13 @@ export const useLogin = () => {
       const { success, data } = await authApi.login(values);
 
       if (success) {
-        handleAuthSuccess(data as SignupDto);
-        navigate(routes.app.feed);
+        handleAuthSuccess(data?.token as TokenDto);
+
+        if (data?.is_verified) {
+          navigate(routes.app.feed);
+        } else {
+          navigate(`${routes.auth.verify.replace(":id", values?.username)}?f=login`);
+        }
       }
     },
   });

@@ -1,6 +1,6 @@
 import { authApi, handleAuthSuccess, passwordRegex } from "@/libs";
 import { routes } from "@/router/routes";
-import { SignupDto, SignupFormValues } from "@/types";
+import { SignupFormValues, TokenDto } from "@/types";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -42,7 +42,7 @@ export const useSignup = () => {
 
       if (success) {
         navigate(`${routes.auth.verify.replace(":id", values?.email)}`);
-        handleAuthSuccess(data as SignupDto);
+        handleAuthSuccess(data?.token as TokenDto);
       }
     },
   });
