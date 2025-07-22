@@ -30,6 +30,9 @@ client.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     const { token, tokenExpiry } = getToken();
 
+    config.headers["X-CLIENT-ID"] = import.meta.env.VITE_CLIENT_ID as string;
+    config.headers["X-CLIENT-SECRET"] = import.meta.env.VITE_CLIENT_SECRET as string;
+
     if (!token) return config;
 
     if (tokenExpiry && hasTokenExpired(tokenExpiry)) {

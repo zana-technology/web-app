@@ -3,6 +3,7 @@ const serviceRoot = {
   profile: "/v1/profile",
   upload: "/v1/uploads/users",
   jobs: "/v1/jobs",
+  subscription: "/v1/subscription",
 };
 
 export const apiRoutes = {
@@ -28,5 +29,8 @@ export const apiRoutes = {
     single: `${serviceRoot.jobs}/%id%`,
     save: `${serviceRoot.jobs}/%id%/save-unsave`,
     sse: `${serviceRoot.jobs}/sse/auto-apply-credits`,
+  },
+  subsccription: {
+    plan: `${serviceRoot.subscription}/%plan%`,
   },
 };

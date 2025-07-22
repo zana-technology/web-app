@@ -1,7 +1,8 @@
 import { checkCircleIcon, downloadIcon, pdfIcon2 } from "@/assets";
 import { Button, JobDetailsShell, Table } from "@/components";
-import { currencyFormatter } from "@/libs";
+import { currencyFormatter, subscriptionApi } from "@/libs";
 import { IColumn } from "@/types";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 const BillingSettings = () => {
@@ -16,7 +17,8 @@ const BillingSettings = () => {
         "Visa sponsored job applications",
       ],
       price: 20000,
-      isActive: true,
+      isActive: false,
+      key: "starter",
     },
     {
       name: "Pro Plan",
@@ -29,6 +31,7 @@ const BillingSettings = () => {
       ],
       price: 60000,
       isActive: false,
+      key: "pro",
     },
   ];
 
@@ -51,6 +54,19 @@ const BillingSettings = () => {
     //   currencyCode: "NGN",
     // },
   ];
+
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscription = async (plan: string) => {
+    setLoading(true);
+    const { success, data } = await subscriptionApi.subscribe(plan);
+
+    console.log("data", data);
+    // if (success) {
+
+    // }
+    setLoading(false);
+  };
 
   const tableColumns: IColumn<BillData>[] = [
     {
@@ -127,6 +143,9 @@ const BillingSettings = () => {
                 disabled={x.isActive}
                 variant={hasSub ? "outlined" : "default"}
                 fullWidth
+                onClick={() => {
+                  handleSubscription(x.key);
+                }}
               />
             </div>
           ))}
