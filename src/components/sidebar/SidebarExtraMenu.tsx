@@ -15,7 +15,7 @@ const SidebarExtraMenu = ({
       <div className="flex flex-col gap-2 bg-white  border border-zana-grey-300 rounded-xl">
         {sidebarExtra?.map((x, i) => (
           <Link
-            to={x.link}
+            to={x.disabled ? "#" : x.link}
             key={i}
             className={twMerge(
               "flex items-center gap-2 px-2 py-1.5 text-dark-400 rounded hover:text-dark-800 cursor-pointer font-medium"
@@ -27,6 +27,7 @@ const SidebarExtraMenu = ({
           >
             <img src={x.icon} alt={x.title} className="h-[18px]" />
             <p>{x?.title}</p>
+            {x?.disabled && <p className="text-[8px] text-green-500">Coming Soon</p>}
           </Link>
         ))}
       </div>
