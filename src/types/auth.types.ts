@@ -7,12 +7,16 @@ export type SignupFormValues = {
   password: string;
   confirmPassword?: string;
 };
-
-export type SignupDto = {
+export type TokenDto = {
   access_token: string;
   refresh_token: string;
   token_type: string;
   expires_at: number;
+};
+
+export type SignupDto = {
+  token: TokenDto;
+  is_verified: boolean;
 };
 
 export type VerifyEmailFormValues = {

@@ -1,4 +1,4 @@
-import { FileWithPreview, ResourceType, SignupDto } from "@/types";
+import { FileWithPreview, ResourceType, SignupDto, TokenDto } from "@/types";
 import { jobsApi, uploadApi } from "../api";
 import { queryClient } from "@/App";
 import { showToast } from "@/components";
@@ -58,7 +58,7 @@ export const encodeQueryData = (
 
 export const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 
-export const handleAuthSuccess = (authData: SignupDto) => {
+export const handleAuthSuccess = (authData: TokenDto) => {
   const expiresAt = new Date(authData.expires_at * 1000).toISOString();
   const refreshExpiresAt = new Date(Date.now() + SEVEN_DAYS_MS).toISOString();
 

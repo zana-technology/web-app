@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { routes } from "@/router";
@@ -10,6 +10,10 @@ import { showToast } from "@/components";
 export const useVerifyEmail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const [searchParams] = useSearchParams();
+
+  const from = searchParams.get("f");
 
   const initialValues = {
     code: "",
@@ -77,6 +81,13 @@ export const useVerifyEmail = () => {
   const seconds = secondsLeft % 60;
 
   const timeLeft = `${minutes}m:${seconds.toString().padStart(2, "0")}s`;
+
+  useEffect(() => {
+    if (from === "login") {
+      restartCountdown();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [from]);
 
   return {
     formik,
