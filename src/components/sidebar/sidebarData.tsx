@@ -4,7 +4,7 @@ import {
   feedIcon,
   filePolicyIcon,
   giftIcon,
-  linkGreyIcon,
+  // linkGreyIcon,
   mailIcon,
   settingsIcon,
   starIcon,
@@ -49,12 +49,12 @@ export const sidebarData = [
 ];
 
 export const sidebarExtra = [
-  {
-    title: "Home Page",
-    icon: linkGreyIcon,
-    link: routes.home,
-    disabled: true,
-  },
+  // {
+  //   title: "Home Page",
+  //   icon: linkGreyIcon,
+  //   link: routes.home,
+  //   disabled: true,
+  // },
   {
     title: "Settings",
     icon: settingsIcon,

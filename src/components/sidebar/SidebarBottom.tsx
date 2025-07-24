@@ -13,9 +13,9 @@ const SidebarBottom = () => {
 
   const { data } = profileApi.useGetProfile();
 
-  const { isLoading, data: creditData } = jobsApi.useGetJobCredit();
+  // const { isLoading, data: creditData } = jobsApi.useGetJobCredit();
 
-  console.log("creditData", creditData);
+  // console.log("creditData", creditData);
 
   const user = useMemo(() => {
     if (data?.success) {
