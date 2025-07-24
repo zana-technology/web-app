@@ -1,6 +1,6 @@
 import { appliedIcon, needsReviewIcon } from "@/assets";
-import { Button, MatchPercentage, StatusTag } from "@/components";
-import { saveJob, toSentenceCase, truncateText } from "@/libs";
+import { Button, DangerousContent, MatchPercentage, StatusTag } from "@/components";
+import { formatText, saveJob, toSentenceCase, truncateText } from "@/libs";
 import { JobData, JobStatus } from "@/types";
 import JobHighlights from "./JobHighlights";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +41,8 @@ const Jobs = ({ jobs }: { jobs: JobData[] }) => {
               </div>
             </div>
             <JobHighlights job={x} />
-            <p className="text-sm">{truncateText(x?.description, 65)}</p>
+
+            <DangerousContent content={formatText(truncateText(x?.description, 65))} />
             <div className="flex items-center gap-2 flex-wrap">
               {x?.keywords?.map((y, i) => (
                 <div key={i} className="bg-zana-grey-100 text-dark-400 px-2.5 py-1 text-xs rounded">

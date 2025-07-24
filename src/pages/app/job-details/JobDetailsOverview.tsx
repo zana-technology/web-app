@@ -1,5 +1,6 @@
 import { starGoldIcon } from "@/assets";
-import { Button, JobDetailsShell } from "@/components";
+import { Button, DangerousContent, JobDetailsShell } from "@/components";
+import { formatText } from "@/libs";
 import { JobData } from "@/types";
 import { useState } from "react";
 
@@ -14,7 +15,10 @@ const JobDetailsOverview = ({ job }: { job: JobData }) => {
   return (
     <>
       <JobDetailsShell title="Job Description">
-        <p className="mb-2">{displayedDescription}</p>
+        <DangerousContent
+          content={formatText(displayedDescription)}
+          className="mb-2 flex flex-col gap-5"
+        />
         {isLong && (
           <Button
             title={expanded ? "Read Less" : "Read More"}

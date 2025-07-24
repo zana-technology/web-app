@@ -5,7 +5,7 @@ import { JobData } from "@/types";
 const JobDetailsCompanyInfo = ({ job }: { job: JobData }) => {
   return (
     <>
-      <JobDetailsShell title={`About ${job?.company ? job?.company : ""}`}>
+      <JobDetailsShell title={`About ${job?.company?.name ? job?.company?.name : ""}`}>
         <p className="mb-3">{job?.companyInfo?.about}</p>
         <div className="grid xs:grid-cols-2 gap-3">
           <Text label="Industry" value={job?.companyInfo?.industry as string} />
