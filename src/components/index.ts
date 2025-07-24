@@ -16,3 +16,4 @@ export * from "./status-tag";
 export * from "./jobs";
 export * from "./pagination";
 export * from "./table";
+export * from "./error-boundary";
