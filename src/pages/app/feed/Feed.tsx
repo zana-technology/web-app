@@ -22,6 +22,7 @@ const Feed = () => {
     currentPage,
     setCurrentPage,
     currentTab,
+    renderEmptyText,
   } = useFeed();
 
   return (
@@ -52,8 +53,9 @@ const Feed = () => {
               <Jobs jobs={jobs as JobData[]} />
             ) : (
               <EmptyState
-                text={`No ${currentTab === "applied" ? "auto-applied" : currentTab === "reviewed" ? "Review needed" : "saved"} jobs yet`}
-                subText={`${currentTab === "applied" ? "When you have auto-applied jobs" : currentTab === "reviewed" ? "When you have jobs needing reviews" : "When you save a job"}, they will show here`}
+                text={renderEmptyText().text}
+                subText={renderEmptyText().subText}
+                className="mt-20"
               />
             )}
             {/* {jobs && jobs?.length > 0 && (

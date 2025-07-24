@@ -4,18 +4,26 @@ import { avatar } from "@/assets";
 import { jobsApi, profileApi } from "@/libs";
 import { useMemo, useState } from "react";
 import SidebarExtraMenu from "./SidebarExtraMenu";
+import { CreditInfo } from "@/types";
+import { Button } from "../button";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@/router";
 
 const SidebarBottom = () => {
-  const creditsLeft = 100;
-  const creditsBought = 200;
-
-  const percentageLeft = (creditsLeft / creditsBought) * 100;
-
   const { data } = profileApi.useGetProfile();
 
-  // const { isLoading, data: creditData } = jobsApi.useGetJobCredit();
+  const { data: creditData } = jobsApi.useGetJobCredit();
 
-  // console.log("creditData", creditData);
+  const creditInfo = useMemo(() => {
+    if (creditData?.success) {
+      return creditData?.data;
+    }
+  }, [creditData?.data, creditData?.success]) as CreditInfo;
+
+  const creditsLeft = creditInfo?.credits_remaining ?? 0;
+  const creditsBought = creditInfo?.credits_purchased ?? 0;
+
+  const percentageLeft = (creditsLeft / creditsBought) * 100;
 
   const user = useMemo(() => {
     if (data?.success) {
@@ -40,6 +48,8 @@ const SidebarBottom = () => {
     return email ?? "";
   };
 
+  const navigate = useNavigate();
+
   return (
     <div
       className="mb-4 flex flex-col items-center relative"
@@ -49,21 +59,31 @@ const SidebarBottom = () => {
     >
       {showExtra && <SidebarExtraMenu setShowExtra={setShowExtra} />}
       <div className="w-full border border-zana-grey-300 p-4 flex flex-col gap-3 mb-6 rounded-xl">
-        <div className="flex justify-between items-center">
-          <p className="font-semibold">Job count</p>
+        <div className="flex justify-between items-center text-sm">
+          <p className="font-semibold">Auto Apply Credits</p>
           <p className="text-zana-grey-700">
             {creditsLeft}/{creditsBought}
           </p>
         </div>
         <div className="h-2 rounded w-full bg-diagonal-stripes">
           <div
-            style={{ width: `${percentageLeft}%` }}
+            style={{ width: `${creditsBought > 0 ? percentageLeft : 0}%` }}
             className={twMerge(
               "h-2 bg-zana-primary-normal",
               percentageLeft < 100 ? "rounded-l" : "rounded"
             )}
           ></div>
         </div>
+        {creditsBought === 0 && (
+          <Button
+            title="Subscribe"
+            fullWidth
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`${routes.app.settings}?tab=billing`);
+            }}
+          />
+        )}
       </div>
 
       <div className="w-full border border-zana-grey-300 p-4 flex gap-2 justify-between mb-5 rounded-xl bg-zana-grey-500">

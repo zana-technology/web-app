@@ -15,7 +15,7 @@ export const sidebarData = [
   {
     title: "Job Feed",
     icon: feedIcon,
-    link: routes.app.feed,
+    link: `${routes.app.feed}?tab=applied`,
   },
   {
     title: "Applications",
@@ -30,9 +30,9 @@ export const sidebarData = [
     disabled: true,
   },
   {
-    title: "Inbox",
+    title: "Email",
     icon: mailIcon,
-    link: routes.app.inbox,
+    link: routes.app.email,
     disabled: true,
   },
   {

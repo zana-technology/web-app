@@ -32,11 +32,11 @@ export const useFeed = () => {
   }, [data]);
 
   const tabMenu = [
-    { label: "All Jobs", value: "all" },
     {
       label: "Auto-Applied",
       value: "applied",
     },
+    { label: "All Jobs", value: "all" },
     {
       label: "To Review",
       value: "review",
@@ -52,7 +52,7 @@ export const useFeed = () => {
   const currentTab = searchParams.get("tab");
 
   useEffect(() => {
-    if (currentTab === tabMenu[1]?.value) {
+    if (currentTab === tabMenu[0]?.value) {
       setFilters({
         applied: true,
       });
@@ -70,6 +70,40 @@ export const useFeed = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTab]);
 
+  const renderEmptyText = () => {
+    switch (currentTab) {
+      case tabMenu[0]?.value:
+        return {
+          text: "Auto applying in progress",
+          subText:
+            "Zana is searching for the best jobs to apply for you. Hold tight and check back within 1 hour",
+        };
+      case tabMenu[1]?.value:
+        return {
+          text: "All Jobs matching your profile",
+          subText:
+            "Zana is searching for the best jobs for you. Hold tight and check back within 1 hour",
+        };
+      case tabMenu[2]?.value:
+        return {
+          text: "No Jobs needing Review",
+          subText: "When you have jobs needing reviews, they will show here",
+        };
+      case tabMenu[3]?.value:
+        return {
+          text: "No saved jobs yet",
+          subText: "When you save a job, they will show here",
+        };
+
+      default:
+        return {
+          text: "Auto applying in progress",
+          subText:
+            "Zana is searching for the best jobs to apply for you. Hold tight and check back within 1 hour",
+        };
+    }
+  };
+
   return {
     isLoading,
     tabMenu,
@@ -80,6 +114,7 @@ export const useFeed = () => {
     setCurrentPage,
     setFilters,
     currentTab,
+    renderEmptyText,
   };
 };
 

@@ -69,3 +69,10 @@ export interface JobResponse {
   next: string | null;
   previous: string | null;
 }
+
+export interface CreditInfo {
+  credits_purchased: number;
+  credits_used: number;
+  credits_remaining: number;
+  purchased_at: string | null; // ISO date string or null if not purchased
+}

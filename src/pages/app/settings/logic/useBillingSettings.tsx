@@ -2,12 +2,18 @@ import { downloadIcon, pdfIcon2 } from "@/assets";
 import { showToast } from "@/components";
 import { subscriptionApi } from "@/libs";
 import { useProfilePreview } from "@/pages/auth/preview/logic";
-import { IColumn } from "@/types";
-import React, { useMemo, useState } from "react";
+import { IColumn, Subscription } from "@/types";
+import { useMemo, useState } from "react";
 
 export const useBillingSettings = () => {
   const { isLoading, profile } = useProfilePreview();
   const { isLoading: loadingStatus, data } = subscriptionApi.useSubscriptionStatus();
+
+  const subInfo = useMemo(() => {
+    if (data?.success) {
+      return data?.data;
+    }
+  }, [data?.data, data?.success]) as Subscription;
 
   const [loading, setLoading] = useState(false);
 
@@ -37,7 +43,7 @@ export const useBillingSettings = () => {
           "Visa sponsored job applications",
         ],
         price: profile?.current_location?.toLowerCase() === "nigeria" ? 20000 : 20,
-        isActive: false,
+        isActive: subInfo?.type === "starter" ? true : false,
         key: "starter",
       },
       {
@@ -50,13 +56,13 @@ export const useBillingSettings = () => {
           "Visa sponsored job applications",
         ],
         price: profile?.current_location?.toLowerCase() === "nigeria" ? 60000 : 60,
-        isActive: false,
+        isActive: subInfo?.type === "pro" ? true : false,
         key: "pro",
       },
     ];
-  }, [profile?.current_location]);
+  }, [profile?.current_location, subInfo?.type]);
 
-  const hasSub = false;
+  const hasSub = subInfo?.status === "active" ? true : false;
 
   const tableColumns: IColumn<BillData>[] = [
     {
@@ -113,7 +119,7 @@ export const useBillingSettings = () => {
     // },
   ];
 
-  console.log("data", data);
+  console.log("subInfo", subInfo);
 
   return {
     profile,
@@ -124,6 +130,7 @@ export const useBillingSettings = () => {
     loading,
     isLoading,
     loadingStatus,
+    subInfo,
   };
 };
 

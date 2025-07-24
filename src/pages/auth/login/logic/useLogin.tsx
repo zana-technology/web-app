@@ -28,7 +28,7 @@ export const useLogin = () => {
         handleAuthSuccess(data?.token as TokenDto);
 
         if (data?.is_verified) {
-          navigate(routes.app.feed);
+          navigate(`${routes.app.feed}?tab=applied`);
         } else {
           navigate(`${routes.auth.verify.replace(":id", values?.username)}?f=login`);
         }
