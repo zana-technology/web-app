@@ -10,7 +10,7 @@ const JobDetailsCompany = ({ job }: { job: JobData }) => {
         {job?.companyLogo && <img src={job.companyLogo} className="h-12 w-12 object-cover" />}
         <div>
           <h4 className="font-semibold text-xl">{job?.title}</h4>
-          <p className="text-sm text-gray-500">{job?.company}</p>
+          <p className="text-sm text-gray-500">{job?.company?.name}</p>
         </div>
       </div>
       <div className="flex items-center gap-2.5 flex-wrap">

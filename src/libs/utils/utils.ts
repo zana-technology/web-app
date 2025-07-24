@@ -236,6 +236,27 @@ export function truncateText(text: string, maxLength: number) {
   return text.length > maxLength ? text.slice(0, maxLength).trimEnd() + "..." : text;
 }
 
+export function formatText(input: string): string {
+  return (
+    input
+      // Bold (**bold**)
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+
+      // Bullet points starting with "* "
+      .replace(/^\* (.*)$/gm, "<li>$1</li>")
+
+      // Bullet points starting with "- " (unescaped)
+      .replace(/^(?<!\\)- (.*)$/gm, "<li>$1</li>")
+
+      // Bullet points starting with "+ " (unescaped)
+      .replace(/^(?<!\\)\+ (.*)$/gm, "<li>$1</li>")
+
+      // Render "\-" and "\+" as plain text "-"
+      .replace(/\\-/g, "-")
+      .replace(/\\\+/g, "+")
+  );
+}
+
 export const saveJob = async (id: string) => {
   const { success, message, title } = await jobsApi.save(id);
 

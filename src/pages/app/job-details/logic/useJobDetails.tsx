@@ -28,6 +28,7 @@ export const useJobDetails = () => {
       const jobDetails = data?.data;
       return {
         ...jobDetails,
+        companyLogo: jobDetails?.company?.logo_url ?? "",
         status: jobDetails?.applied ? JobStatus.AutoApplied : JobStatus.NeedsReview,
         mode: jobDetails?.is_remote ? JobMode.Remote : JobMode.Onsite,
       };
