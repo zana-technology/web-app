@@ -24,8 +24,16 @@ const save = async (id: string) => {
   });
 };
 
+const useGetJobCredit = () => {
+  return useFetcher<JobData>({
+    queryKey: [apiQueryKeys.getJobCredits],
+    url: apiRoutes.jobs.sse,
+  });
+};
+
 export const jobsApi = {
   useGetJobs,
   useGetSingleJob,
   save,
+  useGetJobCredit,
 };

@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { RiExpandUpDownLine } from "react-icons/ri";
 import { avatar } from "@/assets";
-import { profileApi } from "@/libs";
+import { jobsApi, profileApi } from "@/libs";
 import { useMemo, useState } from "react";
 import SidebarExtraMenu from "./SidebarExtraMenu";
 
@@ -12,6 +12,10 @@ const SidebarBottom = () => {
   const percentageLeft = (creditsLeft / creditsBought) * 100;
 
   const { data } = profileApi.useGetProfile();
+
+  const { isLoading, data: creditData } = jobsApi.useGetJobCredit();
+
+  console.log("creditData", creditData);
 
   const user = useMemo(() => {
     if (data?.success) {
