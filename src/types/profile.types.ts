@@ -60,6 +60,7 @@ export type OnboardingFormValues = {
   disability_status: string | null;
   full_name: string;
   portfolio_url: string;
+  email: string;
   resume?: File[];
   preferred_work_regions: string[];
 };
