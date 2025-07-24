@@ -4,7 +4,7 @@ import RequireAuth from "./RequireAuth";
 import protectedRoutes from "./protectedRoutes";
 import { authRoutes, openRoutes } from "./openRoutes";
 import { AppLayout, AuthLayout } from "@/layouts";
-import { ErrorPage } from "@/components";
+import { ErrorPage, NotFound } from "@/components";
 
 export const router = createBrowserRouter([
   ...openRoutes,
@@ -24,5 +24,9 @@ export const router = createBrowserRouter([
       },
     ],
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
