@@ -1,5 +1,5 @@
 import { apiQueryKeys, apiRequest, useFetcher } from "../config";
-import { JobData, JobResponse, SignupDto } from "@/types";
+import { CreditInfo, JobData, JobResponse, SignupDto } from "@/types";
 import { apiRoutes } from "../routes";
 
 const useGetJobs = () => {
@@ -25,9 +25,9 @@ const save = async (id: string) => {
 };
 
 const useGetJobCredit = () => {
-  return useFetcher<JobData>({
+  return useFetcher<CreditInfo>({
     queryKey: [apiQueryKeys.getJobCredits],
-    url: apiRoutes.jobs.sse,
+    url: apiRoutes.jobs.credits,
   });
 };
 

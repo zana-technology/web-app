@@ -11,7 +11,7 @@ const SidebarExtraMenu = ({
   setShowExtra: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
-    <div className="absolute bg-zana-grey-500 w-full flex flex-col bottom-[60%] shadow-md z-20 border border-zana-grey-300 rounded-xl py-1.5">
+    <div className="absolute bg-zana-grey-500 w-full flex flex-col bottom-[50%] shadow-md z-20 border border-zana-grey-300 rounded-xl py-1.5">
       <div className="flex flex-col gap-2 bg-white  border border-zana-grey-300 rounded-xl">
         {sidebarExtra?.map((x, i) => (
           <Link

@@ -28,7 +28,7 @@ export const apiRoutes = {
     singleApplication: `${serviceRoot.jobs}/applications/%id%`,
     single: `${serviceRoot.jobs}/%id%`,
     save: `${serviceRoot.jobs}/%id%/save-unsave`,
-    sse: `${serviceRoot.jobs}/sse/credits`,
+    credits: `${serviceRoot.jobs}/credits`,
   },
   subscription: {
     plan: `${serviceRoot.subscription}/%plan%`,

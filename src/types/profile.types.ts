@@ -136,3 +136,10 @@ export interface PreviewChildProps {
   showForm: ShowFormState;
   showFormHandler: (obj: Partial<ShowFormState>) => void;
 }
+
+export interface Subscription {
+  status: "active" | "inactive" | "cancelled" | string;
+  type: "starter" | "pro" | "enterprise" | string;
+  credits_purchased: number;
+  credits_remaining: number;
+}
