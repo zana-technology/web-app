@@ -31,7 +31,7 @@ const SidebarBottom = () => {
 
       const user = {
         name: profile?.full_name,
-        email: profile?.platform_email,
+        email: profile?.email,
         avatar: profile?.avatar_url,
       };
 
