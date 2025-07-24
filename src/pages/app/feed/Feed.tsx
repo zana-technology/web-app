@@ -56,7 +56,7 @@ const Feed = () => {
                 subText={`${currentTab === "applied" ? "When you have auto-applied jobs" : currentTab === "reviewed" ? "When you have jobs needing reviews" : "When you save a job"}, they will show here`}
               />
             )}
-            {jobs && jobs?.length > 0 && (
+            {/* {jobs && jobs?.length > 0 && (
               <Pagination
                 currentOffset={currentPage}
                 // totalPages={meta?.total as number}
@@ -65,7 +65,7 @@ const Feed = () => {
                 limit={meta?.limit as number}
                 className="mt-4"
               />
-            )}
+            )} */}
           </>
         )}
       </div>

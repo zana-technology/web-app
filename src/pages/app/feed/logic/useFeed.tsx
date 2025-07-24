@@ -12,7 +12,7 @@ export const useFeed = () => {
     if (data?.success) {
       return data?.data?.data?.map((x) => ({
         ...x,
-        companyLogo: companyLogo,
+        companyLogo: x?.company?.logo_url ?? companyLogo,
         match_score: x?.match_score ?? 0,
         salary_currency: x?.salary_currency ?? "USD",
         status: x?.applied ? JobStatus.AutoApplied : JobStatus.NeedsReview,

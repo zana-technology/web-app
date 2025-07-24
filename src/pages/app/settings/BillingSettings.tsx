@@ -1,121 +1,12 @@
-import { checkCircleIcon, downloadIcon, pdfIcon2 } from "@/assets";
-import { Button, JobDetailsShell, showToast, Table } from "@/components";
-import { currencyFormatter, subscriptionApi } from "@/libs";
-import { useProfilePreview } from "@/pages/auth/preview/logic";
-import { IColumn } from "@/types";
-import { useMemo, useState } from "react";
+import { checkCircleIcon } from "@/assets";
+import { Button, JobDetailsShell } from "@/components";
+import { currencyFormatter } from "@/libs";
 import { twMerge } from "tailwind-merge";
+import { useBillingSettings } from "./logic";
 
 const BillingSettings = () => {
-  const {
-    isLoading,
-    profile,
-    // goBack
-  } = useProfilePreview();
+  const { profile, plans, hasSub, handleSubscription, loading } = useBillingSettings();
 
-  const plans = useMemo(() => {
-    return [
-      {
-        name: "Starter Plan",
-        features: [
-          "100 job applications",
-          "100 custom CV’s & Cover letters",
-          "Job sourced from over 1 million options in your niche",
-          "Remote job applications",
-          "Visa sponsored job applications",
-        ],
-        price: profile?.current_location?.toLowerCase() === "nigeria" ? 20000 : 20,
-        isActive: false,
-        key: "starter",
-      },
-      {
-        name: "Pro Plan",
-        features: [
-          "350 job applications",
-          "350 custom CV’s & Cover letters",
-          "Job sourced from over 1 million options in your niche",
-          "Remote job applications",
-          "Visa sponsored job applications",
-        ],
-        price: profile?.current_location?.toLowerCase() === "nigeria" ? 60000 : 60,
-        isActive: false,
-        key: "pro",
-      },
-    ];
-  }, [profile?.current_location]);
-
-  const hasSub = false;
-
-  interface BillData {
-    name: string;
-    date: string;
-    plan: string;
-    amount: number;
-    currencyCode: "NGN";
-  }
-
-  const sampleBills: BillData[] = [
-    // {
-    //   name: "Invoice #521",
-    //   date: "12/06/2025",
-    //   plan: "Starter plan",
-    //   amount: 20000,
-    //   currencyCode: "NGN",
-    // },
-  ];
-
-  const [loading, setLoading] = useState(false);
-
-  const handleSubscription = async (plan: string) => {
-    setLoading(true);
-    const { success, data } = await subscriptionApi.subscribe(plan);
-
-    if (success) {
-      showToast({
-        message: "Navigating to payment URL",
-        title: "Success",
-      });
-      window.open(data?.url, "_blank");
-    }
-    setLoading(false);
-  };
-
-  const tableColumns: IColumn<BillData>[] = [
-    {
-      header: "Invoice",
-      accessorKey: "name",
-      cell: (item) => {
-        const name = item.getValue();
-
-        return (
-          <span className="flex items-center gap-3">
-            <img src={pdfIcon2} alt={name} className="w-10 h-10" />
-            <span>{name}</span>
-          </span>
-        );
-      },
-    },
-    {
-      header: "Billing Date",
-      accessorKey: "date",
-      type: "date",
-    },
-    {
-      header: "Plan",
-      accessorKey: "plan",
-    },
-    {
-      header: "Amount",
-      accessorKey: "amount",
-      type: "currency",
-    },
-    {
-      header: "Action",
-      cell: () => {
-        return <img src={downloadIcon} alt="icon" className="w-4 h-4" />;
-      },
-    },
-  ];
   return (
     <div>
       <JobDetailsShell title="Plans">
@@ -172,14 +63,14 @@ const BillingSettings = () => {
           ))}
         </div>
       </JobDetailsShell>
-      <JobDetailsShell title="Billing history" className="mt-16">
+      {/* <JobDetailsShell title="Billing history" className="mt-16">
         <Table
           tableData={sampleBills}
           tableColumns={tableColumns}
           emptyMessage="No Billings yet"
           emptySubText="Subscribe and start getting applications today"
         />
-      </JobDetailsShell>
+      </JobDetailsShell> */}
     </div>
   );
 };

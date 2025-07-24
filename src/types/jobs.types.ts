@@ -1,7 +1,7 @@
 export interface JobData {
   title: string;
   description: string;
-  company: string;
+  company: Company;
   location: string;
   job_url: string;
   site: string;
@@ -45,6 +45,16 @@ export enum JobMode {
   Remote = "Remote",
   Hybrid = "Hybrid",
   Onsite = "Onsite",
+}
+
+export interface Company {
+  name: string;
+  size: string | null;
+  industry: string | null;
+  website: string | null;
+  description: string | null;
+  logo_url: string | null;
+  year_founded: number | null;
 }
 
 //company logo missing
