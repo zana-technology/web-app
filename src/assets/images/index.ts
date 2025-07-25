@@ -10,6 +10,10 @@ import systemTheme from "./system-theme.png";
 import pdfIcon2 from "./pdfIcon2.png";
 import emptyStateIcon from "./zana-empty.png";
 import banner from "./landing-banner.png";
+import addJobScreen from "./add-job-screen.png";
+import feedScreen from "./feed-screen.png";
+import applicationScreen from "./application-screen.png";
+import resumeScreen from "./resume-screen.png";
 
 export {
   logo,
@@ -24,4 +28,8 @@ export {
   pdfIcon2,
   emptyStateIcon,
   banner,
+  addJobScreen,
+  applicationScreen,
+  resumeScreen,
+  feedScreen,
 };
