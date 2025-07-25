@@ -25,7 +25,7 @@ export const useProfilePreview = () => {
         },
         {
           label: "Email Address",
-          value: profile?.platform_email ?? constant.notAdded,
+          value: profile?.email ?? constant.notAdded,
         },
         {
           label: "Phone Number",
@@ -68,6 +68,7 @@ export const useProfilePreview = () => {
       //Personal information
       full_name: profile?.full_name ?? "",
       platform_email: profile?.platform_email ?? "",
+      email: profile?.email ?? "",
       phone_number: profile?.phone_number ?? "",
       current_location: profile?.current_location ?? "",
       linkedin_url: profile?.linkedin_url ?? "",
@@ -142,7 +143,7 @@ export const useProfilePreview = () => {
         "Please enter your full name (first and last)",
         (value) => !!value && value.trim().split(" ").length >= 2
       ),
-    platform_email: yup.string().email("Invalid email format").nullable(),
+    email: yup.string().email("Invalid email format").nullable(),
     phone_number: yup.string().matches(phoneNumberRegex, "Invalid phone number").nullable(),
     current_location: yup.string().max(100),
     linkedin_url: yup

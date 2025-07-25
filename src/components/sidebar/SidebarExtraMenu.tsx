@@ -4,14 +4,19 @@ import { twMerge } from "tailwind-merge";
 import { Dispatch, SetStateAction } from "react";
 import { logoutIcon } from "@/assets";
 import { handleLogout } from "@/libs";
+import { useClickOutside } from "@/hooks";
 
 const SidebarExtraMenu = ({
   setShowExtra,
 }: {
   setShowExtra: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const ref = useClickOutside(() => setShowExtra(false));
   return (
-    <div className="absolute bg-zana-grey-500 w-full flex flex-col bottom-[50%] shadow-md z-20 border border-zana-grey-300 rounded-xl py-1.5">
+    <div
+      className="absolute bg-zana-grey-500 w-full flex flex-col bottom-[50%] shadow-md z-20 border border-zana-grey-300 rounded-xl py-1.5"
+      ref={ref}
+    >
       <div className="flex flex-col gap-2 bg-white  border border-zana-grey-300 rounded-xl">
         {sidebarExtra?.map((x, i) => (
           <Link
