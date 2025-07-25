@@ -1,15 +1,15 @@
-import { apiQueryKeys, apiRequest, useFetcher } from "../config";
+import { apiQueryKeys, apiRequest, useFetcher, useInfiniteFetcher } from "../config";
 import { CreditInfo, JobData, JobResponse, SignupDto } from "@/types";
 import { apiRoutes } from "../routes";
 
 const useGetJobs = () => {
-  return useFetcher<JobResponse>({
+  return useInfiniteFetcher<JobResponse>({
     queryKey: [apiQueryKeys.getJobs],
     url: apiRoutes.jobs.index,
-    paginate: true,
     hasFilters: true,
   });
 };
+
 const useGetSingleJob = ({ id }: { id: string }) => {
   return useFetcher<JobData>({
     queryKey: [apiQueryKeys.getSingleJob, id],

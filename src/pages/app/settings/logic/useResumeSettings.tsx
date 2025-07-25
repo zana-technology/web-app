@@ -1,5 +1,6 @@
 import { showToast } from "@/components";
-import { convertUrlsToFiles, handleUpload, profileApi } from "@/libs";
+import { convertUrlsToFiles, handleUpload, profileApi, refreshQuery } from "@/libs";
+import { apiQueryKeys } from "@/libs/api/config";
 import { FileWithPreview, UploadedResume } from "@/types";
 import { useFormik } from "formik";
 import { useEffect, useMemo, useState } from "react";
@@ -7,6 +8,7 @@ import * as yup from "yup";
 
 export const useResumeSettings = () => {
   const { isLoading, data, setFilters } = profileApi.useGetProfile();
+  const [updateResume, setUpdateResume] = useState(false);
 
   useEffect(() => {
     setFilters({
@@ -58,6 +60,8 @@ export const useResumeSettings = () => {
               title: title ?? "Successful",
               message: message,
             });
+            refreshQuery({ queryKey: [apiQueryKeys.getProfile] });
+            setUpdateResume(false);
           }
         }
       }
@@ -75,7 +79,7 @@ export const useResumeSettings = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resumes]);
 
-  return { isLoading, loading, formik };
+  return { isLoading, loading, formik, updateResume, setUpdateResume };
 };
 
 export default useResumeSettings;

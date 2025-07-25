@@ -54,17 +54,20 @@ export const Taginput = ({
     const { key, currentTarget } = event;
     const value = currentTarget.value;
 
-    if (key === "Enter" && value !== "") {
-      const multiTags = inputValue.split(",");
+    if (key === "Enter") {
+      event.preventDefault();
+      if (value !== "") {
+        const multiTags = inputValue.split(",");
 
-      if (inputValue.includes(",")) {
-        const newTags = multiTags.filter((item) => !tags.includes(item.trim()));
-        setTags([...tags, ...newTags.map((tag) => tag.trim())]);
-      } else if (!tags.includes(inputValue.trim())) {
-        setTags([...tags, inputValue.trim()]);
+        if (inputValue.includes(",")) {
+          const newTags = multiTags.filter((item) => !tags.includes(item.trim()));
+          setTags([...tags, ...newTags.map((tag) => tag.trim())]);
+        } else if (!tags.includes(inputValue.trim())) {
+          setTags([...tags, inputValue.trim()]);
+        }
+
+        setInputValue("");
       }
-
-      setInputValue("");
     } else if (key === "Backspace" && tags.length && value.length === 0) {
       event.preventDefault();
       const tagsCopy = [...tags];

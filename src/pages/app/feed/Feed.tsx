@@ -1,16 +1,10 @@
-import {
-  Button,
-  EmptyState,
-  PageLoader,
-  PageTitle,
-  Pagination,
-  SearchInput,
-  TabMenu,
-} from "@/components";
+import { Button, EmptyState, PageLoader, PageTitle, SearchInput, TabMenu } from "@/components";
 import { useFeed } from "./logic";
 import { JobData } from "@/types";
 import { CiFilter } from "react-icons/ci";
 import Jobs from "./Jobs";
+import { useRef } from "react";
+import { useInfiniteScrollTrigger } from "@/hooks";
 
 const Feed = () => {
   const {
@@ -18,12 +12,20 @@ const Feed = () => {
     tabMenu,
     setSearchQuery,
     jobs,
-    meta,
-    currentPage,
-    setCurrentPage,
-    currentTab,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
     renderEmptyText,
+    currentTab,
   } = useFeed();
+
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
+  useInfiniteScrollTrigger({
+    targetRef: loadMoreRef,
+    hasMore: hasNextPage ?? false,
+    onLoadMore: fetchNextPage,
+  });
 
   return (
     <>
@@ -50,7 +52,7 @@ const Feed = () => {
               </div>
             </div>
             {jobs && jobs?.length > 0 ? (
-              <Jobs jobs={jobs as JobData[]} />
+              <Jobs jobs={jobs as JobData[]} currentTab={currentTab as string} />
             ) : (
               <EmptyState
                 text={renderEmptyText().text}
@@ -58,16 +60,14 @@ const Feed = () => {
                 className="mt-20"
               />
             )}
-            {/* {jobs && jobs?.length > 0 && (
-              <Pagination
-                currentOffset={currentPage}
-                // totalPages={meta?.total as number}
-                total={jobs?.length >= 50 ? 200 : (meta?.total as number)}
-                setCurrentOffset={setCurrentPage}
-                limit={meta?.limit as number}
-                className="mt-4"
-              />
-            )} */}
+            <div ref={loadMoreRef} />
+            {isFetchingNextPage ? (
+              <div className="w-full flex justify-center mt-10">
+                <PageLoader variant="bar" />
+              </div>
+            ) : (
+              ""
+            )}
           </>
         )}
       </div>

@@ -1,9 +1,9 @@
-import { userIcon } from '@/assets';
-import { Input, PhoneInput, ProfileSection, Text } from '@/components';
-import { OnboardingProfileFormValues, Option, ShowFormState } from '@/types';
-import { FormikProps } from 'formik';
-import { BsCheck } from 'react-icons/bs';
-import { MdOutlineEdit } from 'react-icons/md';
+import { userIcon } from "@/assets";
+import { Input, PhoneInput, ProfileSection, Text } from "@/components";
+import { OnboardingProfileFormValues, Option, ShowFormState } from "@/types";
+import { FormikProps } from "formik";
+import { BsCheck } from "react-icons/bs";
+import { MdOutlineEdit } from "react-icons/md";
 
 interface PersonalInfoProps {
   personalInformation: Option[];
@@ -32,11 +32,11 @@ const PersonalInfo = ({
   return (
     <ProfileSection
       section={{
-        title: 'Personal information',
+        title: "Personal information",
         icon: userIcon,
       }}
       button={{
-        title: showForm?.personalInfo ? 'Done editing' : 'Edit',
+        title: showForm?.personalInfo ? "Done editing" : "Edit",
         icon: showForm?.personalInfo ? <BsCheck size={24} /> : <MdOutlineEdit />,
         onClick: () => {
           if (!showForm?.personalInfo) {
@@ -45,7 +45,7 @@ const PersonalInfo = ({
             handleSubmit();
           }
         },
-        type: showForm?.personalInfo ? 'submit' : 'button',
+        type: showForm?.personalInfo ? "submit" : "button",
         loading: showForm?.personalInfo ? isSubmitting : false,
       }}
     >
@@ -63,12 +63,12 @@ const PersonalInfo = ({
           />
           <Input
             label="Email address"
-            name="platform_email"
-            value={values.platform_email}
+            name="email"
+            value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
-            errorMessage={errors.platform_email}
-            touched={touched.platform_email}
+            errorMessage={errors.email}
+            touched={touched.email}
           />
           <PhoneInput
             label="Phone number"
@@ -80,7 +80,7 @@ const PersonalInfo = ({
             onBlur={handleBlur}
             errorMessage={errors.phone_number}
             touched={touched?.phone_number}
-            defaultCountry={'US'}
+            defaultCountry={"US"}
           />
           <Input
             label="Location"

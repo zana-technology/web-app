@@ -5,30 +5,28 @@ import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export const useFeed = () => {
-  const { isLoading, data, setCurrentPage, currentPage, setSearchQuery, setFilters } =
-    jobsApi.useGetJobs();
+  const {
+    isLoading,
+    data,
+    setSearchQuery,
+    setFilters,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = jobsApi.useGetJobs();
 
   const jobs = useMemo(() => {
-    if (data?.success) {
-      return data?.data?.data?.map((x) => ({
+    if (!data?.pages[0]?.success) return [];
+    return data.pages.flatMap((page) =>
+      page?.data?.data?.map((x) => ({
         ...x,
         companyLogo: x?.company?.logo_url ?? companyLogo,
         match_score: x?.match_score ?? 0,
         salary_currency: x?.salary_currency ?? "USD",
         status: x?.applied ? JobStatus.AutoApplied : JobStatus.NeedsReview,
         mode: x?.is_remote ? JobMode.Remote : JobMode.Onsite,
-      }));
-    }
-  }, [data?.data, data?.success]);
-
-  const meta = useMemo(() => {
-    if (data?.success) {
-      return {
-        total: data?.data?.count,
-        page: data?.data?.offset,
-        limit: data?.data?.limit,
-      };
-    }
+      }))
+    );
   }, [data]);
 
   const tabMenu = [
@@ -37,10 +35,10 @@ export const useFeed = () => {
       value: "applied",
     },
     { label: "All Jobs", value: "all" },
-    {
-      label: "To Review",
-      value: "review",
-    },
+    // {
+    //   label: "To Review",
+    //   value: "review",
+    // },
     {
       label: "Saved",
       value: "saved",
@@ -56,11 +54,13 @@ export const useFeed = () => {
       setFilters({
         applied: true,
       });
-    } else if (currentTab === tabMenu[2]?.value) {
-      setFilters({
-        applied: false,
-      });
-    } else if (currentTab === tabMenu[3]?.value) {
+    }
+    //  else if (currentTab === tabMenu[2]?.value) {
+    //   setFilters({
+    //     applied: false,
+    //   });
+    // }
+    else if (currentTab === tabMenu[2]?.value) {
       setFilters({
         saved: true,
       });
@@ -109,9 +109,9 @@ export const useFeed = () => {
     tabMenu,
     setSearchQuery,
     jobs,
-    meta,
-    currentPage,
-    setCurrentPage,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
     setFilters,
     currentTab,
     renderEmptyText,
