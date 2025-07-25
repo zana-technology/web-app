@@ -4,6 +4,7 @@ import {
   Login,
   Onboarding,
   OnboardingComplete,
+  PrivacyPolicy,
   ProfilePreview,
   ResetPassword,
   Signup,
@@ -43,9 +44,13 @@ export const authRoutes = [
 ];
 
 export const openRoutes = [
-  { path: "/", element: <Landing /> },
   {
     path: routes.auth.complete,
     element: <OnboardingComplete />,
   },
+];
+
+export const landingRoutes = [
+  { path: "/", element: <Landing /> },
+  { path: "privacy-policy", element: <PrivacyPolicy /> },
 ];

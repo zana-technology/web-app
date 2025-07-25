@@ -9,6 +9,7 @@ import lightTheme from "./light-theme.png";
 import systemTheme from "./system-theme.png";
 import pdfIcon2 from "./pdfIcon2.png";
 import emptyStateIcon from "./zana-empty.png";
+import banner from "./landing-banner.png";
 
 export {
   logo,
@@ -22,4 +23,5 @@ export {
   systemTheme,
   pdfIcon2,
   emptyStateIcon,
+  banner,
 };
