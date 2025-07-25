@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface Response<T> {
-  data?: T;
+  data?: T extends Record<string, any> ? T : Record<string, any>;
   success: boolean;
   errorMessage?: string;
   errorTitle?: string;
