@@ -1,7 +1,16 @@
-import React from "react";
+import { Faqs, Features, Hero, MeetZana, Pricing, QuickSteps } from "@/components";
 
 const Landing = () => {
-  return <div>Landing page</div>;
+  return (
+    <>
+      <Hero />
+      <MeetZana />
+      <Features />
+      <QuickSteps />
+      <Pricing />
+      <Faqs />
+    </>
+  );
 };
 
 export default Landing;

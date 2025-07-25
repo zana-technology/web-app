@@ -1,8 +1,9 @@
 import { avatar, logo } from "@/assets";
 import { routes } from "@/router";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 export const AuthLayout = () => {
+  const navigate = useNavigate();
   const location = useLocation();
 
   const fullPath = `${location.pathname}${location.search}`;
@@ -16,7 +17,14 @@ export const AuthLayout = () => {
   return (
     <div className="h-screen flex flex-col relative">
       <div className="w-full flex py-10 justify-center items-center">
-        <img src={logo} alt="Zana Logo" className="h-[18px]" />
+        <img
+          src={logo}
+          alt="Zana Logo"
+          className="h-[18px]"
+          onClick={() => {
+            navigate("/");
+          }}
+        />
       </div>
       <div className="flex-1 flex justify-center py-4 w-full overflow-x-hidden ">
         <div className="w-full px-4 py-5 sm:w-[640px] my-5 min-h-fit">

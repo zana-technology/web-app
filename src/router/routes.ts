@@ -1,6 +1,6 @@
 export const routes = {
   home: "/",
-  policy: "/policy",
+  policy: "/privacy-policy",
   auth: {
     index: "/auth",
     login: "/auth/login",
