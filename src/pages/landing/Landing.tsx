@@ -1,4 +1,4 @@
-import { Features, Hero, MeetZana, QuickSteps } from "@/components";
+import { Faqs, Features, Hero, MeetZana, Pricing, QuickSteps } from "@/components";
 
 const Landing = () => {
   return (
@@ -7,6 +7,8 @@ const Landing = () => {
       <MeetZana />
       <Features />
       <QuickSteps />
+      <Pricing />
+      <Faqs />
     </>
   );
 };
