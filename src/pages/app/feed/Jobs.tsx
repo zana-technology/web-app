@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { routes } from "@/router";
 import { FiBookmark } from "react-icons/fi";
 
-const Jobs = ({ jobs }: { jobs: JobData[] }) => {
+const Jobs = ({ jobs, currentTab }: { jobs: JobData[]; currentTab: string }) => {
   const navigate = useNavigate();
   return (
     <div className="w-full grid lg:grid-cols-2 gap-6 mt-8">
@@ -65,7 +65,7 @@ const Jobs = ({ jobs }: { jobs: JobData[] }) => {
             <Button
               title="View details"
               onClick={() => {
-                navigate(routes.app.JobDetails.replace("%id%", x?.uid));
+                navigate(`${routes.app.JobDetails.replace("%id%", x?.uid)}?from=${currentTab}`);
               }}
             />
           </div>

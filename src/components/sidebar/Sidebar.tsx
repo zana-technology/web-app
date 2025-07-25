@@ -4,6 +4,8 @@ import { MdClose } from "react-icons/md";
 import { Dispatch, SetStateAction } from "react";
 import SidebarMenu from "./SidebarMenu";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@/router";
 
 export const Sidebar = ({
   showSidebar,
@@ -22,10 +24,18 @@ export const Sidebar = ({
 };
 
 const DesktopSidebar = () => {
+  const navigate = useNavigate();
   return (
     <div className="fixed w-[280px] bg-white flex flex-col gap-4 h-screen z-10">
       <div className="h-14 flex items-center px-6 py-2.5">
-        <img src={logoAvatar} alt="Zana Logo" className="h-9" />
+        <img
+          src={logoAvatar}
+          alt="Zana Logo"
+          className="h-9"
+          onClick={() => {
+            navigate(routes.home);
+          }}
+        />
       </div>
       <SidebarMenu />
     </div>

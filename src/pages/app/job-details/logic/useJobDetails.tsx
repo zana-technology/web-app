@@ -39,6 +39,8 @@ export const useJobDetails = () => {
 
   const currentTab = searchParams.get("tab");
 
+  const fromTab = searchParams.get("from");
+
   const tabMenu = [
     {
       label: "Overview",
@@ -81,7 +83,7 @@ export const useJobDetails = () => {
   };
 
   const backToFeed = () => {
-    navigate(routes.app.feed);
+    navigate(`${routes.app.feed}?tab=${fromTab}`);
   };
 
   return { tabMenu, job, renderTab, isLoading, backToFeed };

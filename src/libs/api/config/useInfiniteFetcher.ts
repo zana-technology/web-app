@@ -100,15 +100,15 @@ export const useInfiniteFetcher = <T>(props: InfiniteFetcherProps) => {
     getNextPageParam:
       getNextPageParam ??
       ((lastPage) => {
-        const hasNextPage = "next" in (lastPage?.data || {});
         const paginated = lastPage?.data;
 
         if (!paginated) return undefined;
 
         const currentOffset = paginated.offset ?? 0;
         const currentCount = paginated.count ?? 0;
+        const hasNextPage = !!paginated?.next;
 
-        return hasNextPage && currentCount > 0 ? currentOffset + pageLimit : undefined;
+        return hasNextPage && currentCount === pageLimit ? currentOffset + pageLimit : undefined;
       }),
     staleTime: staleTimeMins(staleTime ?? 60),
     retry: 3,

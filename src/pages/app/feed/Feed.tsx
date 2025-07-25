@@ -16,6 +16,7 @@ const Feed = () => {
     hasNextPage,
     isFetchingNextPage,
     renderEmptyText,
+    currentTab,
   } = useFeed();
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
@@ -51,7 +52,7 @@ const Feed = () => {
               </div>
             </div>
             {jobs && jobs?.length > 0 ? (
-              <Jobs jobs={jobs as JobData[]} />
+              <Jobs jobs={jobs as JobData[]} currentTab={currentTab as string} />
             ) : (
               <EmptyState
                 text={renderEmptyText().text}

@@ -35,10 +35,10 @@ export const useFeed = () => {
       value: "applied",
     },
     { label: "All Jobs", value: "all" },
-    {
-      label: "To Review",
-      value: "review",
-    },
+    // {
+    //   label: "To Review",
+    //   value: "review",
+    // },
     {
       label: "Saved",
       value: "saved",
@@ -54,11 +54,13 @@ export const useFeed = () => {
       setFilters({
         applied: true,
       });
-    } else if (currentTab === tabMenu[2]?.value) {
-      setFilters({
-        applied: false,
-      });
-    } else if (currentTab === tabMenu[3]?.value) {
+    }
+    //  else if (currentTab === tabMenu[2]?.value) {
+    //   setFilters({
+    //     applied: false,
+    //   });
+    // }
+    else if (currentTab === tabMenu[2]?.value) {
       setFilters({
         saved: true,
       });
