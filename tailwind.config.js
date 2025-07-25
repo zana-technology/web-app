@@ -23,6 +23,7 @@ export const theme = {
           normal: "#255A5A",
           normalHover: "#255A5A",
           light: "#EFF5F5",
+          dark: "#1C4444",
         },
         color: {
           100: "#F7F2EB",

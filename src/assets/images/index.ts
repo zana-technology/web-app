@@ -14,6 +14,7 @@ import addJobScreen from "./add-job-screen.png";
 import feedScreen from "./feed-screen.png";
 import applicationScreen from "./application-screen.png";
 import resumeScreen from "./resume-screen.png";
+import zanaFooterLogo from "./zana-footer-logo.png";
 
 export {
   logo,
@@ -32,4 +33,5 @@ export {
   applicationScreen,
   resumeScreen,
   feedScreen,
+  zanaFooterLogo,
 };

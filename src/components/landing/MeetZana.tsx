@@ -27,7 +27,7 @@ export const MeetZana = () => {
     <div className="mt-20 sm:mt-56 flex flex-col items-center w-full">
       <div className="flex flex-col items-center text-center mb-10">
         <p className="text-sm text-zana-primary-normal mb-3">MEET ZANA</p>
-        <h1 className="font-medium max-w-[771px] text-4xl sm:text-5xl ">
+        <h1 className="font-medium max-w-[771px] text-3xl sm:text-5xl ">
           Your 24/7 job application assistant that does all the job for you
         </h1>
       </div>
