@@ -35,10 +35,11 @@ export const useVerifyEmail = () => {
         token: values.code,
       } as VerifyEmailFormValues;
 
-      const { success } = await authApi.verifyEmail(payload);
+      const { success, data } = await authApi.verifyEmail(payload);
 
       if (success) {
         navigate(routes.auth.onboarding);
+        // handleAuthSuccess(data?.token as TokenDto);
       }
     },
   });
