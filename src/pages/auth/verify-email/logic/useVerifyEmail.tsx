@@ -3,8 +3,8 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { routes } from "@/router";
 import { useEffect, useState } from "react";
-import { authApi } from "@/libs";
-import { VerifyEmailFormValues } from "@/types";
+import { authApi, handleAuthSuccess } from "@/libs";
+import { TokenDto, VerifyEmailFormValues } from "@/types";
 import { showToast } from "@/components";
 
 export const useVerifyEmail = () => {
@@ -39,7 +39,7 @@ export const useVerifyEmail = () => {
 
       if (success) {
         navigate(routes.auth.onboarding);
-        // handleAuthSuccess(data?.token as TokenDto);
+        handleAuthSuccess(data?.token as TokenDto);
       }
     },
   });

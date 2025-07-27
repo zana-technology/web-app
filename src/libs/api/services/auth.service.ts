@@ -26,7 +26,7 @@ const signup = async (payload: SignupFormValues) => {
 };
 
 const verifyEmail = async (payload: VerifyEmailFormValues) => {
-  return await apiRequest<VerifyEmailFormValues>({
+  return await apiRequest<SignupDto>({
     url: apiRoutes.auth.verifyEmail,
     method: "post",
     payload,
