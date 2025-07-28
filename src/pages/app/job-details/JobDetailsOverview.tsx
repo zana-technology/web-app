@@ -30,7 +30,7 @@ const JobDetailsOverview = ({ job }: { job: JobData }) => {
       </JobDetailsShell>
       <JobDetailsShell title="Benefits and Perks" className="mt-6">
         <div className="flex flex-col gap-3">
-          {job?.perks?.map((x, i) => (
+          {job?.benefits?.map((x, i) => (
             <div className="flex items-center gap-2" key={i}>
               <img src={starGoldIcon} className="w-5 h-5" alt="star" /> <p>{x}</p>
             </div>

@@ -8,19 +8,19 @@ export const QuickSteps = () => {
   const steps = [
     {
       title: "Quick setup",
-      text: "Upload your resume, set your job preferences, and connect your email",
+      text: "Upload your CV, set your job goals, and let Zana know what you’re looking for.",
     },
     {
-      title: "Auto-apply begins",
-      text: "Zana immediately starts finding and applying to relevant jobs",
+      title: "Auto-apply starts",
+      text: "Zana immediately starts finding and applying to jobs that match your preferences.",
     },
     {
       title: "Track & optimise",
-      text: "Monitor your applications, review ATS scores, and adjust your strategy",
+      text: "See what’s working in real time. Monitor applications, review ATS scores, and improve your results.",
     },
     {
       title: "Land Interviews",
-      text: "Focus on interview preparation while Zana handles the application",
+      text: "While Zana handles the job hunt, you stay focused on interview prep and saying “yes” to the right offer.",
     },
   ];
   return (

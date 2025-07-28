@@ -9,11 +9,11 @@ export const Hero = () => {
     <div className="flex flex-col items-center mt-11 sm:mt-24 gap-8 md:gap-32 px-4">
       <div className="flex flex-col items-center gap-6 text-center">
         <h1 className="font-medium max-w-[771px] text-4xl sm:text-6xl">
-          Your personal job assistant that never sleeps
+          Hundreds of applications. One assistant. Zero stress.
         </h1>
         <p className="max-w-[725px] text-lg sm:text-xl">
-          Zana finds, applies to, and tracks hundreds of job applications automatically while you
-          focus on what matters the most - landing your dream job{" "}
+          Zana finds jobs you are qualified for, tailors your CV, cover letter and sends out
+          applications nonstop so you get interviews, without stress!
         </p>
         <Button
           title="Get started for free"

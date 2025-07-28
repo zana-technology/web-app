@@ -37,7 +37,7 @@ export const Footer = () => {
       <div className="bg-zana-primary-dark min-h-[620px] md:min-h-[753px] w-full flex flex-col justify-between px-5 md:px-24 rounded-xl pt-10 md:pt-20 pb-10">
         <div className="flex flex-col gap-16 md:flex-row justify-between w-full text-white">
           <div className="max-w-[361px]">
-            <h3 className="text-3xl font-medium">Get started in landing your dream job</h3>
+            <h3 className="text-3xl font-medium">Land your dream job</h3>
             <Button
               title="Get started for free"
               onClick={() => {

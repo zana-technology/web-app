@@ -15,17 +15,19 @@ const JobDetailsCompany = ({ job }: { job: JobData }) => {
       </div>
       <div className="flex items-center gap-2.5 flex-wrap">
         <MatchPercentage value={job?.match_score ?? 0} />
-        <StatusTag
-          value={toSentenceCase(job?.status as string)}
-          status={job?.status === JobStatus?.AutoApplied ? "success" : "pending"}
-          icon={
-            <img
-              src={job?.status === JobStatus?.AutoApplied ? appliedIcon : needsReviewIcon}
-              alt="Job status"
-              className="w-4 h-4"
-            />
-          }
-        />
+        {job?.status !== JobStatus?.NeedsReview && (
+          <StatusTag
+            value={toSentenceCase(job?.status as string)}
+            status={job?.status === JobStatus?.AutoApplied ? "success" : "pending"}
+            icon={
+              <img
+                src={job?.status === JobStatus?.AutoApplied ? appliedIcon : needsReviewIcon}
+                alt="Job status"
+                className="w-4 h-4"
+              />
+            }
+          />
+        )}
         {job?.visa_sponsored ? (
           <StatusTag
             value={"Visa Sponsor"}

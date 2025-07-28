@@ -14,9 +14,9 @@ const Jobs = ({ jobs, currentTab }: { jobs: JobData[]; currentTab: string }) => 
       {jobs?.map((x, i) => (
         <div
           key={i}
-          className="rounded-2xl bg-zana-grey-500 border border-zana-grey-100 p-2 w-full"
+          className="rounded-2xl bg-zana-grey-500 border border-zana-grey-100 p-2 w-full flex flex-col h-full"
         >
-          <div className="bg-white border border-zana-grey-100 py-4 px-3 flex flex-col gap-4">
+          <div className="bg-white border border-zana-grey-100 py-4 px-3 flex flex-col gap-4 flex-grow">
             <div className="flex justify-between mb-2 flex-wrap gap-3">
               <div className="flex gap-2.5 items-center">
                 <img src={x?.companyLogo} className="h-10 w-10 object-cover" />
@@ -27,17 +27,19 @@ const Jobs = ({ jobs, currentTab }: { jobs: JobData[]; currentTab: string }) => 
               </div>
               <div className="flex items-center gap-2">
                 <MatchPercentage value={x?.match_score as number} key={i} />
-                <StatusTag
-                  value={toSentenceCase(x?.status as string)}
-                  status={x?.status === JobStatus?.AutoApplied ? "success" : "pending"}
-                  icon={
-                    <img
-                      src={x?.status === JobStatus?.AutoApplied ? appliedIcon : needsReviewIcon}
-                      alt="Job status"
-                      className="w-4 h-4"
-                    />
-                  }
-                />
+                {x?.status !== JobStatus?.NeedsReview && (
+                  <StatusTag
+                    value={toSentenceCase(x?.status as string)}
+                    status={x?.status === JobStatus?.AutoApplied ? "success" : "pending"}
+                    icon={
+                      <img
+                        src={x?.status === JobStatus?.AutoApplied ? appliedIcon : needsReviewIcon}
+                        alt="Job status"
+                        className="w-4 h-4"
+                      />
+                    }
+                  />
+                )}
               </div>
             </div>
             <JobHighlights job={x} />
@@ -51,7 +53,7 @@ const Jobs = ({ jobs, currentTab }: { jobs: JobData[]; currentTab: string }) => 
               ))}
             </div>
           </div>
-          <div className="flex justify-between mt-3">
+          <div className="flex justify-between mt-auto pt-3">
             <Button
               title={x?.saved ? "Unsave" : "Save"}
               icon={<FiBookmark size={20} />}

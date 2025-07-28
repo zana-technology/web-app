@@ -20,7 +20,7 @@ const SidebarBottom = () => {
     }
   }, [creditData?.data, creditData?.success]) as CreditInfo;
 
-  const creditsLeft = creditInfo?.credits_remaining ?? 0;
+  const creditsLeft = creditInfo?.credits_used ?? 0;
   const creditsBought = creditInfo?.credits_purchased ?? 0;
 
   const percentageLeft = (creditsLeft / creditsBought) * 100;
