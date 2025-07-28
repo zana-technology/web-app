@@ -25,7 +25,7 @@ export const QuickSteps = () => {
   ];
   return (
     <div className="mt-10 sm:mt-20 py-10 sm:py-20 px-4 sm:px-24 flex flex-col items-center text-center gap-24 w-full bg-[linear-gradient(to_top,rgba(37,90,90,0.3)_0%,transparent_30%)] rounded-3xl">
-      <h3 className="font-medium max-w-[570px] text-3xl sm:text-5xl">
+      <h3 className="font-medium max-w-[404px] text-3xl sm:text-4xl">
         Ready to have an edge in the job market?
       </h3>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 place-items-center gap-5 w-full">

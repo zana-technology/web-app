@@ -32,7 +32,7 @@ export const Faqs = () => {
   return (
     <div className="mt-10 py-10 px-4 sm:px-24 flex flex-col w-full items-center">
       <p className="text-sm text-zana-primary-normal mb-3">FAQS</p>
-      <h3 className="font-medium max-w-[440px] text-3xl sm:text-5xl text-center">
+      <h3 className="font-medium max-w-[400px] text-3xl sm:text-4xl text-center">
         Things you probably wonder about Zana
       </h3>
       <div className="w-full flex flex-col mt-10 sm:mt-20">
