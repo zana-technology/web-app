@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Option } from "./util.types";
 
 export interface IColumn<T> {
@@ -11,6 +12,7 @@ export interface Action<TData> {
   title: string;
   onClick: (row?: TData) => void;
   hide?: string[];
+  icon?: string | ReactNode;
 }
 
 export interface TableFilterOption {

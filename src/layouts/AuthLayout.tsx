@@ -33,7 +33,7 @@ export const AuthLayout = () => {
       </div>
       {showAvatar && (
         <div className="absolute bottom-0 right-5 z-10 flex ">
-          <div className="w-[350px] bg-zana-primary-normal text-sm text-white p-3.5 rounded-xl absolute right-[80%] bottom-7 animate-chatPop">
+          <div className="w-[280px] xs:w-[350px] bg-zana-primary-normal  text-xs xs:text-sm text-white p-2.5 xs:p-3.5 rounded-xl absolute right-[70%] xs:right-[80%] bottom-3 xs:bottom-7 animate-chatPop">
             {fullPath === `${routes.auth.onboarding}?step=6` ? (
               <p>
                 Almost there! Great job. I really need these informations so i help you the best way
@@ -46,7 +46,7 @@ export const AuthLayout = () => {
               </p>
             )}
           </div>
-          <img src={avatar} alt="Zana Avatar" className="w-[142px]" />
+          <img src={avatar} alt="Zana Avatar" className="w-[90px] sm:w-[142px]" />
         </div>
       )}
     </div>

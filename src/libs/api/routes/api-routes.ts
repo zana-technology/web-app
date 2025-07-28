@@ -18,6 +18,7 @@ export const apiRoutes = {
   profile: {
     index: `${serviceRoot.profile}`,
     resume: `${serviceRoot.profile}/resume`,
+    resumeId: `${serviceRoot.profile}/resume/%id%`,
   },
   upload: {
     index: `${serviceRoot.upload}`,

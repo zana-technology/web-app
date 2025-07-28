@@ -45,7 +45,7 @@ export const Pricing = () => {
   return (
     <div className="mt-10 sm:mt-20 py-10 sm:py-20 px-4 md:px-24 flex flex-col w-full items-center">
       <p className="text-sm text-zana-primary-normal mb-3">PRICING</p>
-      <h3 className="font-medium max-w-[440px] text-3xl sm:text-5xl text-center">
+      <h3 className="font-medium max-w-[404px] text-3xl sm:text-4xl text-center">
         Transparent pricing tailored for you
       </h3>
       <div className="w-full grid sm:grid-cols-2 gap-6 mt-10 sm:mt-20">

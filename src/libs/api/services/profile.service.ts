@@ -16,6 +16,12 @@ const addResume = async (payload: UploadedResume) => {
     payload,
   });
 };
+const deleteResume = async (id: string) => {
+  return await apiRequest<CandidateProfileDto>({
+    url: apiRoutes.profile.resumeId.replace("%id%", id),
+    method: "delete",
+  });
+};
 
 const useGetProfile = () => {
   return useFetcher<CandidateProfileDto>({
@@ -30,4 +36,5 @@ export const profileApi = {
   updateProfile,
   addResume,
   useGetProfile,
+  deleteResume,
 };

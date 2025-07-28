@@ -14,6 +14,7 @@ export type Option<T = unknown> = {
 export interface FileWithPreview extends File {
   preview?: string;
   originalUrl?: string;
+  id?: string;
 }
 
 export enum ResourceType {
