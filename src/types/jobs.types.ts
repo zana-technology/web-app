@@ -19,14 +19,16 @@ export interface JobData {
   created_at: string;
   updated_at: string;
   match_score: number;
+  benefits: string[];
+  required_qualifications?: string[];
+  preferred_qualifications?: string[];
 
   // I added
   companyLogo?: string;
   status?: JobStatus;
   mode: JobMode;
-  perks?: string[];
-  requirements?: string[];
-  niceToHaves?: string[];
+  // requirements?: string[];
+  // niceToHaves?: string[];
   companyInfo?: {
     industry?: string;
     size?: string;

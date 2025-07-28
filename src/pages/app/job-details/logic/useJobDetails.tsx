@@ -41,29 +41,34 @@ export const useJobDetails = () => {
 
   const fromTab = searchParams.get("from");
 
-  const tabMenu = [
-    {
-      label: "Overview",
-      value: "overview",
-      icon: currentTab === "overview" || !currentTab ? overviewColoredIcon : overviewIcon,
-    },
-    {
-      label: "Requirements",
-      value: "requirements",
-      icon: currentTab === "requirements" ? requirementsColoredIcon : requirementsIcon,
-    },
-    {
-      label: "Company",
-      value: "company",
-      icon: currentTab === "company" ? companyColoredIcon : companyIcon,
-    },
-    {
-      label: "Zana Insights",
-      value: "zana-insights",
-      icon: currentTab === "zana-insights" ? zanaInsightsColoredIcon : zanaInsightsIcon,
-    },
-  ];
-
+  const tabMenu = useMemo(() => {
+    return [
+      {
+        label: "Overview",
+        value: "overview",
+        icon: currentTab === "overview" || !currentTab ? overviewColoredIcon : overviewIcon,
+      },
+      {
+        label: "Requirements",
+        value: "requirements",
+        icon: currentTab === "requirements" ? requirementsColoredIcon : requirementsIcon,
+      },
+      {
+        label: "Company",
+        value: "company",
+        icon: currentTab === "company" ? companyColoredIcon : companyIcon,
+      },
+      ...(job?.applied
+        ? [
+            {
+              label: "Zana Insights",
+              value: "zana-insights",
+              icon: currentTab === "zana-insights" ? zanaInsightsColoredIcon : zanaInsightsIcon,
+            },
+          ]
+        : []),
+    ];
+  }, [currentTab, job?.applied]);
   const navigate = useNavigate();
 
   const renderTab = () => {

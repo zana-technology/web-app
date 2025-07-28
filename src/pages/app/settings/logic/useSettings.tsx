@@ -16,10 +16,10 @@ export const useSettings = () => {
       label: "Resume / Cv",
       value: "resume",
     },
-    {
-      label: "Password",
-      value: "password",
-    },
+    // {
+    //   label: "Password",
+    //   value: "password",
+    // },
     {
       label: "Preferences",
       value: "preferences",
@@ -40,13 +40,13 @@ export const useSettings = () => {
         return <ProfileSettings />;
       case tabMenu[1]?.value:
         return <ResumeSettings />;
+      // case tabMenu[2]?.value:
+      //   return <PasswordSettings />;
       case tabMenu[2]?.value:
-        return <PasswordSettings />;
-      case tabMenu[3]?.value:
         return <PreferenceSettings />;
       // case tabMenu[4]?.value:
       //   return <ApperanceSettings />;
-      case tabMenu[4]?.value:
+      case tabMenu[3]?.value:
         return <BillingSettings />;
 
       default:
