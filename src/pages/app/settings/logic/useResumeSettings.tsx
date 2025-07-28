@@ -77,7 +77,10 @@ export const useResumeSettings = () => {
       setLoading(false);
     };
 
-    fetchDocs();
+    if (resumes?.length > 0) {
+      fetchDocs();
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resumes]);
 

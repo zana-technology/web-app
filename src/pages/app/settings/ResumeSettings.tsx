@@ -56,7 +56,6 @@ const ResumeSettings = () => {
                             title: "Download",
                             icon: downloadGreyIcon,
                             onClick: () => {
-                              console.log("downloading", x);
                               downloadFile(x);
                             },
                           },
