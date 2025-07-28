@@ -10,42 +10,42 @@ export const Features = () => {
       title: "AUTO-APPLY AND PERSONALISED FEED",
       heading: "Never miss an opportunity again",
       body: [
-        "Set your criteria once, and Zana applies to matching jobs automatically",
-        "Continuous updated feed with sections: Auto-Applied, To Review, and Saved",
-        "Intelligent rules engine with safety controls—you stay in complete control",
+        "Tell Zana what you want once; she’ll apply to matching roles for you automatically.",
+        "A living dashboard of your job hunt, updated every time Zana makes a move",
+        "Smart, safe, and flexible; Zana never applies outside your boundaries",
       ],
       image: feedScreen,
     },
     {
       title: "RESUME OPTIMISATION",
-      heading: "Beat the ATS every time",
+      heading: "Make Every CV an Interview Magnet",
       body: [
-        "Multiple resume versions for different job types",
-        "Automatic resume selection based on job context",
-        "Zana insights and suggestions for better CV optimisation",
+        "Smart versions of your resume for every job type",
+        "Zana picks the best version based on job context, automatically",
+        "Get real-time insights and tips to boost your CV’s performance",
       ],
       image: resumeScreen,
     },
     {
       title: "APPLICATION TRACKING DASHBOARD",
-      heading: "Stay organised, Stay motivated",
+      heading: "See Every Application, All in One Place",
       body: [
-        "Track every application from submission to offer in one dashboard",
-        "Email integration detects employer responses automatically",
-        "Real-time ATS scoring against job descriptions",
+        "Zana tracks every job you’ve applied to, from start to offer",
+        "Your dashboard updates automatically as your job hunt moves forward",
+        "See real-time scores and next steps for every application, no spreadsheets needed",
       ],
       image: applicationScreen,
     },
-    {
-      title: "MANUAL JOB SUBMISSION",
-      heading: "Complete flexibility",
-      body: [
-        "Submit any job URL and let Zana handle the application process",
-        "Perfect for referrals and niche job boards not in our feed",
-        "Automatic parsing for supported sites with manual tracking fallback",
-      ],
-      image: addJobScreen,
-    },
+    // {
+    //   title: "MANUAL JOB SUBMISSION",
+    //   heading: "Complete flexibility",
+    //   body: [
+    //     "Submit any job URL and let Zana handle the application process",
+    //     "Perfect for referrals and niche job boards not in our feed",
+    //     "Automatic parsing for supported sites with manual tracking fallback",
+    //   ],
+    //   image: addJobScreen,
+    // },
   ];
 
   const [showIndex, setShowIndex] = useState(0);
