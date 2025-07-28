@@ -88,7 +88,7 @@ export const handleUpload = async (files: File[], resourceType = ResourceType.Do
   return { success: true, data: results };
 };
 
-const urlToFile = async (url: string, fileName: string): Promise<FileWithPreview> => {
+const urlToFile = async (url: string, fileName: string, id?: string): Promise<FileWithPreview> => {
   try {
     const response = await fetch(url, {
       mode: "no-cors", // Add no-cors mode to bypass CORS restrictions
@@ -107,6 +107,10 @@ const urlToFile = async (url: string, fileName: string): Promise<FileWithPreview
     // Add additional properties
     file.preview = url;
     file.originalUrl = url;
+
+    if (id) {
+      file.id = id;
+    }
 
     return file;
   } catch (error) {
@@ -137,9 +141,9 @@ const urlToFile2 = async (url: string, fileName: string): Promise<FileWithPrevie
 };
 
 export const convertUrlsToFiles = async (
-  imageUrls: { url: string; fileName: string }[]
+  imageUrls: { url: string; fileName: string; id?: string }[]
 ): Promise<FileWithPreview[]> => {
-  return await Promise.all(imageUrls.map(({ url, fileName }) => urlToFile(url, fileName)));
+  return await Promise.all(imageUrls.map(({ url, fileName, id }) => urlToFile(url, fileName, id)));
 };
 
 export const removeEmptyKeys = (payload: Record<string, any>) => {
@@ -276,3 +280,12 @@ export const handleLogout = () => {
   localStorage.removeItem("refresh_token_expiry");
   window.location.href = routes.auth.login;
 };
+
+export function downloadFile(file: FileWithPreview) {
+  const link = document.createElement("a");
+  link.href = file.preview as string;
+  link.download = file.name;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}

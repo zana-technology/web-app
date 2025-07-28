@@ -22,11 +22,13 @@ export const useResumeSettings = () => {
       return data?.data?.resumes?.map((x) => ({
         url: x.file_url,
         fileName: x.file_name,
+        id: x.uid,
       }));
     }
   }, [data?.data, data?.success]) as { url: string; fileName: string }[];
 
   const [loading, setLoading] = useState(true);
+  const [loadingDelete, setLoadingDelete] = useState(false);
 
   const initialValues = {
     resume: [],
@@ -79,7 +81,22 @@ export const useResumeSettings = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resumes]);
 
-  return { isLoading, loading, formik, updateResume, setUpdateResume };
+  const deleteResume = async (id: string) => {
+    setLoadingDelete(true);
+    const { success, title, message } = await profileApi.deleteResume(id);
+    setLoadingDelete(false);
+
+    if (success) {
+      showToast({
+        title: title ?? "Successful",
+        message: message ?? "Resume Deleted",
+      });
+      refreshQuery({ queryKey: [apiQueryKeys.getProfile] });
+      setUpdateResume(false);
+    }
+  };
+
+  return { isLoading, loading, formik, updateResume, setUpdateResume, deleteResume, loadingDelete };
 };
 
 export default useResumeSettings;

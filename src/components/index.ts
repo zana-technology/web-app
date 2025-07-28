@@ -18,3 +18,4 @@ export * from "./pagination";
 export * from "./table";
 export * from "./error-boundary";
 export * from "./landing";
+export * from "./popover";
