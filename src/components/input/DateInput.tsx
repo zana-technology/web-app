@@ -90,6 +90,64 @@ export const DateInput = ({
     return !isWeekend && !isPastDay;
   };
 
+  const getDateValue = (): Date | null => {
+    if (!value) return null;
+
+    if (typeof value === "string") {
+      // Handle different string formats
+      const date = new Date(value);
+      return isNaN(date.getTime()) ? null : date;
+    }
+
+    if (value instanceof Date) {
+      return isNaN(value.getTime()) ? null : value;
+    }
+
+    return null;
+  };
+
+  const dateValue = getDateValue();
+
+  // Handle manual text input
+  const handleRawChange = (value: string) => {
+    if (!onChange) return;
+
+    // Try to parse various date formats
+    const parseDate = (dateStr: string): Date | null => {
+      const trimmed = dateStr.trim();
+      if (!trimmed) return null;
+
+      // Handle dd/MM/yy format (convert to dd/MM/yyyy)
+      const shortYearPattern = /^(\d{1,2})\/(\d{1,2})\/(\d{2})$/;
+      const shortYearMatch = trimmed.match(shortYearPattern);
+
+      if (shortYearMatch) {
+        const [, day, month, year] = shortYearMatch;
+        const fullYear = parseInt(year) < 50 ? `20${year}` : `19${year}`;
+        const fullDateStr = `${day}/${month}/${fullYear}`;
+        const date = new Date(parseInt(fullYear), parseInt(month) - 1, parseInt(day));
+        return isNaN(date.getTime()) ? null : date;
+      }
+
+      // Handle dd/MM/yyyy format
+      const fullYearPattern = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+      const fullYearMatch = trimmed.match(fullYearPattern);
+
+      if (fullYearMatch) {
+        const [, day, month, year] = fullYearMatch;
+        const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+        return isNaN(date.getTime()) ? null : date;
+      }
+
+      return null;
+    };
+
+    const parsedDate = parseDate(value);
+    if (parsedDate) {
+      onChange(parsedDate);
+    }
+  };
+  console.log("value", value);
   return (
     <div className={`flex flex-col relative ${className ? className : ""}`}>
       {label ? (
@@ -109,7 +167,13 @@ export const DateInput = ({
         onBlur={onBlur}
         disabled={disabled}
         onChange={onChange}
-        selected={value as Date}
+        onChangeRaw={(e) =>
+          handleRawChange(
+            ((e as React.KeyboardEvent<HTMLElement>).target as HTMLInputElement).value
+          )
+        }
+        selected={dateValue} // Use converted date value
+        // selected={value as Date}
         id={name}
         name={name}
         // error={error}
