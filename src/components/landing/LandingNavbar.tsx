@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../button";
 import { routes } from "@/router";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useState } from "react";
 
 export const LandingNavbar = () => {
   const navigate = useNavigate();
+  // const [showMenu, setShowMenu] = useState(false);
   return (
-    <div className="flex items-center justify-between gap-4 px-4 md:px-24 py-3 md:py-4">
+    <div className="flex items-center justify-between gap-4 px-4 md:px-24 py-3 md:py-4 relative">
       <img
         src={logoAvatar}
         alt="Zana Logo"
@@ -36,9 +38,9 @@ export const LandingNavbar = () => {
       <div className="p-2 md:hidden">
         <GiHamburgerMenu
           size={24}
-          //   onClick={() => {
-          //     setShowSidebar(true);
-          //   }}
+          // onClick={() => {
+          //   setShowMenu(true);
+          // }}
         />
       </div>
     </div>
