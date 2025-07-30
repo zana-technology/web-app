@@ -1,6 +1,7 @@
 import { briefcaseIcon } from "@/assets";
 import {
   Button,
+  Checkbox,
   DangerousContent,
   Input,
   PageTitle,
@@ -110,20 +111,35 @@ const WorkExperience = ({ profile, formik, showForm, showFormHandler }: PreviewC
                       touched={getIn(touched, `work_experiences.${i}.start_date`)}
                       excludeFutureDays
                     />
-                    <DateInput
-                      label="end date"
-                      name={`work_experiences.${i}.end_date`}
-                      value={values?.work_experiences?.[i]?.end_date as string}
-                      onChange={(date) => {
+                    {!values?.work_experiences?.[i]?.is_current && (
+                      <DateInput
+                        label="end date"
+                        name={`work_experiences.${i}.end_date`}
+                        value={values?.work_experiences?.[i]?.end_date as string}
+                        onChange={(date) => {
+                          setFieldValue(
+                            `work_experiences.${i}.end_date`,
+                            moment(date as Date).format("YYYY-MM-DD")
+                          );
+                        }}
+                        onBlur={handleBlur}
+                        errorMessage={getIn(errors, `work_experiences.${i}.end_date`)}
+                        touched={getIn(touched, `work_experiences.${i}.end_date`)}
+                        excludeFutureDays
+                      />
+                    )}
+                    <Checkbox
+                      id={`work_experiences.${i}.is_current`}
+                      name={`work_experiences.${i}.is_current`}
+                      title={"Currently work here"}
+                      checked={values?.work_experiences?.[i]?.is_current as boolean}
+                      onChange={() =>
                         setFieldValue(
-                          `work_experiences.${i}.end_date`,
-                          moment(date as Date).format("YYYY-MM-DD")
-                        );
-                      }}
-                      onBlur={handleBlur}
-                      errorMessage={getIn(errors, `work_experiences.${i}.end_date`)}
-                      touched={getIn(touched, `work_experiences.${i}.end_date`)}
-                      excludeFutureDays
+                          `work_experiences.${i}.is_current`,
+                          !values?.work_experiences?.[i]?.is_current
+                        )
+                      }
+                      className="p-2.5"
                     />
                     <QuillInput
                       label="Description"
@@ -210,7 +226,9 @@ const WorkExperience = ({ profile, formik, showForm, showFormHandler }: PreviewC
                   <div className="flex flex-col sm:items-end">
                     <p>
                       {moment(x.start_date).format("MMMM YYYY")} -{" "}
-                      {moment(x.end_date).format("MMMM YYYY")}{" "}
+                      {x.is_current || !x.end_date
+                        ? "Present"
+                        : moment(x.end_date).format("MMMM YYYY")}{" "}
                     </p>
                     <p className="text-gray-400">{x.location}</p>
                   </div>
