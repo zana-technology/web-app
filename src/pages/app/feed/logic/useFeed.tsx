@@ -81,8 +81,7 @@ export const useFeed = () => {
       case tabMenu[1]?.value:
         return {
           text: "All Jobs matching your profile",
-          subText:
-            "Zana is searching for the best jobs for you. Hold tight and check back within 1 hour",
+          subText: "Zana is currently searching for available jobs in your field check back soon",
         };
       case tabMenu[2]?.value:
         return {
