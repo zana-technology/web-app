@@ -14,6 +14,7 @@ export const routes = {
   app: {
     index: "/app",
     feed: "/app/feed",
+    feed_auto_applied: "/app/feed?tab=applied",
     applications: "/app/applications",
     analytics: "/app/analytics",
     email: "/app/email",

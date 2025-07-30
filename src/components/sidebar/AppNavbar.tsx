@@ -1,15 +1,17 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { sidebarData, sidebarExtra } from "./sidebarData";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { logo } from "@/assets";
 import { Dispatch, SetStateAction } from "react";
+import { routes } from "@/router";
 
 export const AppNavbar = ({
   setShowSidebar,
 }: {
   setShowSidebar: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const navigate = useNavigate();
   const location = useLocation();
 
   const pathname = location?.pathname;
@@ -29,7 +31,15 @@ export const AppNavbar = ({
         <p className="text-zana-grey-200">/</p>
         <p>{getPageTitle()}</p>
       </div>
-      <img src={logo} alt="Zana Logo" className="md:hidden h-[18px]" />
+      <img
+        src={logo}
+        alt="Zana Logo"
+        className="md:hidden h-[18px]"
+        onClick={() => {
+          navigate(routes.app.feed_auto_applied);
+          setShowSidebar(false);
+        }}
+      />
 
       <div className="flex items-center gap-8">
         {/* <Button
