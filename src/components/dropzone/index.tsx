@@ -124,7 +124,7 @@ export const Dropzone = ({
   }, [rejected]);
 
   const getFileIcon = (type: string): string => {
-    console.log("type", type);
+    // console.log("type", type);
     if (type.startsWith("image/")) return "";
     if (type === "application/pdf") return fileIconPdf;
     if (type === "application/msword" || type.includes("word")) return fileIconPdf;
