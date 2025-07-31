@@ -4,6 +4,7 @@ import { queryClient } from "@/App";
 import { showToast } from "@/components";
 import { apiQueryKeys } from "../api/config";
 import { routes } from "@/router";
+import Papa from "papaparse";
 
 export const capitalizeFirstLetter = function toTitleCase(str: string) {
   return str?.replace(/\w\S*/g, function (txt) {
@@ -289,3 +290,18 @@ export function downloadFile(file: FileWithPreview) {
   link.click();
   document.body.removeChild(link);
 }
+
+export const loadCSVAsArray = async (csvPath: string): Promise<any[]> => {
+  const response = await fetch(csvPath);
+  const csvText = await response.text();
+
+  return new Promise((resolve) => {
+    Papa.parse(csvText, {
+      header: true, // If CSV has headers
+      skipEmptyLines: true,
+      complete: (result) => {
+        resolve(result.data as any[]);
+      },
+    });
+  });
+};

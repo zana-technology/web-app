@@ -24,6 +24,10 @@ export const useProfilePreview = () => {
           value: profile?.full_name,
         },
         {
+          label: "Preferred Role(s)",
+          value: profile?.preferred_role,
+        },
+        {
           label: "Email Address",
           value: profile?.email ?? constant.notAdded,
         },
@@ -73,6 +77,7 @@ export const useProfilePreview = () => {
       current_location: profile?.current_location ?? "",
       linkedin_url: profile?.linkedin_url ?? "",
       portfolio_url: profile?.portfolio_url ?? "",
+      preferred_role: profile?.preferred_role ?? "",
 
       //Skills languages summary
       skills: profile?.skills ?? [],
@@ -144,6 +149,7 @@ export const useProfilePreview = () => {
         (value) => !!value && value.trim().split(" ").length >= 2
       ),
     email: yup.string().email("Invalid email format").nullable(),
+    preferred_role: yup.string().required("Job Role is required"),
     phone_number: yup.string().matches(phoneNumberRegex, "Invalid phone number").nullable(),
     current_location: yup.string().max(100),
     linkedin_url: yup
@@ -169,12 +175,12 @@ export const useProfilePreview = () => {
       yup.object().shape({
         company_name: yup.string().max(100),
         job_title: yup.string().max(100),
-        location: yup.string().max(100),
-        description: yup.string().max(1000),
+        location: yup.string().max(100).nullable(),
+        description: yup.string().max(1000).nullable(),
         start_date: yup.string().nullable(),
         end_date: yup.string().nullable(),
         is_current: yup.boolean().nullable(),
-        extras: yup.object().shape({}),
+        extras: yup.object().shape({}).nullable(),
       })
     ),
 

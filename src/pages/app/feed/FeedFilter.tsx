@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { FaChevronDown, FaMoneyBillWave } from "react-icons/fa";
 import { FiGlobe } from "react-icons/fi";
 import { IoCalendarClearOutline } from "react-icons/io5";
+import { AnalyticsIcon } from "@/assets";
 
 const FeedFilter = ({
   setFilters,
@@ -14,7 +15,8 @@ const FeedFilter = ({
   const filters = [
     {
       name: "Date Posted",
-      icon: IoCalendarClearOutline,
+      // icon: IoCalendarClearOutline,
+      icon: AnalyticsIcon,
       options: [
         {
           label: "Today",
