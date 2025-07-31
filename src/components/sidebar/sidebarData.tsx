@@ -21,13 +21,13 @@ export const sidebarData = [
     title: "Applications",
     icon: applicationIcon,
     link: routes.app.applications,
-    // disabled: true,
+    disabled: true,
   },
   {
     title: "Analytics",
     icon: analyticsIcon,
     link: routes.app.analytics,
-    // disabled: true,
+    disabled: true,
   },
   {
     title: "Email",

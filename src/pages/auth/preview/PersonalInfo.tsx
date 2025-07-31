@@ -1,7 +1,9 @@
 import { userIcon } from "@/assets";
-import { Input, PhoneInput, ProfileSection, Text } from "@/components";
+import { Input, MultiSelect, PhoneInput, ProfileSection, Text } from "@/components";
+import { loadCSVAsArray } from "@/libs";
 import { OnboardingProfileFormValues, Option, ShowFormState } from "@/types";
 import { FormikProps } from "formik";
+import { useEffect, useState } from "react";
 import { BsCheck } from "react-icons/bs";
 import { MdOutlineEdit } from "react-icons/md";
 
@@ -28,6 +30,12 @@ const PersonalInfo = ({
     isSubmitting,
     handleSubmit,
   } = formik;
+
+  const [data, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    loadCSVAsArray("/data/job_titles_list.csv").then(setData);
+  }, []);
 
   return (
     <ProfileSection
@@ -60,6 +68,28 @@ const PersonalInfo = ({
             errorMessage={errors.full_name}
             touched={touched.full_name}
             placeholder="e.g Kesiena Omonigho, Samson "
+          />
+          <MultiSelect
+            label="Job title(s) or Role(s)*"
+            name={`preferred_role`}
+            values={values?.preferred_role
+              .split(",")
+              .map((item) => item.trim())
+              .filter((item) => item.length > 0)
+              .map((item) => ({ label: item, value: item }))}
+            onBlur={handleBlur}
+            errorMessage={errors.preferred_role as string}
+            touched={touched.preferred_role}
+            onChange={(item) => {
+              console.log("item", item);
+              const values = item.map((x) => x.value).join(", ");
+              setFieldValue("preferred_role", values);
+            }}
+            options={data?.map((x) => ({
+              label: x.title,
+              value: x.title,
+            }))}
+            placeholder="Select preferred job role"
           />
           <Input
             label="Email address"

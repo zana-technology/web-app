@@ -67,6 +67,7 @@ export type OnboardingFormValues = {
 export type OnboardingProfileFormValues = {
   full_name: string;
   platform_email: string;
+  preferred_role: string;
   email: string;
   phone_number: string;
   current_location: string;

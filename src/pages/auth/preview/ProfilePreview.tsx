@@ -14,8 +14,9 @@ const ProfilePreview = () => {
   const { isLoading, profile, personalInformation, formik, showForm, showFormHandler, goBack } =
     useProfilePreview();
 
-  const { handleSubmit, isValid, dirty, isSubmitting, setFieldValue } = formik;
+  const { handleSubmit, isValid, dirty, isSubmitting, setFieldValue, errors } = formik;
 
+  console.log("errors", errors);
   return (
     <div className="flex flex-col w-full gap-8">
       <div className="w-full px-5 py-7 bg-zana-color-100 border border-zana-color-300 rounded-2xl">

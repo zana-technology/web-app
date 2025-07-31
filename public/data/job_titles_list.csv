@@ -1,0 +1,502 @@
+
+Category,title
+Technology,Data Engineer
+Technology,Software Engineer
+Technology,Software Developer
+Technology,Network Architect
+Technology,Cloud Architect
+Technology,Systems Engineer
+Technology,Programmer Analyst
+Technology,IT Consultant
+Technology,System Administrator
+Technology,Desktop Support Analyst
+Technology,Help Desk Analyst
+Technology,Data Scientist
+Technology,Machine Learning Engineer
+Technology,AI Researcher
+Technology,DevOps Engineer
+Technology,Security Engineer
+Technology,Cybersecurity Specialist
+Technology,Database Administrator
+Technology,Database Developer
+Technology,Network Engineer
+Technology,Cloud Engineer
+Technology,Full Stack Developer
+Technology,Front End Developer
+Technology,Back End Developer
+Technology,Mobile App Developer
+Technology,Android Developer
+Technology,iOS Developer
+Technology,QA Engineer
+Technology,Test Engineer
+Technology,Product Manager
+Technology,Technical Product Manager
+Technology,Project Manager
+Technology,Software Architect
+Technology,Data Analyst
+Technology,Business Analyst
+Technology,IT Support Specialist
+Technology,IT Manager
+Technology,Information Systems Manager
+Technology,AI Ethicist
+Technology,Blockchain Developer
+Technology,Systems Analyst
+Technology,UI Developer
+Technology,Data Warehouse Specialist
+Technology,Cloud Operations Engineer
+Technology,Technical Writer
+Healthcare,Anesthesiologist
+Healthcare,Nurse Anesthetist
+Healthcare,Respiratory Therapist
+Healthcare,Cardiologist
+Healthcare,Cardiovascular Technologist
+Healthcare,Intensivist
+Healthcare,Neonatologist
+Healthcare,Dentist
+Healthcare,Dental Hygienist
+Healthcare,Dietitian
+Healthcare,Emergency Physician
+Healthcare,Flight Nurse
+Healthcare,Dermatologist
+Healthcare,Radiologist
+Healthcare,Physical Therapist
+Healthcare,Occupational Therapist
+Healthcare,Speech Pathologist
+Healthcare,Pharmacist
+Healthcare,Pharmacy Technician
+Healthcare,Medical Laboratory Scientist
+Healthcare,Radiologic Technologist
+Healthcare,Surgeon
+Healthcare,General Practitioner
+Healthcare,Nurse Practitioner
+Healthcare,Physician Assistant
+Healthcare,Paramedic
+Healthcare,Midwife
+Healthcare,Nurse Educator
+Healthcare,Clinical Psychologist
+Healthcare,Psychologist
+Healthcare,Psychiatrist
+Healthcare,Medical Assistant
+Healthcare,Nursing Assistant
+Healthcare,Registered Nurse
+Healthcare,Licensed Practical Nurse
+Healthcare,Hospice Nurse
+Healthcare,Home Health Aide
+Healthcare,Phlebotomist
+Healthcare,Medical Coder
+Healthcare,Medical Biller
+Healthcare,Health Information Technician
+Healthcare,Medical Secretary
+Healthcare,Genetic Counselor
+Healthcare,Epidemiologist
+Healthcare,Virologist
+Healthcare,Microbiologist
+Healthcare,Infectious Disease Specialist
+Healthcare,Oncologist
+Healthcare,Neurologist
+Healthcare,Ophthalmologist
+Healthcare,Optometrist
+Healthcare,Podiatrist
+Healthcare,Chiropractor
+Healthcare,Nutritionist
+Healthcare,Medical Transcriptionist
+Healthcare,Dental Assistant
+Healthcare,Orthodontist
+Healthcare,Oral Surgeon
+Healthcare,Endodontist
+Healthcare,Periodontist
+Finance,Budget Analyst
+Finance,Chief Financial Officer
+Finance,Chief Investment Officer
+Finance,Chief Risk Officer
+Finance,Corporate Finance Analyst
+Finance,Cost Analyst
+Finance,Credit Analyst
+Finance,Credit Assistant
+Finance,Director of Credit and Collections
+Finance,Financial Analyst
+Finance,Financial Manager
+Finance,Financial Planner
+Finance,Fund Manager
+Finance,Insolvency Practitioner
+Finance,Investment Analyst
+Finance,Investor
+Finance,Portfolio Manager
+Finance,Quantitative Analyst
+Finance,Risk Analyst
+Finance,Risk Manager
+Finance,Structurer
+Finance,Treasurer
+Finance,Accountant
+Finance,Auditor
+Finance,Tax Specialist
+Finance,Controller
+Finance,Bookkeeper
+Finance,Accounts Payable Specialist
+Finance,Accounts Receivable Specialist
+Finance,Payroll Specialist
+Finance,Billing Specialist
+Finance,Credit Controller
+Finance,Tax Accountant
+Finance,Financial Advisor
+Finance,Stockbroker
+Finance,Loan Officer
+Finance,Mortgage Broker
+Finance,Underwriter
+Finance,Asset Manager
+Finance,Wealth Manager
+Sales,Account Achievement Visionary
+Sales,Account Associate
+Sales,Account Consultant
+Sales,Account Executive
+Sales,Account Growth Manager
+Sales,Account Manager
+Sales,Account Representative
+Sales,Account Specialist
+Sales,Area Sales Manager
+Sales,Business Developer
+Sales,Business Development Specialist
+Sales,Business Development Manager
+Sales,Client Advisor
+Sales,Client Engagement Specialist
+Sales,Client Growth Specialist
+Sales,Client Relationship Manager
+Sales,Client Success Consultant
+Sales,Client Success Manager
+Sales,Closer
+Sales,Customer Engagement Representative
+Sales,Customer Service Representative
+Sales,Customer Service Manager
+Sales,Director of Business Development
+Sales,Director of Sales
+Sales,Estimator
+Sales,In-Home Consultant
+Sales,Inside Sales Professional
+Sales,National Sales Manager
+Sales,Outside Sales Representative
+Sales,Producer
+Sales,Relationship Manager
+Sales,Results Achievement Specialist
+Sales,Sales Associate
+Sales,Sales Consultant
+Sales,Sales Director
+Sales,Sales Engineer
+Sales,Sales Professional
+Sales,Sales Representative
+Sales,Salesperson
+Sales,Seller
+Marketing,Chief Marketing Officer
+Marketing,Head of Marketing
+Marketing,Marketing Director
+Marketing,Marketing Manager
+Marketing,Content Marketing Manager
+Marketing,Marketing Associate
+Marketing,Product Marketing Specialist
+Marketing,Head of Content
+Marketing,Head of Growth
+Marketing,Digital Marketing Manager
+Marketing,Social Media Manager
+Marketing,SEO Specialist
+Marketing,SEM Specialist
+Marketing,Content Strategist
+Marketing,Brand Manager
+Marketing,Brand Strategist
+Marketing,Creative Director
+Marketing,Copywriter
+Marketing,Marketing Coordinator
+Marketing,Public Relations Specialist
+Marketing,Public Relations Manager
+Marketing,Communications Director
+Marketing,Marketing Analyst
+Marketing,Market Research Analyst
+Marketing,Event Planner
+Marketing,Email Marketing Manager
+Marketing,Growth Hacker
+Marketing,Paid Media Specialist
+Marketing,Advertising Manager
+Marketing,Media Buyer
+Marketing,Media Planner
+Marketing,Marketing Strategist
+Marketing,E-commerce Manager
+Marketing,Affiliate Marketing Manager
+Marketing,Content Manager
+Marketing,Social Media Specialist
+Marketing,Marketing Consultant
+Marketing,Brand Ambassador
+Marketing,Influencer Marketing Manager
+Marketing,Product Marketer
+Education,Academic Adviser
+Education,Academic Support Coordinator
+Education,Administrator
+Education,Admissions Assistant
+Education,Admissions Representative
+Education,Adjunct Professor
+Education,Adviser
+Education,After-School Program Aide
+Education,After-School Program Coordinator
+Education,Assistant Coach
+Education,Assistant Dean
+Education,Assistant Instructor
+Education,Assistant Principal
+Education,Assistant Preschool Teacher
+Education,Assistant Professor
+Education,Assistant Registrar
+Education,Assistant Teacher
+Education,Associate Dean
+Education,Associate Professor
+Education,Career Counselor
+Education,Child Care Assistant
+Education,Child Care Center Teacher
+Education,Coach
+Education,Crossing Guard
+Education,Day Care Assistant
+Education,Day Care Center Teacher
+Education,Dean
+Education,Driver Education Teacher
+Education,Education Coordinator
+Education,Education Specialist
+Education,Education Technician
+Education,Educator
+Education,Financial Aid Administrator
+Education,Food Service Aide
+Education,Food Service Coordinator
+Education,Food Service Manager
+Education,Guidance Counselor
+Education,Instructor
+Education,Instructional Assistant
+Education,Lead Teacher
+Education,Lunch Monitor
+Education,Preschool Assistant Teacher
+Education,Preschool Director
+Education,Preschool Group Leader
+Education,Preschool Lead Teacher
+Education,Preschool Specialist
+Education,Preschool Teacher
+Education,Principal
+Education,Program Assistant
+Education,Program Coordinator
+Logistics,Delivery Driver
+Logistics,Driver
+Logistics,Inventory Manager
+Logistics,Logistics Administrator
+Logistics,Logistics Coordinator
+Logistics,Logistics Manager
+Logistics,Material Handler
+Logistics,Materials Manager
+Logistics,Order Picker
+Logistics,Preloader Specialist
+Logistics,Procurement Manager
+Logistics,Program Analyst
+Logistics,Purchasing Agent
+Logistics,Purchasing Assistant
+Logistics,Purchasing Manager
+Logistics,Purchasing Officer
+Logistics,Receiving Clerk
+Logistics,Shipping Manager
+Logistics,Sourcing Manager
+Logistics,Stock Controller
+Logistics,Supply Chain Analyst
+Logistics,Supply Chain Manager
+Logistics,Transportation Manager
+Logistics,Truck Driver
+Logistics,Warehouse Associate
+Logistics,Warehouse Manager
+Logistics,Warehouse Supervisor
+Logistics,Warehouse Worker
+Logistics,Fleet Manager
+Logistics,Supply Planner
+Creative,Chief Creative Officer
+Creative,Head of Creative
+Creative,Head of Design
+Creative,Creative Group Head
+Creative,Head of UX Design
+Creative,Chief Design Officer
+Creative,Head of Design and User Experience
+Creative,Design Director
+Creative,Art Director
+Creative,Design Manager
+Creative,Creative Lead
+Creative,Visual Identity Manager
+Creative,Graphic Designer
+Creative,Interior Designer
+Creative,UX Designer
+Creative,Illustrator
+Creative,Instructional Designer
+Creative,Designer
+Creative,Web Designer
+Creative,Industrial Designer
+Creative,Game Designer
+Creative,UI Designer
+Creative,UI/UX Designer
+Creative,Visual Designer
+Creative,Fashion Designer
+Creative,Motion Designer
+Creative,Animator
+Creative,Video Editor
+Creative,Photographer
+Creative,Videographer
+Creative,Sound Designer
+Creative,Audio Engineer
+Creative,Art Producer
+Creative,Production Designer
+Creative,Brand Designer
+Creative,3D Artist
+Creative,Concept Artist
+Creative,Packaging Designer
+Creative,Landscape Architect
+Creative,Content Creator
+Administrative,Administrative Assistant
+Administrative,Office Manager
+Administrative,Executive Assistant
+Administrative,Receptionist
+Administrative,Personal Assistant
+Administrative,Chief of Staff
+Administrative,File Clerk
+Administrative,Virtual Assistant
+Administrative,Contract Administrator
+Administrative,Data Entry Clerk
+Administrative,Office Administrator
+Administrative,Secretary
+Administrative,Front Desk Agent
+Administrative,Front Desk Clerk
+Administrative,Office Coordinator
+Administrative,Clerical Assistant
+Administrative,Records Clerk
+Administrative,Office Secretary
+Administrative,Administrative Clerk
+Administrative,Administrative Coordinator
+Administrative,Administrative Officer
+Administrative,Administrative Director
+Administrative,Office Support Specialist
+Administrative,Scheduler
+Administrative,Mailroom Clerk
+Administrative,Facilities Coordinator
+Administrative,Office Supervisor
+Administrative,Administrative Analyst
+Administrative,Administrative Services Manager
+Administrative,Administrative Support Specialist
+Human Resources,HR Intern
+Human Resources,HR Assistant
+Human Resources,HR Generalist
+Human Resources,HR Representative
+Human Resources,HR Specialist
+Human Resources,HR Coordinator
+Human Resources,HR Manager
+Human Resources,HR Director
+Human Resources,Chief Human Resources Officer
+Human Resources,People Officer
+Human Resources,HR Business Partner
+Human Resources,Talent Acquisition Specialist
+Human Resources,Talent Acquisition Manager
+Human Resources,Recruiter
+Human Resources,Recruitment Manager
+Human Resources,Recruitment Coordinator
+Human Resources,HR Analyst
+Human Resources,Compensation Analyst
+Human Resources,Benefits Specialist
+Human Resources,Benefits Manager
+Human Resources,Employee Relations Manager
+Human Resources,Training and Development Manager
+Human Resources,Learning and Development Specialist
+Human Resources,Diversity and Inclusion Manager
+Human Resources,People and Culture Manager
+Customer Service,Client Support Officer
+Customer Service,Guest Service Agent
+Customer Service,Customer Advocate
+Customer Service,Customer Experience Agent
+Customer Service,Customer Experience Specialist
+Customer Service,Customer Service Agent
+Customer Service,Customer Success Advisor
+Customer Service,Customer Support Associate
+Customer Service,Customer Support Coordinator
+Customer Service,Customer Support Representative
+Customer Service,Customer Trainer
+Customer Service,Help Desk Technician
+Customer Service,Support Agent
+Customer Service,Support Specialist
+Customer Service,Technical Support Engineer
+Customer Service,Technical Services Engineer
+Customer Service,Technical Customer Support Specialist
+Customer Service,Technical Support
+Customer Service,Call Center Representative
+Customer Service,Customer Care Specialist
+Customer Service,Customer Relations Specialist
+Customer Service,Client Relationship Specialist
+Customer Service,Service Desk Analyst
+Customer Service,Online Chat Specialist
+Customer Service,Member Services Representative
+Blue Collar,Carpenter
+Blue Collar,Plumber
+Blue Collar,Mason
+Blue Collar,Electrician
+Blue Collar,Electronics Technician
+Blue Collar,Telecommunications Technician
+Blue Collar,HVAC Technician
+Blue Collar,Auto Mechanic
+Blue Collar,Industrial Maintenance Mechanic
+Blue Collar,Welder
+Blue Collar,Machinist
+Blue Collar,Forklift Operator
+Blue Collar,Heavy Equipment Operator
+Blue Collar,Construction Worker
+Blue Collar,General Laborer
+Blue Collar,Landscaper
+Blue Collar,Groundskeeper
+Blue Collar,Janitor
+Blue Collar,Custodian
+Blue Collar,Painter
+Blue Collar,Roofer
+Blue Collar,Bricklayer
+Blue Collar,Ironworker
+Blue Collar,Sheet Metal Worker
+Blue Collar,Pipefitter
+Blue Collar,Boilermaker
+Blue Collar,Crane Operator
+Blue Collar,Excavator Operator
+Blue Collar,Diesel Mechanic
+Blue Collar,Automotive Technician
+Blue Collar,Insulation Installer
+Blue Collar,Asphalt Paver
+Blue Collar,Drywall Installer
+Blue Collar,Glazier
+Blue Collar,Plasterer
+Blue Collar,Elevator Technician
+Blue Collar,Tower Crane Operator
+Blue Collar,Logging Worker
+Blue Collar,Farmer
+Blue Collar,Farmhand
+Other,Lawyer
+Other,Attorney
+Other,Paralegal
+Other,Legal Assistant
+Other,Legal Secretary
+Other,Court Clerk
+Other,Judge
+Other,Magistrate
+Other,Prosecutor
+Other,Public Defender
+Other,Legal Counsel
+Other,Patent Agent
+Other,Compliance Attorney
+Other,Litigation Support Specialist
+Other,Legal Analyst
+Other,Contract Lawyer
+Other,Corporate Counsel
+Other,Family Lawyer
+Other,Immigration Attorney
+Other,Criminal Lawyer
+Other,Research Scientist
+Other,Laboratory Technician
+Other,Research Assistant
+Other,Chemist
+Other,Biologist
+Other,Physicist
+Other,Ecologist
+Other,Data Archivist
+Other,Statistician
+Other,Research Coordinator
+Other,Clinical Research Scientist
+Other,Environmental Scientist
+Other,Geologist
+Other,Oceanographer
+Other,Meteorologist

@@ -1,7 +1,7 @@
 import { CalendarIcon } from "@/assets";
 import { Button, PageTitle } from "@/components";
 import AnalyticsMetrics from "./AnalyticsMetrics";
-import AtsDistribution from "./ATSDistribution";
+import AtsDistribution from "./AtsDistribution";
 import PerformanceByLocation from "./PerformanceByLocation";
 import TopKeywords from "./TopKeywords";
 

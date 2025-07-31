@@ -1,6 +1,8 @@
-import { Input, Select } from "@/components";
+import { MultiSelect, Select } from "@/components";
+import { loadCSVAsArray } from "@/libs";
 import { OnboardingFormValues, Option } from "@/types";
 import { FormikProps } from "formik";
+import { useEffect, useState } from "react";
 
 const OnboardingRole = ({
   formik,
@@ -9,22 +11,39 @@ const OnboardingRole = ({
   formik: FormikProps<OnboardingFormValues>;
   experienceLevels: Option<{ min: number; max: number }>[];
 }) => {
-  const { values, touched, handleBlur, errors, handleChange, setFieldValue } =
-    formik;
+  const { values, touched, handleBlur, errors, setFieldValue } = formik;
+
+  const [data, setData] = useState<any[]>([]);
+
+  useEffect(() => {
+    loadCSVAsArray("/data/job_titles_list.csv").then(setData);
+  }, []);
+
   return (
     <>
-      <Input
-        label="Job title or Role"
-        name="preferred_role"
-        value={values.preferred_role}
-        onChange={handleChange}
+      <MultiSelect
+        label="Job title(s) or Role(s)*"
+        name={`preferred_role`}
+        values={values?.preferred_role
+          .split(",")
+          .map((item) => item.trim())
+          .filter((item) => item.length > 0)
+          .map((item) => ({ label: item, value: item }))}
         onBlur={handleBlur}
-        errorMessage={errors.preferred_role}
+        errorMessage={errors.preferred_role as string}
         touched={touched.preferred_role}
-        placeholder="e.g Data Analyst, Marketing Specialist"
-        required
-        note="What kind of roles are you looking for?"
+        onChange={(item) => {
+          console.log("item", item);
+          const values = item.map((x) => x.value).join(", ");
+          setFieldValue("preferred_role", values);
+        }}
+        options={data?.map((x) => ({
+          label: x.title,
+          value: x.title,
+        }))}
+        placeholder="Select preferred job role"
       />
+
       <Select
         label="Years of experience"
         name="experience_level"
