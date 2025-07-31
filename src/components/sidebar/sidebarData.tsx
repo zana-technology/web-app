@@ -27,7 +27,7 @@ export const sidebarData = [
     title: "Analytics",
     icon: analyticsIcon,
     link: routes.app.analytics,
-    disabled: true,
+    // disabled: true,
   },
   {
     title: "Email",

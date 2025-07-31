@@ -1,4 +1,4 @@
-import { Applications, Feed, JobDetails, Settings, SingleApplication } from "@/pages";
+import { Analytics, Applications, Feed, JobDetails, Settings, SingleApplication } from "@/pages";
 
 const protectedRoutes = [
   {
@@ -20,6 +20,10 @@ const protectedRoutes = [
   {
     path: "settings",
     element: <Settings />,
+  },
+  {
+    path: "analytics",
+    element: <Analytics />,
   },
 ];
 
