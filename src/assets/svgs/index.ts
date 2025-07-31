@@ -58,6 +58,8 @@ import checkCircleIcon from "./check-circle.svg";
 import downloadGreyIcon from "./download-grey.svg";
 import trashIcon from "./trash.svg";
 
+export { default as AnalyticsIcon } from "./analytics.svg?react";
+
 export {
   errorIcon,
   infoIcon,
