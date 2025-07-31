@@ -21,7 +21,7 @@ export const sidebarData = [
     title: "Applications",
     icon: applicationIcon,
     link: routes.app.applications,
-    disabled: true,
+    // disabled: true,
   },
   {
     title: "Analytics",
