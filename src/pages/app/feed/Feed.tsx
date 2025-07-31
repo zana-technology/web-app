@@ -5,6 +5,7 @@ import { CiFilter } from "react-icons/ci";
 import Jobs from "./Jobs";
 import { useRef } from "react";
 import { useInfiniteScrollTrigger } from "@/hooks";
+import FeedFilter from "./FeedFilter";
 
 const Feed = () => {
   const {
@@ -17,6 +18,9 @@ const Feed = () => {
     isFetchingNextPage,
     renderEmptyText,
     currentTab,
+    showFilter,
+    setShowFilter,
+    setFilters,
   } = useFeed();
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
@@ -32,25 +36,29 @@ const Feed = () => {
       <PageTitle title="Job Feed" subtitle="Personalised job recommendations powered by Zana" />
 
       <div className="mt-8">
+        <div className="w-full flex flex-col-reverse lg:flex-row  justify-between lg:items-center gap-6">
+          <TabMenu menu={tabMenu} />
+          <div className="flex gap-4">
+            <SearchInput
+              placeholder="Search jobs, companies, or locations "
+              setSearchQuery={setSearchQuery}
+            />
+            <Button
+              title="Filter"
+              icon={<CiFilter className="text-dark-700" size={20} />}
+              iconPosition="left"
+              variant="outlined"
+              onClick={() => {
+                setShowFilter(!showFilter);
+              }}
+            />
+          </div>
+        </div>
+        {showFilter ? <FeedFilter setFilters={setFilters} /> : ""}
         {isLoading ? (
           <PageLoader />
         ) : (
           <>
-            <div className="w-full flex flex-col-reverse lg:flex-row  justify-between lg:items-center gap-6">
-              <TabMenu menu={tabMenu} />
-              <div className="flex gap-4">
-                <SearchInput
-                  placeholder="Search jobs, companies, or locations "
-                  setSearchQuery={setSearchQuery}
-                />
-                <Button
-                  title="Filter"
-                  icon={<CiFilter className="text-dark-700" size={20} />}
-                  iconPosition="left"
-                  variant="outlined"
-                />
-              </div>
-            </div>
             {jobs && jobs?.length > 0 ? (
               <Jobs jobs={jobs as JobData[]} currentTab={currentTab as string} />
             ) : (

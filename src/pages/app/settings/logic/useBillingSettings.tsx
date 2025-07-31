@@ -119,8 +119,6 @@ export const useBillingSettings = () => {
     // },
   ];
 
-  console.log("subInfo", subInfo);
-
   return {
     profile,
     plans,

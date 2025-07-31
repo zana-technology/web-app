@@ -45,7 +45,8 @@ const Popover = <T,>({
         {content.map((item, i) => (
           <div
             key={i}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               item.onClick(row);
               closePopover();
             }}

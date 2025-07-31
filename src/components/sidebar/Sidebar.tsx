@@ -33,7 +33,7 @@ const DesktopSidebar = () => {
           alt="Zana Logo"
           className="h-9"
           onClick={() => {
-            navigate(routes.home);
+            navigate(routes.app.feed_auto_applied);
           }}
         />
       </div>
@@ -49,6 +49,8 @@ const MobileSidebar = ({
   showSidebar: boolean;
   setShowSidebar: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const navigate = useNavigate();
+
   if (showSidebar) {
     return (
       <div className="fixed w-screen bg-dark-1000 flex justify-between backdrop-blur-md bg-opacity-70 z-[100]">
@@ -57,11 +59,19 @@ const MobileSidebar = ({
           animate={{ x: 0 }}
           exit={{ x: -50 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="min-w-[280px] w-[70%]"
+          className="min-w-[280px] w-[70%] h-screen overflow-y-scroll"
         >
           <div className="w-full bg-white flex flex-col gap-4 h-screen ">
             <div className="h-14 flex items-center px-4 py-6 border-b border-b-gray-300">
-              <img src={logo} alt="Zana Logo" className="h-[18px]" />
+              <img
+                src={logo}
+                alt="Zana Logo"
+                className="h-[18px]"
+                onClick={() => {
+                  navigate(routes.app.feed_auto_applied);
+                  setShowSidebar(false);
+                }}
+              />
             </div>
 
             <SidebarMenu setShowSidebar={setShowSidebar} />

@@ -1,7 +1,7 @@
 import { companyLogo } from "@/assets";
 import { jobsApi } from "@/libs";
 import { JobMode, JobStatus } from "@/types";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export const useFeed = () => {
@@ -103,6 +103,8 @@ export const useFeed = () => {
     }
   };
 
+  const [showFilter, setShowFilter] = useState(false);
+
   return {
     isLoading,
     tabMenu,
@@ -114,6 +116,8 @@ export const useFeed = () => {
     setFilters,
     currentTab,
     renderEmptyText,
+    showFilter,
+    setShowFilter,
   };
 };
 
