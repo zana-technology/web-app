@@ -1,4 +1,3 @@
-import { twMerge } from "tailwind-merge";
 import { RiExpandUpDownLine } from "react-icons/ri";
 import { avatar } from "@/assets";
 import { jobsApi, profileApi } from "@/libs";
@@ -8,6 +7,7 @@ import { CreditInfo } from "@/types";
 import { Button } from "../button";
 import { useNavigate } from "react-router-dom";
 import { routes } from "@/router";
+import ProgressBar from "./ProgressBar";
 
 const SidebarBottom = () => {
   const { data } = profileApi.useGetProfile();
@@ -65,15 +65,7 @@ const SidebarBottom = () => {
             {creditsLeft}/{creditsBought}
           </p>
         </div>
-        <div className="h-2 rounded w-full bg-diagonal-stripes">
-          <div
-            style={{ width: `${creditsBought > 0 ? percentageLeft : 0}%` }}
-            className={twMerge(
-              "h-2 bg-zana-primary-normal",
-              percentageLeft < 100 ? "rounded-l" : "rounded"
-            )}
-          ></div>
-        </div>
+        <ProgressBar percentagWidth={percentageLeft} />
         {creditsBought === 0 && (
           <Button
             title="Subscribe"
