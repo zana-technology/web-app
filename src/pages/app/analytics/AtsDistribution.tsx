@@ -35,7 +35,7 @@ const AtsDistribution = () => {
     },
   ];
   return (
-    <JobDetailsShell title="ATS Distribution Score" hideTitleBorder className="mt-8">
+    <JobDetailsShell title="ATS Distribution Score" hideTitleBorder>
       <div className="w-full flex">
         {distribution?.map((x, i) => (
           <div key={i} style={{ width: `${x.percentage}%` }}>
