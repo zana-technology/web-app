@@ -77,6 +77,7 @@ export const useOnboarding = () => {
 
     //STEP6
     full_name: "",
+    phone_number: "",
     portfolio_url: "",
     resume: [],
   };

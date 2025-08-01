@@ -1,14 +1,9 @@
-import { Dropzone, Input } from "@/components";
+import { Dropzone, Input, PhoneInput } from "@/components";
 import { FileWithPreview, OnboardingFormValues } from "@/types";
 import { FormikProps } from "formik";
 
-const OnboardingAccountSetup = ({
-  formik,
-}: {
-  formik: FormikProps<OnboardingFormValues>;
-}) => {
-  const { values, touched, handleBlur, errors, handleChange, setFieldValue } =
-    formik;
+const OnboardingAccountSetup = ({ formik }: { formik: FormikProps<OnboardingFormValues> }) => {
+  const { values, touched, handleBlur, errors, handleChange, setFieldValue } = formik;
 
   return (
     <>
@@ -23,6 +18,18 @@ const OnboardingAccountSetup = ({
         placeholder="e.g Kesiena Omonigho, Samson "
         required
         note="This name should tally with the name that is on your CV"
+      />
+      <PhoneInput
+        label="Phone number"
+        name={`phone_number`}
+        value={values?.phone_number as string}
+        onChange={(value) => {
+          setFieldValue(`phone_number`, value);
+        }}
+        onBlur={handleBlur}
+        errorMessage={errors.phone_number}
+        touched={touched?.phone_number}
+        defaultCountry={"US"}
       />
       <Input
         label="Portfolio link"

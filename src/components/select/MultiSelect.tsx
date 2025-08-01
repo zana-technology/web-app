@@ -49,7 +49,7 @@ export const MultiSelect = ({
 
   const triggerId = name;
 
-  const { elementRef, position } = usePositionedElement({
+  const { elementRef, position, isPositioned } = usePositionedElement({
     triggerId,
     isOpen,
     onClose: () => setIsOpen(false),
@@ -102,7 +102,11 @@ export const MultiSelect = ({
     onChange(updatedSelection);
   };
 
-  const handleDropdownToggle = () => {
+  const handleDropdownToggle = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setIsOpen(!isOpen);
     if (!isOpen) {
       setFilteredOptions(options || []);
@@ -151,21 +155,28 @@ export const MultiSelect = ({
           placeholder={`${labelString ? "" : placeholder || `Select ${label}`}`}
           value={query}
           onChange={handleInputChange}
-          onClick={handleDropdownToggle}
+          onFocus={() => {
+            if (!isOpen) {
+              handleDropdownToggle();
+            }
+          }}
           onBlur={onBlur}
           disabled={disabled}
           className={twMerge(`h-10 outline-none  text-inherit w-full`)}
         />
         <div
-          onClick={handleDropdownToggle}
-          className={`absolute right-3  ${
+          onMouseDown={(e) => {
+            e.preventDefault(); // Prevent input blur
+            handleDropdownToggle(e);
+          }}
+          className={`absolute right-3 cursor-pointer ${
             isOpen ? "rotate-180 transition-transform" : "rotate-0 transition-transform"
           }`}
         >
           <IoIosArrowDown size={24} />
         </div>
       </div>
-      <Portal isOpen={isOpen}>
+      <Portal isOpen={isOpen} isPositioned={isPositioned}>
         <div
           style={{
             top: `${position.top}px`,

@@ -90,6 +90,7 @@ const PersonalInfo = ({
               value: x.title,
             }))}
             placeholder="Select preferred job role"
+            max={2}
           />
           <Input
             label="Email address"
