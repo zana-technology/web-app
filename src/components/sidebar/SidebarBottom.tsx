@@ -1,4 +1,3 @@
-import { twMerge } from "tailwind-merge";
 import { RiExpandUpDownLine } from "react-icons/ri";
 import { avatar } from "@/assets";
 import { jobsApi, profileApi } from "@/libs";
