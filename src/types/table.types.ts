@@ -13,6 +13,7 @@ export interface Action<TData> {
   onClick: (row?: TData) => void;
   hide?: string[];
   icon?: string | ReactNode;
+  disabled?: boolean;
 }
 
 export interface TableFilterOption {

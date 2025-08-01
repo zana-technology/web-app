@@ -4,7 +4,6 @@ import { MdClose } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
 import { FaChevronDown, FaMoneyBillWave } from "react-icons/fa";
 import { FiGlobe } from "react-icons/fi";
-import { IoCalendarClearOutline } from "react-icons/io5";
 import { AnalyticsIcon } from "@/assets";
 
 const FeedFilter = ({
@@ -123,6 +122,19 @@ const FeedFilter = ({
   const [activeFilters, setActiveFilters] = useState<Record<string, string>>({});
   const [openPopover, setOpenPopover] = useState<number | null>(null);
 
+  const handleTogglePopover = (index: number, e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    if (openPopover === index) {
+      setOpenPopover(null);
+    } else {
+      setOpenPopover(index);
+    }
+  };
+
   const handleRemoveFilter = (filterGroup: string) => {
     setActiveFilters((prev) => {
       const updated = { ...prev };
@@ -163,14 +175,17 @@ const FeedFilter = ({
             id={filter.name}
           >
             <div
-              onClick={() => {
-                setOpenPopover(i);
+              onMouseDown={(e) => {
+                e.preventDefault();
+                handleTogglePopover(i, e);
               }}
               className="flex gap-2 items-center cursor-pointer"
             >
               <filter.icon size={20} />
               {filter.name}
-              <FaChevronDown />
+              <FaChevronDown
+                className={`transition-transform ${openPopover === i ? "rotate-180" : "rotate-0"}`}
+              />
             </div>
 
             {openPopover === i && (
