@@ -10,9 +10,7 @@ const useOnboardingValidationSchema = () => {
     preferred_role: yup.string().required("Preferred role is required"),
     experience_level: yup.string().required("Experience level is required"),
     min_years_of_experience: yup.number(),
-    max_years_of_experience: yup
-      .number()
-      .min(1, "Max Years of experience cannot be less than 1"),
+    max_years_of_experience: yup.number().min(1, "Max Years of experience cannot be less than 1"),
   });
 
   const step3ValidationShema = yup.object().shape({
@@ -47,13 +45,10 @@ const useOnboardingValidationSchema = () => {
         "Please enter your full name (first and last)",
         (value) => !!value && value.trim().split(" ").length >= 2
       ),
-    portfolio_url: yup
-      .string()
-      .url("Enter a valid url starting with http:// or https://"),
-    resume: yup
-      .array()
-      .required("CV/Resume is required")
-      .min(1, "CV/Resume is required"),
+
+    phone_number: yup.string().required("Phone number is required"),
+    portfolio_url: yup.string().url("Enter a valid url starting with http:// or https://"),
+    resume: yup.array().required("CV/Resume is required").min(1, "CV/Resume is required"),
   });
 
   const validationSchema = () => {

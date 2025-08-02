@@ -13,7 +13,7 @@ const SidebarMenu = ({
 
   const pathname = location?.pathname;
   return (
-    <div className="flex flex-col justify-between px-4 flex-1">
+    <div className="flex flex-col justify-between px-4 flex-1 h-full">
       <div className="flex flex-col gap-2">
         {sidebarData?.map((x, i) => (
           <Link

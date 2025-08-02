@@ -53,16 +53,24 @@ const MobileSidebar = ({
 
   if (showSidebar) {
     return (
-      <div className="fixed w-screen bg-dark-1000 flex justify-between backdrop-blur-md bg-opacity-70 z-[100]">
+      <div
+        className="fixed inset-0 bg-dark-1000 flex justify-between backdrop-blur-md bg-opacity-70 z-[100] mobile-sidebar-height"
+        style={{ height: "100dvh" }} // Dynamic viewport height for iOS
+      >
         <motion.div
           initial={{ x: -50 }}
           animate={{ x: 0 }}
           exit={{ x: -50 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="min-w-[280px] w-[70%] h-screen overflow-y-scroll"
+          className="min-w-[280px] w-[70%] flex flex-col"
+          style={{
+            height: "100dvh",
+            paddingBottom: "env(safe-area-inset-bottom)", // iOS safe area
+          }}
         >
-          <div className="w-full bg-white flex flex-col gap-4 h-screen ">
-            <div className="h-14 flex items-center px-4 py-6 border-b border-b-gray-300">
+          <div className="w-full bg-white flex flex-col h-full">
+            {/* Header - Fixed */}
+            <div className="h-14 flex items-center px-4 py-6 border-b border-b-gray-300 flex-shrink-0">
               <img
                 src={logo}
                 alt="Zana Logo"
@@ -74,7 +82,10 @@ const MobileSidebar = ({
               />
             </div>
 
-            <SidebarMenu setShowSidebar={setShowSidebar} />
+            {/* Menu - Scrollable */}
+            <div className="flex-1 overflow-y-auto overflow-x-hidden">
+              <SidebarMenu setShowSidebar={setShowSidebar} />
+            </div>
           </div>
         </motion.div>
 

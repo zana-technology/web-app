@@ -59,7 +59,7 @@ export const Select = <T,>({
 
   const triggerId = name;
 
-  const { elementRef, position } = usePositionedElement({
+  const { elementRef, position, isPositioned } = usePositionedElement({
     triggerId,
     isOpen,
     onClose: () => setIsOpen(false),
@@ -121,7 +121,11 @@ export const Select = <T,>({
     ignoreBlurRef.current = true;
   };
 
-  const handleDropdownToggle = () => {
+  const handleDropdownToggle = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setIsOpen(!isOpen);
     if (!isOpen) {
       // When opening dropdown, show initial options
@@ -206,7 +210,11 @@ export const Select = <T,>({
           required={required}
           value={query}
           onChange={handleInputChange}
-          onClick={handleDropdownToggle}
+          onFocus={() => {
+            if (!isOpen) {
+              handleDropdownToggle();
+            }
+          }}
           onBlur={handleBlur}
           disabled={disabled}
           className={twMerge(
@@ -215,8 +223,11 @@ export const Select = <T,>({
           )}
         />
         <div
-          onClick={handleDropdownToggle}
-          className={`absolute right-3  ${
+          onMouseDown={(e) => {
+            e.preventDefault(); // Prevent input blur
+            handleDropdownToggle(e);
+          }}
+          className={`absolute right-3 cursor-pointer ${
             isOpen ? "rotate-180 transition-transform" : "rotate-0 transition-transform"
           }`}
         >
@@ -229,7 +240,7 @@ export const Select = <T,>({
           </div>
         )}
       </div>
-      <Portal isOpen={isOpen}>
+      <Portal isOpen={isOpen} isPositioned={isPositioned}>
         <div
           style={{
             top: `${position.top}px`,

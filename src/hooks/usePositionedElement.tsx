@@ -16,6 +16,7 @@ interface PositionedElementResult {
     width?: number | string;
   };
   positionAbove: boolean;
+  isPositioned: boolean; // Add this to track positioning state
 }
 
 export const usePositionedElement = ({
@@ -27,48 +28,56 @@ export const usePositionedElement = ({
 }: PositionedElementOptions): PositionedElementResult => {
   const elementRef = useRef<HTMLDivElement>(null);
   const [positionAbove, setPositionAbove] = useState(false);
+  const [isPositioned, setIsPositioned] = useState(false); // Track if positioned
   const [position, setPosition] = useState<{
     top: number;
     right: number;
     width?: number | string;
   }>({ top: 0, right: 0 });
 
+  // Function to calculate position
+  const calculatePosition = () => {
+    const trigger = document.getElementById(triggerId);
+
+    if (trigger && elementRef.current) {
+      const triggerRect = trigger.getBoundingClientRect();
+      const containerElement = trigger.parentElement as HTMLElement;
+      const width = containerElement?.offsetWidth || "auto";
+      const elementHeight = elementRef.current.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const spaceBelow = windowHeight - triggerRect.bottom;
+
+      if (spaceBelow < elementHeight + 10) {
+        // Position above the trigger
+        setPositionAbove(true);
+        setPosition({
+          top: triggerRect.top - elementHeight - topOffset * 16,
+          right: window.innerWidth - triggerRect.right + rightOffset,
+          width,
+        });
+      } else {
+        // Position below the trigger
+        setPositionAbove(false);
+        setPosition({
+          top: triggerRect.bottom + topOffset * 16,
+          right: window.innerWidth - triggerRect.right + rightOffset,
+          width,
+        });
+      }
+
+      setIsPositioned(true); // Mark as positioned
+    }
+  };
+
   // Calculate and set position when opened
   useEffect(() => {
     if (isOpen) {
-      const trigger = document.getElementById(triggerId);
+      setIsPositioned(false); // Reset positioning state
 
-      if (trigger) {
-        const triggerRect = trigger.getBoundingClientRect();
-        const containerElement = trigger.parentElement as HTMLElement;
-        const width = containerElement?.offsetWidth || "auto";
-
-        setTimeout(() => {
-          if (elementRef.current) {
-            const elementHeight = elementRef.current.offsetHeight;
-            const windowHeight = window.innerHeight;
-            const spaceBelow = windowHeight - triggerRect.bottom;
-
-            if (spaceBelow < elementHeight + 10) {
-              // Position above the trigger
-              setPositionAbove(true);
-              setPosition({
-                top: triggerRect.top - elementHeight - topOffset * 16,
-                right: window.innerWidth - triggerRect.right + rightOffset,
-                width,
-              });
-            } else {
-              // Position below the trigger
-              setPositionAbove(false);
-              setPosition({
-                top: triggerRect.bottom + topOffset * 16,
-                right: window.innerWidth - triggerRect.right + rightOffset,
-                width,
-              });
-            }
-          }
-        }, 0);
-      }
+      // Position immediately without delay for better responsiveness
+      calculatePosition();
+    } else {
+      setIsPositioned(false);
     }
   }, [isOpen, triggerId, topOffset, rightOffset]);
 
@@ -76,28 +85,7 @@ export const usePositionedElement = ({
   useEffect(() => {
     const handleResize = () => {
       if (isOpen && elementRef.current) {
-        const trigger = document.getElementById(triggerId);
-
-        if (trigger) {
-          const triggerRect = trigger.getBoundingClientRect();
-          const containerElement = trigger.parentElement as HTMLElement;
-          const width = containerElement?.offsetWidth || "auto";
-          const elementHeight = elementRef.current.offsetHeight;
-
-          if (positionAbove) {
-            setPosition({
-              top: triggerRect.top - elementHeight - topOffset * 16,
-              right: window.innerWidth - triggerRect.right + rightOffset,
-              width,
-            });
-          } else {
-            setPosition({
-              top: triggerRect.bottom + topOffset * 16,
-              right: window.innerWidth - triggerRect.right + rightOffset,
-              width,
-            });
-          }
-        }
+        calculatePosition();
       }
     };
 
@@ -106,6 +94,44 @@ export const usePositionedElement = ({
       window.removeEventListener("resize", handleResize);
     };
   }, [isOpen, triggerId, positionAbove, topOffset, rightOffset]);
+
+  // Handle scroll events to close dropdown when trigger goes out of view
+  useEffect(() => {
+    let rafId: number;
+
+    const handleScroll = () => {
+      // Use requestAnimationFrame to throttle scroll events for better performance
+      if (rafId) cancelAnimationFrame(rafId);
+
+      rafId = requestAnimationFrame(() => {
+        if (isOpen && onClose) {
+          const trigger = document.getElementById(triggerId);
+          if (trigger) {
+            const triggerRect = trigger.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            // Close if trigger is completely out of view
+            if (triggerRect.bottom < 0 || triggerRect.top > windowHeight) {
+              onClose();
+            } else {
+              // Recalculate position if still visible
+              calculatePosition();
+            }
+          }
+        }
+      });
+    };
+
+    if (isOpen) {
+      // Listen to scroll on window and all scrollable ancestors
+      window.addEventListener("scroll", handleScroll, true);
+    }
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", handleScroll, true);
+    };
+  }, [isOpen, triggerId, onClose]);
 
   // Handle click outside to close
   useEffect(() => {
@@ -142,6 +168,7 @@ export const usePositionedElement = ({
     elementRef,
     position,
     positionAbove,
+    isPositioned, // Return positioning state
   };
 };
 

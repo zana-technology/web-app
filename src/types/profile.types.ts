@@ -62,6 +62,7 @@ export type OnboardingFormValues = {
   portfolio_url: string;
   resume?: File[];
   preferred_work_regions: string[];
+  phone_number: string;
 };
 
 export type OnboardingProfileFormValues = {

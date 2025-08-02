@@ -33,7 +33,6 @@ const OnboardingRole = ({
         errorMessage={errors.preferred_role as string}
         touched={touched.preferred_role}
         onChange={(item) => {
-          console.log("item", item);
           const values = item.map((x) => x.value).join(", ");
           setFieldValue("preferred_role", values);
         }}
@@ -42,6 +41,7 @@ const OnboardingRole = ({
           value: x.title,
         }))}
         placeholder="Select preferred job role"
+        max={2}
       />
 
       <Select
