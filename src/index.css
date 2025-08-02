@@ -201,3 +201,8 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.mobile-sidebar-height {
+  height: 100vh; /* Fallback */
+  height: 100dvh; /* Modern browsers */
+}
